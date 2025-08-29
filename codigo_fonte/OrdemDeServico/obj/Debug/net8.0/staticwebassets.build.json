@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "nKckpPHiSWzg9hJukWAsbW9gd+Ij/Ia2kXng/p8x5hI=",
+  "Source": "OrdemDeServico",
+  "BasePath": "_content/OrdemDeServico",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "OrdemDeServico\\wwwroot",
+      "Source": "OrdemDeServico",
+      "ContentRoot": "C:\\xampp\\htdocs\\ordem_de_servico_api\\OrdemDeServico\\OrdemDeServico\\wwwroot\\",
+      "BasePath": "_content/OrdemDeServico",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\xampp\\htdocs\\ordem_de_servico_api\\OrdemDeServico\\OrdemDeServico\\wwwroot\\css\\style.css",
+      "SourceId": "OrdemDeServico",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\xampp\\htdocs\\ordem_de_servico_api\\OrdemDeServico\\OrdemDeServico\\wwwroot\\",
+      "BasePath": "_content/OrdemDeServico",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
+    },
+    {
+      "Identity": "C:\\xampp\\htdocs\\ordem_de_servico_api\\OrdemDeServico\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
+      "SourceId": "OrdemDeServico",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\xampp\\htdocs\\ordem_de_servico_api\\OrdemDeServico\\OrdemDeServico\\wwwroot\\",
+      "BasePath": "_content/OrdemDeServico",
+      "RelativePath": "imagens/logo-ufam-icet.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imagens\\logo-ufam-icet.png"
+    }
+  ]
+}
