@@ -1,1 +1,7 @@
+# Descrição do Sistema Ordem de Serviço (OS)
 
+<p align = justify>O Instituto de Ciências Exatas e Tecnologia (ICET), em Itacoatiara, possui uma ampla infraestrutura acadêmica e tecnológica, atendendo milhares de alunos e servidores. Apesar desse porte, o setor de Tecnologia da Informação enfrenta dificuldades no gerenciamento de solicitações de suporte, devido à ausência de um sistema centralizado para registro e acompanhamento dos atendimentos, o que compromete a organização e a eficiência da Gerência de TI (GTI).</p>
+
+<p align = justify>Para resolver esse problema, foi desenvolvido o sistema Ordem de Serviço (OS), uma aplicação voltada à gestão das demandas de TI do instituto. O sistema tem como objetivo principal organizar, registrar e canalizar as solicitações de serviços, permitindo que os chamados sejam acompanhados em tempo real e direcionados corretamente aos responsáveis, oferecendo maior agilidade no processo de suporte técnico.</p>
+
+<p align = justify>Entre suas principais funcionalidades, destacam-se: o cadastro de solicitações de serviços pelos servidores, a emissão de protocolos de acompanhamento, o envio automático de notificações por e-mail, consultas de andamento e histórico, além do acesso restrito à Gerência de TI, que pode consultar e alterar o status das solicitações. Dessa forma, o sistema OS proporciona maior eficiência na resolução de problemas relacionados à manutenção, configuração e suporte tecnológico no ICET.</p>
