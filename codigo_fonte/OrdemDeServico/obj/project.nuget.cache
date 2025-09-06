@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VMZTiPhGBQ8=",
+  "dgSpecHash": "OQveVEBnPz4=",
   "success": true,
-  "projectFilePath": "C:\\xampp\\htdocs\\ordem_de_servico_api\\OrdemDeServico\\OrdemDeServico\\OrdemDeServico.csproj",
+  "projectFilePath": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\OrdemDeServico.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anderson\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
