@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OrdemDeServico")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+530a46c7cc258438dfab32f32d1160692e36fbfa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98b313b59556341a487cadb46625f5d20f9f4ad7")]
 [assembly: System.Reflection.AssemblyProductAttribute("OrdemDeServico")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OrdemDeServico")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
