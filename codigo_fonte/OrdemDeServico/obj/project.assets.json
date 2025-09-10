@@ -3053,27 +3053,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anderson\\.nuget\\packages\\": {}
+    "C:\\Users\\renna\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\OrdemDeServico.csproj",
+      "projectUniqueName": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\OrdemDeServico.csproj",
       "projectName": "OrdemDeServico",
-      "projectPath": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\OrdemDeServico.csproj",
-      "packagesPath": "C:\\Users\\Anderson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\obj\\",
+      "projectPath": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\OrdemDeServico.csproj",
+      "packagesPath": "C:\\Users\\renna\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Anderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\renna\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3147,7 +3144,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

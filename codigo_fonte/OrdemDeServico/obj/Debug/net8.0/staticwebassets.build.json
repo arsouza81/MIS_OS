@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kovgDhP/sBjuXLcNj9tMcxsWiyafn6+6erEzzKIObd0=",
+  "Hash": "cxItt/Ot4yJNsXvvN+aj3K/iWB3NO/+4MPhO5d+gn1I=",
   "Source": "OrdemDeServico",
   "BasePath": "_content/OrdemDeServico",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "OrdemDeServico\\wwwroot",
       "Source": "OrdemDeServico",
-      "ContentRoot": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
       "BasePath": "_content/OrdemDeServico",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
+      "Identity": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
       "SourceId": "OrdemDeServico",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
       "BasePath": "_content/OrdemDeServico",
       "RelativePath": "css/style.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
-      "Identity": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
+      "Identity": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
       "SourceId": "OrdemDeServico",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\renna\\OneDrive\\Área de Trabalho\\git\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
       "BasePath": "_content/OrdemDeServico",
       "RelativePath": "imagens/logo-ufam-icet.png",
       "AssetKind": "All",
