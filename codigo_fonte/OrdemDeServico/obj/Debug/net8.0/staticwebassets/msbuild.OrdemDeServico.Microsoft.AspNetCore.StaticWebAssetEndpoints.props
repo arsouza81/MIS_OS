@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/OrdemDeServico/css/style.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\style.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-6Od8AINeH/J1df55EZ5hJaL/wAKRCFiDkvu7jRDBoQU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5279"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00226Od8AINeH/J1df55EZ5hJaL/wAKRCFiDkvu7jRDBoQU=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 20:29:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/OrdemDeServico/css/style.k5io68tb7h.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\style.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"k5io68tb7h"},{"Name":"integrity","Value":"sha256-6Od8AINeH/J1df55EZ5hJaL/wAKRCFiDkvu7jRDBoQU="},{"Name":"label","Value":"_content/OrdemDeServico/css/style.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5279"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00226Od8AINeH/J1df55EZ5hJaL/wAKRCFiDkvu7jRDBoQU=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 20:29:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/OrdemDeServico/imagens/logo-ufam-icet.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\imagens\logo-ufam-icet.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-K2rgDz4hv9W0Ssgv6OhETLXSN8gLmrzsnHKbK1xvA6Q="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"385596"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022K2rgDz4hv9W0Ssgv6OhETLXSN8gLmrzsnHKbK1xvA6Q=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 20:29:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/OrdemDeServico/imagens/logo-ufam-icet.tu0eevvk9z.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\imagens\logo-ufam-icet.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tu0eevvk9z"},{"Name":"integrity","Value":"sha256-K2rgDz4hv9W0Ssgv6OhETLXSN8gLmrzsnHKbK1xvA6Q="},{"Name":"label","Value":"_content/OrdemDeServico/imagens/logo-ufam-icet.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"385596"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022K2rgDz4hv9W0Ssgv6OhETLXSN8gLmrzsnHKbK1xvA6Q=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 20:29:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

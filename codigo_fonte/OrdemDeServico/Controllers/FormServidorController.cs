@@ -10,7 +10,7 @@ namespace OrdemDeServico.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class FormServidorController : ControllerBase {
+public class FormServidorController : Controller {
 
     private OrdemContext _context;
     private IMapper _mapper;
@@ -162,6 +162,8 @@ public class FormServidorController : ControllerBase {
                 $"Uma nova ordem de serviço foi criada com o protocolo: {formulario.Protocolo}.");
         }
 
+        TempData["SuccessMessage"] = $"Formulário enviado com sucesso! Protocolo: {formulario.Protocolo}";
+        
         return RedirectToAction("Index", "Pagina");
     }
 

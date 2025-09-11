@@ -1,12 +1,16 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
+      "Id": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\Users\\Anderson\\Desktop\\Engenharia de Software\\8º periodo\\Manutenção e Integração de Software\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
+      "Id": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
       "PackagePath": "staticwebassets\\imagens\\logo-ufam-icet.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.OrdemDeServico.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.OrdemDeServico.Microsoft.AspNetCore.StaticWebAssets.props",

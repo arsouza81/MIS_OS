@@ -1,73 +1,19 @@
 {
   "Version": 1,
-  "Hash": "1f49HOUIw95xV3BfeXdLtqHp3p5UwA9nJKPffJIatak=",
-  "Source": "OrdemDeServico",
-  "BasePath": "_content/OrdemDeServico",
-  "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "OrdemDeServico\\wwwroot",
-      "Source": "OrdemDeServico",
-      "ContentRoot": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
-      "BasePath": "_content/OrdemDeServico",
-      "Pattern": "**"
-    }
-  ],
-  "Assets": [
-    {
-      "Identity": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
-      "SourceId": "OrdemDeServico",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
-      "BasePath": "_content/OrdemDeServico",
-      "RelativePath": "css/style#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "k5io68tb7h",
-      "Integrity": "6Od8AINeH/J1df55EZ5hJaL/wAKRCFiDkvu7jRDBoQU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\style.css"
-    },
-    {
-      "Identity": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
-      "SourceId": "OrdemDeServico",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\",
-      "BasePath": "_content/OrdemDeServico",
-      "RelativePath": "imagens/logo-ufam-icet#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "tu0eevvk9z",
-      "Integrity": "K2rgDz4hv9W0Ssgv6OhETLXSN8gLmrzsnHKbK1xvA6Q=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\imagens\\logo-ufam-icet.png"
-    }
-  ],
   "Endpoints": [
     {
       "Route": "css/style.css",
-      "AssetFile": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
+      "AssetFile": "css/style.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
           "Name": "Accept-Ranges",
           "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Length",
@@ -84,10 +30,6 @@
         {
           "Name": "Last-Modified",
           "Value": "Wed, 10 Sep 2025 20:29:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
         }
       ],
       "EndpointProperties": [
@@ -99,12 +41,16 @@
     },
     {
       "Route": "css/style.k5io68tb7h.css",
-      "AssetFile": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\css\\style.css",
+      "AssetFile": "css/style.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
           "Name": "Accept-Ranges",
           "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Length",
@@ -121,10 +67,6 @@
         {
           "Name": "Last-Modified",
           "Value": "Wed, 10 Sep 2025 20:29:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
         }
       ],
       "EndpointProperties": [
@@ -133,23 +75,27 @@
           "Value": "k5io68tb7h"
         },
         {
-          "Name": "label",
-          "Value": "css/style.css"
-        },
-        {
           "Name": "integrity",
           "Value": "sha256-6Od8AINeH/J1df55EZ5hJaL/wAKRCFiDkvu7jRDBoQU="
+        },
+        {
+          "Name": "label",
+          "Value": "css/style.css"
         }
       ]
     },
     {
       "Route": "imagens/logo-ufam-icet.png",
-      "AssetFile": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
+      "AssetFile": "imagens/logo-ufam-icet.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
           "Name": "Accept-Ranges",
           "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
         },
         {
           "Name": "Content-Length",
@@ -166,10 +112,6 @@
         {
           "Name": "Last-Modified",
           "Value": "Wed, 10 Sep 2025 20:29:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
         }
       ],
       "EndpointProperties": [
@@ -181,12 +123,16 @@
     },
     {
       "Route": "imagens/logo-ufam-icet.tu0eevvk9z.png",
-      "AssetFile": "C:\\Users\\alici\\MIS_OS\\codigo_fonte\\OrdemDeServico\\wwwroot\\imagens\\logo-ufam-icet.png",
+      "AssetFile": "imagens/logo-ufam-icet.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
           "Name": "Accept-Ranges",
           "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Length",
@@ -203,10 +149,6 @@
         {
           "Name": "Last-Modified",
           "Value": "Wed, 10 Sep 2025 20:29:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
         }
       ],
       "EndpointProperties": [
@@ -215,12 +157,12 @@
           "Value": "tu0eevvk9z"
         },
         {
-          "Name": "label",
-          "Value": "imagens/logo-ufam-icet.png"
-        },
-        {
           "Name": "integrity",
           "Value": "sha256-K2rgDz4hv9W0Ssgv6OhETLXSN8gLmrzsnHKbK1xvA6Q="
+        },
+        {
+          "Name": "label",
+          "Value": "imagens/logo-ufam-icet.png"
         }
       ]
     }

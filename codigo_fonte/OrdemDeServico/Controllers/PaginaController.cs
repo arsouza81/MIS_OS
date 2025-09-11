@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using OrdemDeServico.Data;
 
-public class PaginaController : ControllerBase {
+public class PaginaController : Controller {
 
     [HttpGet]
     public IActionResult Index() {
@@ -29,12 +29,15 @@ public class PaginaController : ControllerBase {
         var layoutTemplate = Handlebars.Compile(layoutContent);
         var contentTemplate = Handlebars.Compile(templateContent);
 
+        var successMessage = TempData["SuccessMessage"]?.ToString();
+
         // Dados a serem passados para o template
         var data = new {
             Title = "Página Inicial",
             Mensagem = "Bem-vindo ao nosso site!",
             Nome = "Usuário",
-            BodyContent = contentTemplate(new { /* Dados específicos para index.hbs */ })
+            successMessage,
+            BodyContent = contentTemplate(new { successMessage })
         };
 
         // Renderize o HTML usando o layout
