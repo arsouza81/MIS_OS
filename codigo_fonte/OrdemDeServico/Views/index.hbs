@@ -1,3 +1,75 @@
+<style>
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    max-width: 350px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toast-message {
+    margin-right: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.toast-close:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast.hide {
+    animation: slideOut 0.3s ease-in forwards;
+}
+</style>
+
 <!--header start-->
 <header>
     <a href="/">
@@ -23,9 +95,13 @@
 {{/if}}
 
 {{#if successMessage}}
-<div id="success-message" class="alert alert-success" style="margin-top: 0px;">{{successMessage}}</div>
+<div id="toast" class="toast show">
+    <div class="toast-content">
+        <span class="toast-message">✅ {{successMessage}}</span>
+        <button onclick="closeToast()" class="toast-close">&times;</button>
+    </div>
+</div>
 {{/if}}
-
 
 <!--section menu start-->
 <section class="menu">
@@ -120,4 +196,24 @@
             alert(errorMessages.join("\\n")); // Exibe os erros
         }
     });
+</script>
+
+<script>
+function closeToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 300);
+}
+
+//fecha automaticamente após 5 segundos
+setTimeout(() => {
+    const toast = document.getElementById('toast');
+    if (toast) {
+        closeToast();
+    }
+}, 5000);
 </script>
