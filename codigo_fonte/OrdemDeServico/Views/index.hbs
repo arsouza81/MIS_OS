@@ -172,22 +172,22 @@
 
         let errorMessages = [];
 
-        if (!nome) {
+        if (!nome || nome.trim() === "") {
             errorMessages.push("O formulário precisa de um nome de usuário.");
         }
-        if (!email) {
+        if (!email || email.trim() === "") {
             errorMessages.push("O formulário precisa de um e-mail.");
         }
-        if (!siape) {
+        if (!siape || siape.trim() === "") {
             errorMessages.push("O formulário precisa de um siape.");
         }
-        if (!bloco) {
+        if (!bloco || bloco.trim() === "") {
             errorMessages.push("O formulário precisa de um bloco.");
         }
-        if (!sala) {
+        if (!sala || sala.trim() === "") {
             errorMessages.push("O formulário precisa de uma sala.");
         }
-        if (!descricaoProblema) {
+        if (!descricaoProblema || descricaoProblema.trim() === "") {
             errorMessages.push("O formulário precisa de uma descrição para o problema.");
         }
 
