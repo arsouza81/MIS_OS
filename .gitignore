@@ -1,0 +1,8 @@
+# Ignorar arquivos de build do .NET
+[Bb]in/
+[Oo]bj/
+
+# Arquivos de usuário do Visual Studio
+.vs/
+*.user
+*.suo
