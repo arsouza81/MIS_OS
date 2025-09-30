@@ -52,9 +52,6 @@ export default function Solicitacao() {
                 <strong>Email:</strong> {solicitacao.email}
               </li>
               <li>
-                <strong>Siape:</strong> {solicitacao.siape}
-              </li>
-              <li>
                 <strong>Bloco:</strong> {solicitacao.bloco}
               </li>
               <li>
@@ -66,7 +63,7 @@ export default function Solicitacao() {
               </li>
               <li>
                 <strong>Data da Solicitação:</strong>{" "}
-                {new Date(solicitacao.data_solicitacao).toLocaleString()}
+                {new Date(solicitacao.data_Solicitacao).toLocaleString()}
               </li>
               <li>
                 <strong>Status:</strong>{" "}
