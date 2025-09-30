@@ -1,0 +1,5 @@
+.vscode/
+.vs
+codigo_fonte/backend/OrdemDeServico/bin
+codigo_fonte/backend/OrdemDeServico/obj
+codigo_fonte/frontend/node_modules
