@@ -19,38 +19,52 @@ builder.Services.AddDbContext<OrdemContext>(opts =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-// Adicionar serviços ao contêiner
+// Adicionar serviï¿½os ao contï¿½iner
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-// Configurar autenticação com cookies
+// Configurar autenticaï¿½ï¿½o com cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => {
         options.LoginPath = "/User/Login";
         options.LogoutPath = "/User/Logout";
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Tempo de expiração do cookie
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Tempo de expiraï¿½ï¿½o do cookie
     });
 
-// Adicionar autorização
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+});
+
+// Adicionar autorizaï¿½ï¿½o
 builder.Services.AddAuthorization();
 
-//email// Adiciona o serviço de e-mail
+//email// Adiciona o serviï¿½o de e-mail
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 
-// Configurar o pipeline de requisições HTTP
+// Configurar o pipeline de requisiï¿½ï¿½es HTTP
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // Servir arquivos estáticos, como CSS, JS, etc.
+app.UseStaticFiles(); // Servir arquivos estï¿½ticos, como CSS, JS, etc.
 
-// Adicionar autenticação e autorização ao pipeline
+app.UseCors("AllowReact");
+
+// Adicionar autenticaï¿½ï¿½o e autorizaï¿½ï¿½o ao pipeline
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -59,7 +73,7 @@ app.UseRouting();
 // Configurar o roteamento de controladores
 app.MapControllers();
 
-// Configurar a rota padrão do controlador
+// Configurar a rota padrï¿½o do controlador
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Pagina}/{action=Index}/{id?}");
