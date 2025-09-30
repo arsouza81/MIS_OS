@@ -12,18 +12,21 @@ namespace OrdemDeServico.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase {
+public class UserController : ControllerBase
+{
 
     private OrdemContext _context;
     private IMapper _mapper;
 
-    public UserController(OrdemContext context, IMapper mapper) {
+    public UserController(OrdemContext context, IMapper mapper)
+    {
         _context = context;
         _mapper = mapper;
     }
 
     [HttpPost]
-    public IActionResult PostUser([FromBody] CreateUserDto userDto) {
+    public IActionResult PostUser([FromBody] CreateUserDto userDto)
+    {
         User user = _mapper.Map<User>(userDto);
         _context.Users.Add(user);
         _context.SaveChanges();
@@ -31,77 +34,78 @@ public class UserController : ControllerBase {
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetUserPorId(int id) {
+    public IActionResult GetUserPorId(int id)
+    {
         var user = _context.Users.FirstOrDefault(user => user.Id == id);
-        if(user == null) return NotFound();
+        if (user == null) return NotFound();
         return Ok(user);
     }
 
     [HttpGet]
-    public IEnumerable<ReadUserDto> GetUsers() { 
+    public IEnumerable<ReadUserDto> GetUsers()
+    {
         return _mapper.Map<List<ReadUserDto>>(_context.Users).ToList();
     }
 
     [HttpDelete]
-    public IActionResult DeleteUser(int id) {
+    public IActionResult DeleteUser(int id)
+    {
         var user = _context.Users.FirstOrDefault(user => user.Id == id);
-        if(user == null) return NotFound();
+        if (user == null) return NotFound();
         _context.Remove(user);
         _context.SaveChanges();
         return NoContent();
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromForm] LoginDto loginDto) {
-        // Lógica de autenticação
+    public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+    {
         var user = _context.Users.FirstOrDefault(u => u.Email == loginDto.Email && u.Password == loginDto.Password);
 
-        if (user != null) {
-            // Criar as reivindicações do usuário
+        if (user != null)
+        {
             var claims = new List<Claim>
             {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.Name)
-            // Adicione mais reivindicações conforme necessário
-        };
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.Name)
+            };
 
-            // Criar identidade e autenticar o usuário
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
 
-            // Fazer login e armazenar o usuário na sessão
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-            // Redirecionar para a página de gerente se o login for bem-sucedido
-            return RedirectToAction("IndexGerente", "Pagina");
+            // Retornar JSON com sucesso
+            return Ok(new { success = true });
         }
 
-        // Redirecionar para a página de login com um parâmetro de erro
-        return RedirectToAction("Login", "Pagina", new { erro = "Credenciais inválidas" });
+        // Retornar erro 401 em vez de redirecionar
+        return Unauthorized(new { success = false, message = "Credenciais inválidas" });
     }
 
-    [HttpGet("logout")]
-    public IActionResult Logout() {
-        // Limpar o cookie de autenticação
-        HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-        // Redirecionar para a página inicial
-        return RedirectToAction("Index", "Pagina");
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return Ok(new { success = true });
     }
 
     [HttpGet("selecionar_data")]
-    public IActionResult SelecionarData(string data_solicitacao) {
+    public IActionResult SelecionarData(string data_solicitacao)
+    {
         // Exibe a data fornecida pelo usuário
         Console.WriteLine($"Data fornecida pelo usuário: {data_solicitacao}");
 
         // Verifica se a data foi fornecida
-        if (string.IsNullOrEmpty(data_solicitacao)) {
+        if (string.IsNullOrEmpty(data_solicitacao))
+        {
             Console.WriteLine("Data não fornecida.");
             return RedirectToAction("IndexGerente");
         }
 
         // Tenta converter a data fornecida em um formato válido
-        if (!DateTime.TryParseExact(data_solicitacao, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var dataSolicitacao)) {
+        if (!DateTime.TryParseExact(data_solicitacao, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var dataSolicitacao))
+        {
             Console.WriteLine($"Data inválida: {data_solicitacao}");
             return Content("Data inválida", "text/html");
         }
@@ -111,7 +115,8 @@ public class UserController : ControllerBase {
         // Consulta as solicitações com base na data
         var solicitacoes = _context.FormsServidores
             .Where(f => f.Data_Solicitacao.Date == dataSolicitacao.Date)
-            .Select(f => new SolicitacaoDto {
+            .Select(f => new SolicitacaoDto
+            {
                 Id = f.Id,
                 Nome = f.Nome,
                 DataSolicitacao = f.Data_Solicitacao.ToString("dd/MM/yyyy HH:mm:ss")
@@ -121,7 +126,8 @@ public class UserController : ControllerBase {
 
         // Exibe as solicitações encontradas no console
         Console.WriteLine($"Número de solicitações encontradas: {solicitacoes.Count}");
-        foreach (var solicitacao in solicitacoes) {
+        foreach (var solicitacao in solicitacoes)
+        {
             Console.WriteLine($"ID: {solicitacao.Id}, Nome: {solicitacao.Nome}, Data da Solicitação: {solicitacao.DataSolicitacao}");
         }
 
@@ -130,7 +136,8 @@ public class UserController : ControllerBase {
         var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "solicitacoes.hbs");
 
         // Verifica se os arquivos do layout e template existem
-        if (!System.IO.File.Exists(layoutPath) || !System.IO.File.Exists(templatePath)) {
+        if (!System.IO.File.Exists(layoutPath) || !System.IO.File.Exists(templatePath))
+        {
             return Content("Templates não encontrados", "text/html");
         }
 
@@ -143,13 +150,15 @@ public class UserController : ControllerBase {
         var contentTemplate = Handlebars.Compile(templateContent);
 
         // Dados que serão passados para o template
-        var data = new SolicitacoesPageDto {
+        var data = new SolicitacoesPageDto
+        {
             Title = "Solicitações do Dia",
             DiaSelecionado = dataSolicitacao.ToString("dd/MM/yyyy"),
             NomesEIds = solicitacoes // Aqui passamos a lista de solicitações
         };
         Console.WriteLine("Solicitações:");
-        foreach (var solicitacao in data.NomesEIds) {
+        foreach (var solicitacao in data.NomesEIds)
+        {
             Console.WriteLine($"ID: {solicitacao.Id}, Nome: {solicitacao.Nome}, Data: {solicitacao.DataSolicitacao}");
         }
 
@@ -163,11 +172,13 @@ public class UserController : ControllerBase {
     }
 
     [HttpGet("detalhes_solicitacao/{id}")]
-    public IActionResult DetalhesSolicitacao(int id) {
+    public IActionResult DetalhesSolicitacao(int id)
+    {
         // Buscar a solicitação no banco de dados
         var solicitacao = _context.FormsServidores
             .Where(s => s.Id == id)
-            .Select(s => new ReadFormServidorDto {
+            .Select(s => new ReadFormServidorDto
+            {
                 Nome = s.Nome,
                 Email = s.Email, // Assumindo que Email é uma propriedade do seu modelo
                 Siape = s.Siape, // Assumindo que Siape é uma propriedade do seu modelo
@@ -179,12 +190,14 @@ public class UserController : ControllerBase {
             })
             .FirstOrDefault();
 
-        if (solicitacao == null) {
+        if (solicitacao == null)
+        {
             return NotFound(); // Retorna um erro 404 se a solicitação não for encontrada
         }
 
         // Passar os dados para a página Handlebars
-        var model = new {
+        var model = new
+        {
             solicitacao
         };
 
@@ -194,7 +207,8 @@ public class UserController : ControllerBase {
         var partialPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Partials", "mensagens.hbs");
 
         // Verifique se os arquivos existem
-        if (!System.IO.File.Exists(layoutPath) || !System.IO.File.Exists(templatePath) || !System.IO.File.Exists(partialPath)) {
+        if (!System.IO.File.Exists(layoutPath) || !System.IO.File.Exists(templatePath) || !System.IO.File.Exists(partialPath))
+        {
             return Content("Templates não encontrados", "text/html");
         }
 
@@ -210,7 +224,8 @@ public class UserController : ControllerBase {
         var contentTemplate = Handlebars.Compile(templateContent);
 
         // Dados a serem passados para o template
-        var data = new {
+        var data = new
+        {
             Title = "Detalhes da Solicitação",
             BodyContent = contentTemplate(model)
         };
@@ -223,12 +238,14 @@ public class UserController : ControllerBase {
     }
 
     [HttpPost("/atualizar_status")]
-    public IActionResult AtualizarStatus([FromBody] AtualizarStatusDto statusDto) {
+    public IActionResult AtualizarStatus([FromBody] AtualizarStatusDto statusDto)
+    {
         // Atualizar o status no banco de dados com base no protocolo e novoStatus fornecidos
         var solicitacao = _context.FormsServidores
             .FirstOrDefault(s => s.Protocolo == statusDto.Protocolo);
 
-        if (solicitacao != null) {
+        if (solicitacao != null)
+        {
             solicitacao.Status = statusDto.NovoStatus;
             _context.SaveChanges();
             return Ok(); // Retorna uma resposta de sucesso
@@ -238,4 +255,50 @@ public class UserController : ControllerBase {
     }
 
 
+    [HttpGet("api/selecionar_data")]
+    public IActionResult SelecionarDataJson(string data_solicitacao)
+    {
+        if (!DateTime.TryParseExact(data_solicitacao, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out var data))
+            return BadRequest("Data inválida");
+
+        var solicitacoes = _context.FormsServidores
+            .Where(f => f.Data_Solicitacao.Date == data.Date)
+            .Select(f => new SolicitacaoDto
+            {
+                Id = f.Id,
+                Nome = f.Nome,
+                DataSolicitacao = f.Data_Solicitacao.ToString("dd/MM/yyyy HH:mm:ss")
+            })
+            .ToList();
+
+        return Ok(new
+        {
+            DiaSelecionado = data.ToString("dd/MM/yyyy"),
+            NomesEIds = solicitacoes
+        });
+    }
+    
+    [HttpGet("api/detalhes_solicitacao/{id}")]
+    public IActionResult DetalhesSolicitacaoJson(int id)
+    {
+        var solicitacao = _context.FormsServidores
+            .Where(s => s.Id == id)
+            .Select(s => new ReadFormServidorDto
+            {
+                Nome = s.Nome,
+                Email = s.Email,
+                Siape = s.Siape,
+                Bloco = s.Bloco,
+                Sala = s.Sala,
+                DescricaoProblema = s.DescricaoProblema,
+                Status = s.Status,
+                Protocolo = s.Protocolo,
+            })
+            .FirstOrDefault();
+
+        if (solicitacao == null)
+            return NotFound();
+
+        return Ok(solicitacao);
+    }
 }

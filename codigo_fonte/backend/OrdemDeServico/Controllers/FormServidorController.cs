@@ -51,83 +51,38 @@ public class FormServidorController : Controller {
         return NoContent();
     }
 
-        [HttpGet("buscar_protocolo")]
-        public IActionResult BuscarProtocolo(string? protocolo) {
-            // Verificar se o protocolo foi fornecido
-            if (string.IsNullOrEmpty(protocolo)) {
-                var script = @"
-                <html>
-                <head>
-                    <meta charset=""UTF-8"">
-                    <title>Erro</title>
-                </head>
-                <body>
-                    <script>
-                        alert('O protocolo não pode estar vazio');
-                        window.location.href = '/Pagina/Index'; // Redireciona para a página inicial ou outra página de sua escolha
-                    </script>
-                </body>
-                </html>";
+    [HttpGet("buscar_protocolo")]
+    public IActionResult BuscarProtocolo(string? protocolo)
+    {
+        if (string.IsNullOrEmpty(protocolo))
+            return BadRequest(new { error = "O protocolo não pode estar vazio" });
 
-                return Content(script, "text/html");
-            }
+        var formulario = _context.FormsServidores
+            .FirstOrDefault(f => f.Protocolo == protocolo);
 
-            // Buscar o protocolo no banco de dados
-            var formulario = _context.FormsServidores
-                .FirstOrDefault(f => f.Protocolo == protocolo);
+        if (formulario == null)
+            return NotFound(new { error = "Protocolo não encontrado" });
 
-            if (formulario == null) {
-                var script = @"
-                <html>
-                <head>
-                    <meta charset=""UTF-8"">
-                    <title>Erro</title>
-                </head>
-                <body>
-                    <script>
-                        alert('Protocolo não encontrado');
-                        window.location.href = '/Pagina/Index'; // Redireciona para a página inicial ou outra página de sua escolha
-                    </script>
-                </body>
-                </html>";
+        // Cria objeto sem Siape
+        var formularioSemSiape = new
+        {
+            formulario.Protocolo,
+            formulario.Nome,
+            formulario.Email,
+            formulario.Bloco,
+            formulario.Sala,
+            formulario.DescricaoProblema,
+            formulario.Data_Solicitacao,
+            formulario.Status
+        };
 
-                return Content(script, "text/html");
-            }
+        return Ok(formularioSemSiape);
+    }
 
-            // Caminho para o layout e template Handlebars
-            var layoutPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Layouts", "main.hbs");
-            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "solicitacao.hbs");
 
-            // Verifique se os arquivos existem
-            if (!System.IO.File.Exists(layoutPath) || !System.IO.File.Exists(templatePath)) {
-                return Content("Templates não encontrados", "text/html");
-            }
-
-            // Carregar e registrar o partial
-            var layoutContent = System.IO.File.ReadAllText(layoutPath);
-            var templateContent = System.IO.File.ReadAllText(templatePath);
-
-            // Compile o layout e o template
-            var layoutTemplate = Handlebars.Compile(layoutContent);
-            var contentTemplate = Handlebars.Compile(templateContent);
-
-            // Dados a serem passados para o template
-            var data = new {
-                Title = "Detalhes da Solicitação",
-                Mensagem = "Aqui estão os detalhes da sua solicitação.",
-                Nome = "Usuário",
-                BodyContent = contentTemplate(new { protocoloEncontrado = formulario })
-            };
-
-            // Renderize o HTML usando o layout
-            var result = layoutTemplate(data);
-
-            // Retorne o resultado como conteúdo
-            return Content(result, "text/html");
-        }
 
     [HttpPost("formulario")]
-    public async Task<IActionResult> PostFormulario([FromForm] CreateFormServidorDto formDto) {
+    public async Task<IActionResult> PostFormulario([FromBody] CreateFormServidorDto formDto) {
         if (!ModelState.IsValid) {
             return BadRequest(ModelState);
         }
