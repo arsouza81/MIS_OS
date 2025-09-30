@@ -1,0 +1,76 @@
+header {
+  /* background: #53b800; */
+  background: #0F7522;
+  color: white;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: padding 0.3s;
+}
+
+#logo {
+  height: 100px;
+  width: 250px;
+  margin-right: 20px; /* Adiciona espaço entre o logotipo e o formulário de busca */
+}
+
+#search-form {
+  display: flex;
+  align-items: center;
+}
+
+#search-form input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 40px;
+  margin-right: 10px; /* Adiciona espaço entre o campo de texto e o botão */
+  margin-top: 10px;
+}
+
+#search-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 40px;
+}
+
+#search-form button:hover {
+  background-color: #0056b3;
+}
+
+nav {
+  margin-right: 40px;
+}
+
+
+nav ul {
+  list-style-type: none; 
+  margin: 0;
+  padding: 0;
+  display: flex; 
+}
+
+nav li {
+  margin-left: 20px; /* Espaçamento entre os itens do menu */
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+}
+
+nav a:hover {
+  color: #0056b3;
+}
