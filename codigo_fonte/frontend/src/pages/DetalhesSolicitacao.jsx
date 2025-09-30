@@ -49,7 +49,6 @@ export default function DetalhesSolicitacao() {
         <div className="info-box">
           <p><strong>Nome:</strong> {protocoloEncontrado.nome}</p>
           <p><strong>Email:</strong> {protocoloEncontrado.email}</p>
-          <p><strong>Siape:</strong> {protocoloEncontrado.siape}</p>
           <p><strong>Bloco:</strong> {protocoloEncontrado.bloco}</p>
           <p><strong>Sala:</strong> {protocoloEncontrado.sala}</p>
           <p><strong>Descrição do Problema:</strong> {protocoloEncontrado.descricaoProblema}</p>

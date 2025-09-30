@@ -63,13 +63,12 @@ public class FormServidorController : Controller {
         if (formulario == null)
             return NotFound(new { error = "Protocolo não encontrado" });
 
-        // Cria objeto sem Siape
+        
         var formularioSemSiape = new
         {
             formulario.Protocolo,
             formulario.Nome,
             formulario.Email,
-            formulario.Siape,
             formulario.Bloco,
             formulario.Sala,
             formulario.DescricaoProblema,
