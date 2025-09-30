@@ -51,7 +51,9 @@ export default function Solicitacao() {
               <li>
                 <strong>Email:</strong> {solicitacao.email}
               </li>
-              {/* Siape removido */}
+              <li>
+                <strong>Siape:</strong> {solicitacao.siape}
+              </li>
               <li>
                 <strong>Bloco:</strong> {solicitacao.bloco}
               </li>

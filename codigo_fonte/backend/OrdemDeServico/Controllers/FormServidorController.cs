@@ -69,6 +69,7 @@ public class FormServidorController : Controller {
             formulario.Protocolo,
             formulario.Nome,
             formulario.Email,
+            formulario.Siape,
             formulario.Bloco,
             formulario.Sala,
             formulario.DescricaoProblema,
