@@ -1,27 +1,29 @@
 # Plano de Estratégia de Manutenção Adaptativa
 
-Este documento detalha o Plano de Ação da equipe para a realização da **Manutenção Adaptativa** no sistema **Ordem de Serviço**.  
-A manutenção Adaptativa foi executada por meios de estratégias de classificação em três categorias, com base na necessidade de adaptar o sistema a mudanças de ambiente, o que garante a sua **sustentabilidade, segurança e relevância a longo prazo**.  
-
+<p align=justify>
+Este documento detalha o Plano de Ação da equipe para a realização da <b>Manutenção Adaptativa</b> no sistema <b>Ordem de Serviço</b>.  
+A manutenção Adaptativa foi executada por meios de estratégias de classificação em três categorias, com base na necessidade de adaptar o sistema a mudanças de ambiente, o que garante a sua <b>sustentabilidade, segurança e relevância a longo prazo</b>.  
+</p>
+<p align=justify>
 A seguir estão descritas por categorias as estratégias aplicadas para que o sistema Ordem de Serviço passasse de forma eficiente pela Manutenção Adaptativa.
-
+</p>
 ---
 
 ## Estratégia para Mudança de Dependência
 
 ### Visão de Longo Prazo
-Para o cenário de **Mudança de Dependência**, o objetivo a longo prazo não é apenas a atualização de uma biblioteca, mas o estabelecimento de um processo de monitoramento e a gestão das dependências.  
-No sistema Ordem de Serviço, a dependência escolhida foi o fato de o sistema ser **completamente monolítico**, com alto nível de acoplamento.  
-A decisão de **desacoplar o sistema** e migrar o front-end para **React** não é apenas uma atualização de dependência, mas uma **evolução arquitetural**. Essa modularização aumenta a **manutenibilidade, performance e escalabilidade**, facilitando futuras funcionalidades, correções de bugs e colaboração em equipe.
+<p align=justify>Para o cenário de <b>Mudança de Dependência</b>, o objetivo a longo prazo não é apenas a atualização de uma biblioteca, mas o estabelecimento de um processo de monitoramento e a gestão das dependências.</p>
+<p align=justify>No sistema Ordem de Serviço, a dependência escolhida foi o fato de o sistema ser <b>completamente monolítico</b>, com alto nível de acoplamento.</p>  
+<p align=justify>A decisão de <b>desacoplar o sistema</b> e migrar o front-end para <b>React</b> não é apenas uma atualização de dependência, mas uma <b>evolução arquitetural</b>. Essa modularização aumenta a <b>manutenibilidade, performance e escalabilidade</b>, facilitando futuras funcionalidades, correções de bugs e colaboração em equipe.</p>
 
 ### Descrição do Problema
-A versão atual do front-end é completamente dependente, acoplada e desatualizada em relação às boas práticas de desenvolvimento.  
-A arquitetura monolítica dificulta a manutenção e a reutilização de componentes.  
-A migração para React resolve o problema, mas exige uma **refatoração completa** das telas e da lógica de apresentação.
+<p align=justify>A versão atual do front-end é completamente dependente, acoplada e desatualizada em relação às boas práticas de desenvolvimento. </p>
+<p align=justify>A arquitetura monolítica dificulta a manutenção e a reutilização de componentes.  </p>
+<p align=justify>A migração para React resolve o problema, mas exige uma **refatoração completa** das telas e da lógica de apresentação.</p>
 
 ### Plano de Ação
-- **Análise e Design de Componentes**: Mapeamento das telas e funcionalidades existentes e projeção da arquitetura em React.  
-- **Desenvolvimento Híbrido**: Migração incremental para evitar quebra da aplicação principal, iniciando por telas mais simples como login e cadastro.  
+- **Análise e Design de Componentes**: Mapeamento das telas e funcionalidades existentes e projeção da arquitetura em React.
+<p align=justify>- <b>Desenvolvimento Híbrido</b>: Migração incremental para evitar quebra da aplicação principal, iniciando por telas mais simples como login e cadastro.</p>  
 - **Refatoração da Lógica**: Reescrita da manipulação do DOM e da gestão de estado para adequação ao padrão React.  
 
 ### Entregáveis e Evidências
@@ -37,7 +39,7 @@ A migração para React resolve o problema, mas exige uma **refatoração comple
 A capacidade de adaptação a **novas regulamentações** garante **flexibilidade e conformidade legal**.  
 No sistema Ordem de Serviço, a **LGPD (Lei Geral de Proteção de Dados)** é obrigatória, já que o sistema lida com **dados sensíveis de usuários**.  
 
-Foi implementada a **ocultação de dados sensíveis**, como o **Siape**, exceto para usuários com permissão de administrador. Isso demonstra compromisso com **segurança, privacidade e credibilidade**.
+<p align=justify>Foi implementada a <b>ocultação de dados sensíveis</b>, como o <b>Siape</b>, exceto para usuários com permissão de administrador. Isso demonstra compromisso com <b>segurança, privacidade e credibilidade</b>.</p>
 
 ### Descrição do Problema
 O sistema não possuía estratégia formal para proteção de dados sensíveis, como o Siape.  
@@ -64,7 +66,7 @@ A adaptação era necessária para:
 A migração de **APIs externas** é rotina em manutenção de software.  
 Um processo estruturado evita interrupções no serviço e demonstra a capacidade de adaptação do sistema.  
 
-No sistema Ordem de Serviço, foram adaptadas e atualizadas rotas para comunicação entre o **back-end** e o **front-end em React**, agora desacoplados.
+<p align=justify>No sistema Ordem de Serviço, foram adaptadas e atualizadas rotas para comunicação entre o <b>back-end</b> e o <b>front-end em React</b>, agora desacoplados.</p>
 
 ### Descrição do Problema
 A API consumida pelo sistema mudou sua estrutura de rotas.  
