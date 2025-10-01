@@ -17,3 +17,15 @@
 <p>Está disponível em: <a href="./../codigo_fonte/">Código Fonte</a></p>
 
 <p>O Manual de Instalação e configuração do Sistema Ordem de Serviço encontra-se no arquivo <a href="./../docs/instrucoes_OS.md">Instruções de Instalação e Configuração do Sistema Ordem de Serviço</a> do projeto.</p>
+
+<h2>Plano de Estratégia Adaptativa</h2>
+<p>Documento estruturado que descreve a estratégia de manutenção adaptativa do sistema, cobrindo todas as seções propostas. Inclui boas práticas de engenharia de software e uma visão de longo prazo para a evolução do sistema.</p>
+<p>Está disponível em: <a href="Plano_Estrategia.md">Plano de Estratégia Adaptativa</a></p>
+
+<h2>Changelog</h2>
+<p>Histórico detalhado das alterações realizadas no sistema, permitindo rastreabilidade das modificações e acompanhamento da evolução do projeto.</p>
+<p>Está disponível em: <a href="changelog.md">Changelog</a></p>
+
+<h2>Relatório</h2>
+<p>Documento de síntese que reúne as principais adaptações implementadas, destacando resultados, aprendizados e perspectivas futuras do projeto.</p>
+<p>Está disponível em: <a href="relatorio.md">Relatório</a></p>
