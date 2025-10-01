@@ -79,8 +79,6 @@ public class FormServidorController : Controller {
         return Ok(formularioSemSiape);
     }
 
-
-
     [HttpPost("formulario")]
     public async Task<IActionResult> PostFormulario([FromBody] CreateFormServidorDto formDto) {
         if (!ModelState.IsValid) {
@@ -102,13 +100,12 @@ public class FormServidorController : Controller {
         _context.FormsServidores.Add(formulario);
         await _context.SaveChangesAsync();
 
-        // Enviar e-mail para o e-mail fornecido no formulário
+        //enviar e-mails
         await _emailSender.SendEmailAsync(
             formulario.Email,
             "Sua Ordem de Serviço Recebida",
             $"Sua ordem de serviço foi recebida com o protocolo: {formulario.Protocolo}. Estamos trabalhando nisso.");
 
-        // Enviar e-mail para todos os usuários registrados
         var users = _context.Users.ToList();
         foreach (var user in users) {
             await _emailSender.SendEmailAsync(
@@ -117,9 +114,11 @@ public class FormServidorController : Controller {
                 $"Uma nova ordem de serviço foi criada com o protocolo: {formulario.Protocolo}.");
         }
 
-        TempData["SuccessMessage"] = $"Formulário enviado com sucesso! Protocolo: {formulario.Protocolo}";
-        
-        return RedirectToAction("Index", "Pagina");
+    
+        return Ok(new {
+            message = "Formulário enviado com sucesso!",
+            protocolo = formulario.Protocolo
+        });
     }
 
     private string GenerateUniqueProtocolo() {
