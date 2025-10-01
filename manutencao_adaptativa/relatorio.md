@@ -51,7 +51,7 @@ Para facilitar a leitura e entendimento, o sistema será apresentado por meio de
 
 ## 2. Identificação e Classificação das Atualizações do Sistema
 
-<p align=justify>A seguir, são listadas as **11 issues classificadas como Manutenção Adaptativa**, com suas descrições, resultados obtidos, resultados esperados, classificação e status.</p>
+<p align=justify>A seguir, são listadas as <b>11 issues classificadas como Manutenção Adaptativa</b>, com suas descrições, resultados obtidos, resultados esperados, classificação e status.</p>
 
 ---
 
@@ -78,7 +78,7 @@ Botão “Voltar” funcionando via useNavigate.
 - Layout similar ao atual (Header, Footer, seção de menu).
 - **Classificação:** Migração de API Externa - Frontend / Migração / Chore
 - **Status:** Concluída  
-- **Link da Issue:**  https://github.com/arsouza81/MIS_OS/issues/13"  
+- **Link da Issue:**  https://github.com/arsouza81/MIS_OS/issues/13  
 
 ---
 
@@ -341,3 +341,4 @@ As atividades de <b>Manutenção Adaptativa</b> envolveram principalmente a <b>m
 <p align=justify>
 Portanto, este relatório apresenta o fluxo completo da <b>Manutenção Adaptativa</b>, consolidando a modernização do Sistema de Ordem de Serviço e garantindo sua evolução tecnológica. 
 </p>
+
