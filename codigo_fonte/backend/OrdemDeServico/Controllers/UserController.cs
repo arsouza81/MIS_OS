@@ -11,7 +11,7 @@ using System.Security.Claims;
 namespace OrdemDeServico.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class UserController : ControllerBase
 {
 
@@ -90,8 +90,8 @@ public class UserController : ControllerBase
         return Ok(new { success = true });
     }
 
-    [HttpGet("selecionar_data")]
-    public IActionResult SelecionarData(string data_solicitacao)
+    [HttpGet("solicitacoes-por-data")]
+    public IActionResult GetSolicitacoesPorData(string data_solicitacao)
     {
         // Exibe a data fornecida pelo usuário
         Console.WriteLine($"Data fornecida pelo usuário: {data_solicitacao}");
@@ -171,8 +171,8 @@ public class UserController : ControllerBase
         return Content(result, "text/html");
     }
 
-    [HttpGet("detalhes_solicitacao/{id}")]
-    public IActionResult DetalhesSolicitacao(int id)
+    [HttpGet("solicitacao-detalhes/{id}")]
+    public IActionResult GetSolicitacaoDetalhes(int id)
     {
         // Buscar a solicitação no banco de dados
         var solicitacao = _context.FormsServidores
@@ -237,7 +237,7 @@ public class UserController : ControllerBase
         return Content(result, "text/html");
     }
 
-    [HttpPost("/atualizar_status")]
+    [HttpPost("atualizar-status")]
     public IActionResult AtualizarStatus([FromBody] AtualizarStatusDto statusDto)
     {
         // Atualizar o status no banco de dados com base no protocolo e novoStatus fornecidos
