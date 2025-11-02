@@ -55,24 +55,13 @@ public class UserController : ControllerBase {
     public async Task<IActionResult> Login([FromBody] LoginDto loginDto) {
        var user = _context.Users.FirstOrDefault(u => u.Email == loginDto.Email && u.Password == loginDto.Password);
 
-        if (user != null)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Name)
-            };
-
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-
+        if(user != null) {
+            var principal = ClaimsHelper.CreateClaimsPrincipal(user);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-            // Retornar JSON com sucesso
+            
             return Ok(new { success = true });
         }
-
-        // Retornar erro 401 em vez de redirecionar
+        
         return Unauthorized(new { success = false, message = "Credenciais inválidas" });
     }
 

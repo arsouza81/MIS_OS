@@ -95,7 +95,7 @@ public class FormServidorController : Controller {
             DescricaoProblema = formDto.DescricaoProblema,
             Data_Solicitacao = formDto.Data_Solicitacao,
             Status = "em_andamento",
-            Protocolo = GenerateUniqueProtocolo()
+            Protocolo = _protocoloGenerator.GenerateUniqueProtocolo()
         };
 
         _context.FormsServidores.Add(formulario);
@@ -120,18 +120,5 @@ public class FormServidorController : Controller {
             message = "Formulário enviado com sucesso!",
             protocolo = formulario.Protocolo
         });
-    }
-
-    private string GenerateUniqueProtocolo() {
-        var random = new Random();
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        string protocolo;
-
-        do {
-            protocolo = new string(Enumerable.Repeat(chars, 8)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        } while (_context.FormsServidores.Any(f => f.Protocolo == protocolo));
-
-        return protocolo;
     }
 }
