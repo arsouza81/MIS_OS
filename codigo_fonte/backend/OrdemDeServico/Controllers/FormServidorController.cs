@@ -9,7 +9,7 @@ using OrdemDeServico.Services;
 namespace OrdemDeServico.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class FormServidorController : Controller {
 
     private OrdemContext _context;
@@ -51,7 +51,7 @@ public class FormServidorController : Controller {
         return NoContent();
     }
 
-    [HttpGet("buscar_protocolo")]
+    [HttpGet("buscar-protocolo")]
     public IActionResult BuscarProtocolo(string? protocolo)
     {
         if (string.IsNullOrEmpty(protocolo))

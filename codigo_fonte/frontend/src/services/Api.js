@@ -1,20 +1,24 @@
-const API_BASE = "http://localhost:5053";
+const API_BASE = "http://localhost:5053/api";
 
-//funções auxiliares
+//função auxiliar para respostas QUE RETORNAM JSON
 async function handleResponseWithJson(response) {
   const data = await response.json();
-  if (!response.ok) throw new Error(data.message || "Erro na requisição à API");
+
+  if (!response.ok) {
+    throw new Error(data.message || "Erro na requisição à API");
+  }
   return data;
 }
 
+//função auxiliar para respostas QUE NÃO RETORNAM JSON (ex: 204 No Content)
 async function handleResponseNoContent(response) {
   if (!response.ok) {
     const errorMessage = await response.text();
     throw new Error(errorMessage || "Erro na requisição à API");
   }
+  return;
 }
 
-//API principal
 export const Api = {
   async login(email, password) {
     const res = await fetch(`${API_BASE}/user/login`, {
@@ -25,7 +29,7 @@ export const Api = {
     });
     return handleResponseWithJson(res);
   },
-
+  
   async logout() {
     const res = await fetch(`${API_BASE}/user/logout`, {
       method: "POST",
@@ -45,18 +49,20 @@ export const Api = {
 
   async buscarSolicitacao(protocolo) {
     const res = await fetch(
-      `${API_BASE}/FormServidor/buscar_protocolo?protocolo=${protocolo}`
+      `${API_BASE}/FormServidor/buscar-protocolo?protocolo=${protocolo}`
     );
     return handleResponseWithJson(res);
   },
 
   async buscarDetalhesSolicitacao(id) {
-    const res = await fetch(`${API_BASE}/user/api/detalhes_solicitacao/${id}`);
+    const res = await fetch(
+      `${API_BASE}/user/solicitacao-detalhes/${id}`
+    );
     return handleResponseWithJson(res);
   },
 
   async atualizarStatus(protocolo, novoStatus) {
-    const res = await fetch(`${API_BASE}/atualizar_status`, {
+    const res = await fetch(`${API_BASE}/user/atualizar-status`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ protocolo, novoStatus }),
@@ -66,7 +72,7 @@ export const Api = {
 
   async buscarSolicitacoesPorData(data_solicitacao) {
     const res = await fetch(
-      `${API_BASE}/user/api/selecionar_data?data_solicitacao=${data_solicitacao}`
+      `${API_BASE}/user/solicitacoes-por-data?data_solicitacao=${data_solicitacao}`
     );
     return handleResponseWithJson(res);
   },

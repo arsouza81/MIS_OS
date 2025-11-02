@@ -1,23 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo-ufam-icet.png";
 import "./Header.css";
+import { Api } from "../services/Api";
 
 export default function HeaderGerente() {
   const navigate = useNavigate();
 
   const handleLogout = async (e) => {
-    e.preventDefault(); 
-    
-    try {
-      const res = await fetch("http://localhost:5053/user/logout", {
-        method: "POST",     
-        credentials: "include", 
-      });
+    e.preventDefault();
 
-      const data = await res.json();
+    try {
+      const data = await Api.logout();
       if (data.success) {
         localStorage.removeItem("token");
-        navigate("/");                   
+        navigate("/");
       }
     } catch (err) {
       console.error("Erro ao deslogar:", err);
