@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Toast from "../components/Toast";
 import "../assets/style.css";
+import { Api } from "../services/Api";
 
 function Index() {
   const [formData, setFormData] = useState({
@@ -23,6 +24,9 @@ function Index() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErro("");
+    setSuccessMessage("");
+
     let errors = [];
 
     if (!formData.nome.trim()) errors.push("O formulário precisa de um nome de usuário.");
@@ -38,27 +42,20 @@ function Index() {
     }
 
     try {
-      const res = await fetch("http://localhost:5053/formServidor/formulario", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      await Api.enviarFormulario(formData);
+
+      setSuccessMessage("Formulário enviado com sucesso!");
+      setFormData({
+        nome: "",
+        email: "",
+        siape: "",
+        bloco: "",
+        sala: "",
+        descricaoProblema: "",
       });
 
-      if (res.ok) {
-        setSuccessMessage("Formulário enviado com sucesso!");
-        setFormData({
-          nome: "",
-          email: "",
-          siape: "",
-          bloco: "",
-          sala: "",
-          descricaoProblema: "",
-        });
-      } else {
-        setErro("Erro ao enviar formulário.");
-      }
-    } catch {
-      setErro("Erro de conexão com o servidor.");
+    }catch(error) {
+      setErro(error.message || "Erro de conexão com o servidor.");
     }
   };
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import HeaderGerente from "../components/HeaderGerente";
+import { Api } from "../services/Api";
 
 export default function DetalhesSolicitacao() {
   const { id } = useParams();
@@ -9,36 +10,43 @@ export default function DetalhesSolicitacao() {
   const [protocoloEncontrado, setProtocoloEncontrado] = useState(null);
   const [editStatus, setEditStatus] = useState(false);
   const [novoStatus, setNovoStatus] = useState("");
+  const [erro, setErro] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5053/user/api/detalhes_solicitacao/${id}`)
-      .then(res => res.json())
-      .then(data => {
+    const carregarDetalhes = async () => {
+      try {
+        setErro("");
+        const data = await Api.buscarDetalhesSolicitacao(id);
+        
         setProtocoloEncontrado(data);
-        setNovoStatus(data.status); // inicializa o select com o status atual
-      })
-      .catch(err => console.error(err));
+        setNovoStatus(data.status);
+      
+      }catch(error) {
+        console.error(error);
+        setErro(error.message); 
+      }
+    };
+    carregarDetalhes();
   }, [id]);
 
-  if (!protocoloEncontrado) return <p>Carregando...</p>;
+  const atualizarStatus = async () => {
+    try {
+      setErro("");
+      await Api.atualizarStatus(
+        protocoloEncontrado.protocolo,
+        novoStatus
+      );
 
-  const atualizarStatus = () => {
-    fetch("http://localhost:5053/atualizar_status", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        protocolo: protocoloEncontrado.protocolo,
-        novoStatus 
-      })
-    })
-    .then(res => {
-      if (!res.ok) throw new Error("Erro ao atualizar status");
-      // Atualiza o estado local para refletir o novo status
       setProtocoloEncontrado({ ...protocoloEncontrado, status: novoStatus });
       setEditStatus(false);
-    })
-    .catch(err => console.error(err));
+
+    }catch(error) {
+      console.error(error);
+      setErro(error.message);
+    }
   };
+
+  if(!protocoloEncontrado) return <p>Carregando...</p>;
 
   return (
     <>
