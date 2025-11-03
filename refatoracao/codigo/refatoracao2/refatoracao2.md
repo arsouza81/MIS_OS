@@ -29,8 +29,7 @@ Durante a análise do código, foram identificados alguns *code smells*, princip
 
 Ao aplicar o padrão **Rename Method / Variable**, o código passou a refletir melhor o domínio da aplicação, reduzindo ambiguidades e facilitando a evolução futura.
 
-Para mais detalhes dos *code smells* encontrados para essa refatoração, verifique a descrição dos *code smells* de forma mais detalhada e alinhada com a descrição do livro: 
-
+Para mais detalhes dos *code smells* encontrados para essa refatoração, verifique a descrição dos *code smells* de forma mais detalhada e alinhada com a descrição do livro:  [Code Small](https://github.com/arsouza81/MIS_OS/blob/manutencao_de_refatoracao/refatoracao/smells/code_smell1.md)
 ---
 
 ## Evidências Antes e Depois
@@ -63,3 +62,5 @@ public async Task<IActionResult> ObterDetalhesSolicitacao(int id, DateTime dataS
 ## Conclusão
 A refatoração Rename Method / Variable trouxe ganhos diretos em clareza, legibilidade, padronização e coesão interna do código, sem alterar o comportamento observado pelo usuário.
 A API agora segue práticas recomendadas para desenvolvimento em C# e REST, tornando o sistema mais profissional, sustentável e preparado para evoluções futuras.
+
+Para detalhes técnicos mais minuciosos, acesse o registro da refatoração em: [Issue #32](https://github.com/arsouza81/MIS_OS/issues/32)
