@@ -2,13 +2,15 @@
 
 ### Refatoração 3 - *Dead Code*
 
+
+
 ---
 ---
 
 ### Refatoração 4 — *Extract Method*
 
-A refatoração de extração do método `CreateClaimsPrincipal()` para a classe auxiliar `ClaimsHelper` foi motivada pela identificação de *code smells* relacionados à complexidade e à falta de coesão no método `Login` do `UserController`.  
-Esses *smells* foram classificados conforme os tipos descritos no capítulo 9.5 do livro *Engenharia de Software Moderna*.
+A refatoração aplicada aos métodos `Login` (no `UserController`) e `PostFormulario` (no `FormServidorController`) teve como motivação a correção de *code smells* relacionados à **duplicação de código**, **baixa coesão** e **acúmulo de responsabilidades** nos controladores.  
+Esses problemas foram identificados conforme os tipos descritos no capítulo 9.5 do livro *Engenharia de Software Moderna*.
 
 ---
 
@@ -71,4 +73,3 @@ O uso do *Extract Method* simplificou o método original, reduzindo o número de
 
 - Capítulo 9.5 — *Code Smells e Refatoração* do livro **Engenharia de Software Moderna** (Bruno P. de Almeida et al., 2021).  
 - Fowler, Martin. *Refactoring: Improving the Design of Existing Code.* Addison-Wesley, 2018.
-
