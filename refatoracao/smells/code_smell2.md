@@ -12,10 +12,10 @@ Esses smells foram classificados conforme os tipos descritos no capítulo *9.5 d
 
 O UserController continha métodos e trechos de código que já não eram mais utilizados pela aplicação, como antigos manipuladores de páginas Handlebars e endpoints duplicados.
 
-*Consequência:*  
+**Consequência:**  
 Presença de código sem uso efetivo aumentava a complexidade do projeto, o tempo de compilação e confundia a análise de manutenção. Além disso, métodos obsoletos poderiam gerar riscos de inconsistência entre rotas antigas e novas.
 
-*Correção aplicada:*  
+**Correção aplicada:**  
 Foram removidos todos os métodos e dependências inativas, incluindo endpoints como SelecionarDataJson e DetalhesSolicitacaoJson, que foram substituídos por versões atualizadas (GetSolicitacoesPorData e GetSolicitacaoDetalhes).  
 Essa limpeza deixou o controlador mais enxuto e alinhado às práticas RESTful.
 
@@ -25,10 +25,10 @@ Essa limpeza deixou o controlador mais enxuto e alinhado às práticas RESTful.
 
 Foram identificadas funções que realizavam operações idênticas ou semelhantes às novas versões em uso, coexistindo com endpoints atualizados que já desempenhavam o mesmo papel.
 
-*Consequência:*  
+**Consequência:**  
 A duplicação aumentava o risco de manutenção incorreta e dificultava a rastreabilidade das rotas em uso. Pequenas alterações poderiam gerar inconsistências entre versões diferentes do mesmo endpoint.
 
-*Correção aplicada:*  
+**Correção aplicada:**  
 As versões antigas foram completamente removidas, mantendo apenas as rotas ativas e devidamente padronizadas no modelo *RESTful*. Dessa forma, garantiu-se que o sistema opere com apenas uma fonte de verdade para cada funcionalidade.
 
 ---
@@ -37,10 +37,10 @@ As versões antigas foram completamente removidas, mantendo apenas as rotas ativ
 
 O UserController ainda fazia referência a bibliotecas e métodos voltados ao uso de *Handlebars, que já não faziam parte da arquitetura atual baseada em respostas **JSON*.
 
-*Consequência:*  
+**Consequência:**  
 Essas dependências aumentavam o acoplamento do código e adicionavam complexidade desnecessária ao processo de compilação e carregamento da aplicação.
 
-*Correção aplicada:*  
+**Correção aplicada:**  
 Todas as referências e trechos relacionados à renderização via Handlebars foram removidos, deixando o controlador responsável apenas por lidar com requisições *API REST* e retornos *JSON*.  
 
 ---
@@ -49,10 +49,10 @@ Todas as referências e trechos relacionados à renderização via Handlebars fo
 
 O acúmulo de trechos inativos e funções redundantes tornava o código mais extenso e menos intuitivo, dificultando o entendimento geral da estrutura e do fluxo de execução do controlador.
 
-*Consequência:*  
+**Consequência:**  
 Baixa legibilidade, maior esforço de manutenção e risco de erros durante modificações futuras.
 
-*Correção aplicada:*  
+**Correção aplicada:**  
 Com a remoção de código morto, o UserController passou a conter apenas métodos realmente utilizados, reduzindo o tamanho e melhorando a clareza geral da classe.
 
 ---
