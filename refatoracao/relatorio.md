@@ -306,6 +306,146 @@ Para visualizar a descrição completa dos Code Smells identificados para essa r
 #### 2.4.5 Conclusão
 A refatoração *Extract Method* consolidou o uso dos métodos previamente extraídos (`ClaimsHelper` e `ProtocoloGenerator`), promovendo **reutilização de código, modularidade e coesão**. O comportamento externo do sistema permaneceu inalterado, mas a estrutura interna se tornou mais limpa, organizada e aderente às boas práticas de arquitetura limpa e princípios SOLID.
 
+---
+
+### 2.5 Refatoração em nível de Design — Facade
+
+Para viualizar a identificação dos pontos para efetuar essa refatoração, você pode acessar a issue documentada em : [Issue-#30- Facade](https://github.com/arsouza81/MIS_OS/issues/30)
 
 
+#### 2.5.1 Descrição da Refatoração
 
+A refatoração em **nível de design** teve como objetivo reorganizar a comunicação entre os componentes React e a API .NET, utilizando o **padrão Facade**, conforme descrito no Capítulo 6 do livro *Engenharia de Software Moderna*. O padrão Facade provê uma **interface única e simplificada** para um subsistema complexo, neste caso o consumo da API.
+
+Antes, cada componente (Login.jsx, Solicitacao.jsx, DetalhesSolicitacao.jsx, Index.jsx, Solicitacoes.jsx, HeaderGerente.jsx) realizava chamadas diretas via `fetch`, espalhando detalhes de URL, headers, credentials, serialização de JSON e tratamento de erros. Isso gerava **duplicação, inconsistência e acoplamento excessivo** entre UI e backend.
+
+Com a refatoração:
+- Criou-se um **ponto central de comunicação** em `src/services/Api.js`.
+- Todos os componentes passaram a chamar métodos de alto nível (`Api.login`, `Api.logout`, `Api.enviarFormulario`, `Api.buscarSolicitacao`, `Api.buscarDetalhesSolicitacao`, `Api.atualizarStatus`, `Api.buscarSolicitacoesPorData`), que encapsulam:
+  - URL base da API
+  - Cabeçalhos HTTP e credenciais
+  - Serialização de dados
+  - Parse de respostas
+  - Tratamento de erros padronizado
+
+Essa abordagem **reduz duplicação, aumenta a coesão e prepara o frontend para futuras evoluções**, como autenticação com tokens, interceptadores ou logging centralizado.
+
+**Padrão Utilizado:** Facade
+
+Para visualizar a descrição de pontos relevantes após aplicação dessa refatoração, você pode acessar a documentação em: [Refatoração em Nível de Design - FACADE](https://github.com/arsouza81/MIS_OS/blob/manutencao_de_refatoracao/refatoracao/design/design.md)
+
+---
+
+#### 2.5.2 Justificativa Técnica
+Antes da refatoração:
+- Cada componente lidava com detalhes HTTP, parse e tratamento de erro de forma independente.
+- Qualquer mudança na API ou nos headers exigia alterações em múltiplos arquivos.
+- Testes unitários e manutenção eram mais complexos.
+
+Após a refatoração:
+- Centralização das chamadas no módulo `Api.js`, aplicando **SRP** e **DRY**.
+- Padronização de respostas e erros via helpers `handleResponseWithJson` e `handleResponseNoContent`.
+- Componentes focados em estado e navegação, sem preocupação com detalhes de rede.
+- Facilita **mock de API** para testes e futuras alterações transversais (URL base, autenticação, logs).
+
+---
+
+#### 2.5.3 Evidências Antes e Depois
+
+##### Login.jsx
+- **Antes:**  
+  - O componente realizava a requisição HTTP diretamente com `fetch`.
+  - Header `"Content-Type": "application/json"` e `credentials: "include"` configurados manualmente.
+  - Parse do JSON e tratamento de erros implementados inline no componente.
+  - Código repetitivo e difícil de manter se a URL ou lógica de autenticação mudasse.
+
+- **Depois:**  
+  - Chamada ao backend centralizada em `Api.login(email, password)`.
+  - Headers, credenciais, parse e tratamento de erros padronizados no módulo `Api.js`.
+  - Componente focado apenas em estado e navegação.
+  - Código mais limpo, legível e reutilizável.
+
+---
+
+##### Solicitacao.jsx
+- **Antes:**  
+  - Requisição direta a `fetch` com URL completa e query string manual.
+  - Parse da resposta JSON e verificação de `res.ok` implementados no componente.
+  - Duplicação de lógica para tratamento de erros.
+  
+- **Depois:**  
+  - Uso de `Api.buscarSolicitacao(protocolo)` para encapsular toda a comunicação.
+  - Componente apenas atualiza estado (`setSolicitacao` e `setErro`) com retorno padronizado.
+  - Lógica HTTP, parse e erros centralizados e reutilizáveis.
+
+---
+
+##### DetalhesSolicitacao.jsx
+- **Antes:**  
+  - Fetch direto para buscar detalhes, parse de JSON e tratamento de erros no componente.
+  - Lógica de comunicação espalhada pelo componente, violando SRP.
+  
+- **Depois:**  
+  - Chamadas substituídas por `Api.buscarDetalhesSolicitacao(id)`.
+  - Parse e tratamento de erros centralizados no Facade.
+  - Componente apenas exibe dados e atualiza estado.
+
+---
+
+##### Index.jsx
+- **Antes:**  
+  - Chamadas diretas para endpoints espalhadas, incluindo `logout`.
+  - Configurações repetitivas de headers e credenciais.
+
+- **Depois:**  
+  - Uso de `Api.logout()` encapsulando toda lógica HTTP.
+  - Componente focado em fluxo de navegação e estado.
+  - Menor acoplamento com a camada de backend.
+
+---
+
+##### Solicitacoes.jsx
+- **Antes:**  
+  - Montagem manual de URL com query params para filtrar por data.
+  - Fetch direto e parse/erro implementados no componente.
+  - Duplicação de lógica em outros componentes que consumiam a API.
+
+- **Depois:**  
+  - Comunicação centralizada via `Api.buscarSolicitacoesPorData(data_solicitacao)`.
+  - Respostas e erros padronizados.
+  - Componente limpo, focado apenas em exibição e estado.
+
+---
+
+##### HeaderGerente.jsx
+- **Antes:**  
+  - Logout realizado diretamente com fetch, repetindo configuração de método, headers e checagem de status.
+  - Código repetitivo e propenso a erros de manutenção.
+
+- **Depois:**  
+  - Uso de `Api.logout()` como interface única para o backend.
+  - Componente desacoplado da lógica HTTP.
+  - Padronização de erros e respostas em um único ponto.
+
+---
+
+#### 2.5.4 Resumo da Classificação
+- Tipo: Refatoração de Design – Facade
+- Camada afetada: Frontend (React)
+- Escopo: Centralização do consumo de API e padronização de requisições HTTP
+- Padrão aplicado: Facade (cap. 6, Engenharia de Software Moderna)
+- Princípios aplicados: SRP, DRY, Coesão, Baixo Acoplamento
+
+---
+
+#### 2.5.5 Conclusão
+
+A refatoração Facade consolidou a comunicação entre frontend React e API .NET, proporcionando código mais limpo, coeso e escalável. O comportamento funcional foi preservado, mas a arquitetura interna agora suporta evolução e manutenção simplificadas, alinhada aos princípios de design de software moderno.
+
+---
+
+Referências
+
+
+VALENT, T. M; Engenharia de Software Moderna. Disponível em: https://engsoftmoderna.info/
+. Acesso em: 3 nov. 2025.
