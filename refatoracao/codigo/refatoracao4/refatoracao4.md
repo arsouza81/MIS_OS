@@ -163,7 +163,7 @@ Ao extrair essa lógica para o método <code>CreateClaimsPrincipal</code> dentro
 <h2>Conclusão acerca da Refatoração</h2>
 
 <p align="justify">
-A Refatoração em Nível de Código – Extract Method representou um passo importante para evoluir a arquitetura do backend em direção a um código mais limpo, sustentável e escalável. Ao extrair a lógica de criação de <i>ClaimsPrincipal</i> do <i>UserController</i> e encapsulá-la em uma classe auxiliar especializada (<i>ClaimsHelper</i>), reduzimos a responsabilidade do controller, melhoramos a coesão e criamos um ponto único de autenticação passível de evolução.
+A Refatoração em Nível de Código – Extract Method, representou um passo importante para evoluir a arquitetura do backend em direção a um código mais limpo, sustentável e escalável. Ao extrair a lógica de criação de <i>ClaimsPrincipal</i> do <i>UserController</i> e encapsulá-la em uma classe auxiliar especializada (<i>ClaimsHelper</i>), reduzimos a responsabilidade do controller, melhoramos a coesão e criamos um ponto único de autenticação passível de evolução.
 </p>
 
 <p align="justify">
