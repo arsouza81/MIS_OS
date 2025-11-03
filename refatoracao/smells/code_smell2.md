@@ -1,13 +1,74 @@
 ## Code Smells Identificados
 
-### Refatoração 3 - *Dead Code*
+## Refatoração 3 - *Dead Code*
 
+A refatoração de *remoção de código morto (Dead Code)* do UserController foi motivada pela identificação de code smells relacionados à presença de métodos, trechos e dependências *não utilizados, redundantes ou substituídos* por novas implementações.  
 
+Esses smells foram classificados conforme os tipos descritos no capítulo *9.5 do livro Engenharia de Software Moderna, e a refatoração teve como objetivo **simplificar o código, **melhorar a legibilidade* e *reduzir riscos de inconsistência* entre versões antigas e atuais das rotas RESTful.
+
+---
+
+## 1. Código Morto (Dead Code)
+
+O UserController continha métodos e trechos de código que já não eram mais utilizados pela aplicação, como antigos manipuladores de páginas Handlebars e endpoints duplicados.
+
+*Consequência:*  
+Presença de código sem uso efetivo aumentava a complexidade do projeto, o tempo de compilação e confundia a análise de manutenção. Além disso, métodos obsoletos poderiam gerar riscos de inconsistência entre rotas antigas e novas.
+
+*Correção aplicada:*  
+Foram removidos todos os métodos e dependências inativas, incluindo endpoints como SelecionarDataJson e DetalhesSolicitacaoJson, que foram substituídos por versões atualizadas (GetSolicitacoesPorData e GetSolicitacaoDetalhes).  
+Essa limpeza deixou o controlador mais enxuto e alinhado às práticas RESTful.
+
+---
+
+## 2. Funcionalidade Duplicada (Duplicated Functionality)
+
+Foram identificadas funções que realizavam operações idênticas ou semelhantes às novas versões em uso, coexistindo com endpoints atualizados que já desempenhavam o mesmo papel.
+
+*Consequência:*  
+A duplicação aumentava o risco de manutenção incorreta e dificultava a rastreabilidade das rotas em uso. Pequenas alterações poderiam gerar inconsistências entre versões diferentes do mesmo endpoint.
+
+*Correção aplicada:*  
+As versões antigas foram completamente removidas, mantendo apenas as rotas ativas e devidamente padronizadas no modelo *RESTful*. Dessa forma, garantiu-se que o sistema opere com apenas uma fonte de verdade para cada funcionalidade.
+
+---
+
+## 3. Dependências Obsoletas (Obsolete Dependencies)
+
+O UserController ainda fazia referência a bibliotecas e métodos voltados ao uso de *Handlebars, que já não faziam parte da arquitetura atual baseada em respostas **JSON*.
+
+*Consequência:*  
+Essas dependências aumentavam o acoplamento do código e adicionavam complexidade desnecessária ao processo de compilação e carregamento da aplicação.
+
+*Correção aplicada:*  
+Todas as referências e trechos relacionados à renderização via Handlebars foram removidos, deixando o controlador responsável apenas por lidar com requisições *API REST* e retornos *JSON*.  
+
+---
+
+## 4. Complexidade Desnecessária (Unnecessary Complexity)
+
+O acúmulo de trechos inativos e funções redundantes tornava o código mais extenso e menos intuitivo, dificultando o entendimento geral da estrutura e do fluxo de execução do controlador.
+
+*Consequência:*  
+Baixa legibilidade, maior esforço de manutenção e risco de erros durante modificações futuras.
+
+*Correção aplicada:*  
+Com a remoção de código morto, o UserController passou a conter apenas métodos realmente utilizados, reduzindo o tamanho e melhorando a clareza geral da classe.
+
+---
+
+### Resumo dos Benefícios
+- Redução da complexidade e do tamanho do UserController;
+- Maior clareza, legibilidade e manutenibilidade do código;
+- Eliminação completa de dependências obsoletas e rotas inativas;
+- Melhoria de desempenho e redução do tempo de compilação;
+- Redução de riscos de inconsistência entre versões antigas e novas de rotas RESTful;
+- Aderência às boas práticas de desenvolvimento e padrões REST.
 
 ---
 ---
 
-### Refatoração 4 — *Extract Method*
+## Refatoração 4 — *Extract Method*
 
 A refatoração aplicada aos métodos `Login` (no `UserController`) e `PostFormulario` (no `FormServidorController`) teve como motivação a correção de *code smells* relacionados à **duplicação de código**, **baixa coesão** e **acúmulo de responsabilidades** nos controladores.  
 Esses problemas foram identificados conforme os tipos descritos no capítulo 9.5 do livro *Engenharia de Software Moderna*.
