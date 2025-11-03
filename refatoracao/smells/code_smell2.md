@@ -8,7 +8,7 @@ Esses smells foram classificados conforme os tipos descritos no capítulo *9.5 d
 
 ---
 
-## 1. Código Morto (Dead Code)
+### 1. Código Morto (Dead Code)
 
 O UserController continha métodos e trechos de código que já não eram mais utilizados pela aplicação, como antigos manipuladores de páginas Handlebars e endpoints duplicados.
 
@@ -21,7 +21,7 @@ Essa limpeza deixou o controlador mais enxuto e alinhado às práticas RESTful.
 
 ---
 
-## 2. Funcionalidade Duplicada (Duplicated Functionality)
+### 2. Funcionalidade Duplicada (Duplicated Functionality)
 
 Foram identificadas funções que realizavam operações idênticas ou semelhantes às novas versões em uso, coexistindo com endpoints atualizados que já desempenhavam o mesmo papel.
 
@@ -33,7 +33,7 @@ As versões antigas foram completamente removidas, mantendo apenas as rotas ativ
 
 ---
 
-## 3. Dependências Obsoletas (Obsolete Dependencies)
+### 3. Dependências Obsoletas (Obsolete Dependencies)
 
 O UserController ainda fazia referência a bibliotecas e métodos voltados ao uso de *Handlebars, que já não faziam parte da arquitetura atual baseada em respostas **JSON*.
 
@@ -45,7 +45,7 @@ Todas as referências e trechos relacionados à renderização via Handlebars fo
 
 ---
 
-## 4. Complexidade Desnecessária (Unnecessary Complexity)
+### 4. Complexidade Desnecessária (Unnecessary Complexity)
 
 O acúmulo de trechos inativos e funções redundantes tornava o código mais extenso e menos intuitivo, dificultando o entendimento geral da estrutura e do fluxo de execução do controlador.
 
@@ -75,7 +75,7 @@ Esses problemas foram identificados conforme os tipos descritos no capítulo 9.5
 
 ---
 
-#### 1. Método Longo (*Long Method*)
+### 1. Método Longo (*Long Method*)
 O método `Login` concentrava múltiplas operações: consulta ao banco de dados, verificação de credenciais, criação da lista de *claims*, construção da identidade e registro da autenticação no contexto HTTP.
 
 **Consequência:**  
@@ -87,7 +87,7 @@ Isso reduziu o tamanho do método `Login`, tornando-o mais legível e direto ao 
 
 ---
 
-#### 2. Baixa Coesão (*Low Cohesion*)
+### 2. Baixa Coesão (*Low Cohesion*)
 O `UserController` executava tanto a responsabilidade de controle de requisições HTTP quanto a montagem da estrutura de autenticação, o que misturava camadas distintas da aplicação.
 
 **Consequência:**  
@@ -98,7 +98,7 @@ A criação de *claims* e do `ClaimsPrincipal` foi movida para a classe `ClaimsH
 
 ---
 
-#### 3. Duplicação Potencial de Código (*Duplicated Code*)
+### 3. Duplicação Potencial de Código (*Duplicated Code*)
 A lógica de criação de *claims* poderia ser replicada em outros fluxos (como autenticação de administradores ou renovação de sessão).
 
 **Consequência:**  
@@ -109,7 +109,7 @@ Com a refatoração, a criação de *claims* foi **centralizada** em um único m
 
 ---
 
-#### 4. Complexidade Desnecessária (*Unnecessary Complexity*)
+### 4. Complexidade Desnecessária (*Unnecessary Complexity*)
 O método `Login` apresentava complexidade excessiva por conter múltiplas etapas lógicas em um mesmo bloco de código.
 
 **Consequência:**  
