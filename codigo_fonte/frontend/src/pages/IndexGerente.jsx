@@ -12,7 +12,7 @@ export default function IndexGerente({ erro }) {
       return;
     }
 
-    window.location.href = `/user/selecionar_data?data_solicitacao=${data}`;
+    window.location.href = `/api/user/solicitacoes-por-data?data_solicitacao=${data}`;
   };
 
   return (
