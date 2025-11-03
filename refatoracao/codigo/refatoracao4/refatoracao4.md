@@ -3,175 +3,139 @@
 <h2>Descrição da Refatoração</h2>
 
 <p align="justify">
-A Refatoração em Nível de Código – Extract Method teve como foco a melhoria da clareza, da coesão e da manutenibilidade do fluxo de autenticação da aplicação. Essa refatoração foi aplicada no método <i>Login</i>, originalmente implementado dentro do <i>UserController</i>. Antes da mudança, toda a lógica de autenticação, incluindo a criação da lista de <i>Claims</i>, a construção da <i>ClaimsIdentity</i> e da instância de <i>ClaimsPrincipal</i>, estava diretamente embutida no método do controller.
+A Refatoração em Nível de Código – Extract Method teve como foco a <b>aplicação prática</b> dos métodos que haviam sido previamente refatorados e extraídos para classes auxiliares no projeto. 
+Essa etapa foi realizada nos métodos <code>Login</code> do <i>UserController</i> e <code>PostFormulario</code> do <i>FormServidorController</i>, 
+com o objetivo de garantir <b>reutilização de código, redução de duplicação e melhor coesão</b> entre os componentes da aplicação.
 </p>
 
 <p align="justify">
-Esse código foi extraído para um método dedicado em uma nova classe auxiliar chamada <i>ClaimsHelper</i>. O objetivo foi isolar a responsabilidade de criação das credenciais de autenticação do usuário (as <i>claims</i>) e deixar o controller responsável apenas por orquestrar o fluxo da requisição HTTP.
-Essa refatoração segue o padrão Extract Method descrito por Martin Fowler, no qual um trecho coeso de lógica dentro de um método maior é removido e encapsulado em um novo método com um nome expressivo. No nosso caso, a lógica de geração do <i>ClaimsPrincipal</i> passou a ser responsabilidade do método <code>CreateClaimsPrincipal(user)</code> da classe <i>ClaimsHelper</i>.
+Em vez de manter as lógicas internas de autenticação e geração de protocolos dentro dos controladores, 
+essas responsabilidades passaram a ser delegadas às classes auxiliares <i>ClaimsHelper</i> e <i>ProtocoloGenerator</i>, 
+que já haviam sido criadas anteriormente na Refatoração A (Extract Class).
+Assim, os controladores passaram apenas a orquestrar o fluxo de requisição HTTP, chamando métodos especializados.
 </p>
 
 <p align="justify">
-O comportamento externo não foi alterado, o login continua retornando sucesso quando o usuário é autenticado e erro quando as credenciais são inválidas. No entanto, internamente o código se tornou mais legível, reutilizável e preparado para expansão futura (por exemplo: adicionar novas <i>claims</i>, papéis de usuário ou permissões específicas sem precisar alterar o controller).
+Essa refatoração segue o padrão <i>Extract Method</i> descrito por Martin Fowler, 
+não no sentido de extrair um novo método diretamente do controller, mas de <b>utilizar métodos já extraídos</b> de forma adequada e modularizada. 
+Dessa forma, a equipe garantiu a correta integração e uso das refatorações previamente criadas, 
+mantendo a consistência do código e aplicando o Princípio da Responsabilidade Única (SRP).
 </p>
 
 <h2>Justificativa Técnica</h2>
 
 <p align="justify">
-Antes da refatoração, o método <i>Login</i> apresentava sinais claros de <b>code smell</b> do tipo <i>Long Method</i> e <i>Low Cohesion</i>. O controller concentrava ao mesmo tempo: consulta ao banco de dados, validação de credenciais, criação das <i>claims</i> e configuração do contexto de autenticação da aplicação. Essa mistura de responsabilidades dificultava a leitura, aumentava o risco de erro em alterações futuras e tornava a implementação menos testável.
+Antes da aplicação dessa refatoração, os controladores <i>UserController</i> e <i>FormServidorController</i> ainda continham trechos de código que reproduziam lógicas 
+já existentes nas classes auxiliares criadas anteriormente. Isso caracterizava um <b>code smell</b> do tipo <i>Duplicated Code</i>, 
+uma vez que diferentes partes da aplicação estavam realizando funções semelhantes — como autenticação e geração de protocolo — de forma redundante.
 </p>
 
 <p align="justify">
-Além disso, a lógica de criação do <i>ClaimsPrincipal</i> é uma funcionalidade crítica de segurança que pode ser necessária em múltiplos pontos da aplicação (por exemplo, login de administradores, renovação de sessão etc.). Se essa lógica permanecesse “copiada e colada” dentro de cada controller, haveria uma tendência a repetição de código e risco de inconsistência entre fluxos de autenticação diferentes.
+A decisão técnica foi <b>substituir</b> essas implementações duplicadas por chamadas diretas às classes <i>ClaimsHelper</i> e <i>ProtocoloGenerator</i>. 
+Com isso, o sistema passou a centralizar as regras de negócio em componentes específicos, reduzindo a chance de inconsistência e 
+facilitando futuras alterações sem a necessidade de modificar múltiplos controladores.
 </p>
 
 <p align="justify">
-Com a refatoração, essa responsabilidade foi removida do <i>UserController</i> e centralizada em <i>ClaimsHelper</i>. O controller passou a apenas chamar um método expressivo, <code>ClaimsHelper.CreateClaimsPrincipal(user)</code>, reduzindo o acoplamento, aumentando a coesão e aplicando o Princípio da Responsabilidade Única (SRP). A refatoração também facilita a escrita de testes unitários específicos para autenticação, pois agora é possível testar a montagem das <i>claims</i> isoladamente, sem precisar simular toda a requisição HTTP.
+A aplicação dessa refatoração promoveu maior <b>coesão</b> entre as camadas do backend, 
+reforçou o uso do <i>Single Responsibility Principle</i> e aumentou a <b>testabilidade</b> da aplicação, 
+já que a lógica sensível de autenticação e geração de protocolos passou a estar isolada em métodos reutilizáveis.
 </p>
 
 <h2>Evidências Antes e Depois da Refatoração</h2>
 
-<h3>Antes da Refatoração</h3>
+<h3><b>Problema:</b> Separação das funcionalidades no arquivo <code>FormServidorController</code></h3>
 
-<ul>
-<li>A montagem de todas as <i>claims</i> era feita manualmente dentro do método <code>Login</code> no <i>UserController</i>.</li>
-<li>O próprio controller criava a <code>ClaimsIdentity</code> e a <code>ClaimsPrincipal</code>.</li>
-<li>O método <code>Login</code> ficava mais extenso e menos direto, acumulando lógica de autenticação e de construção de credenciais.</li>
-<li>A testabilidade era limitada porque essa lógica estava acoplada diretamente ao <code>HttpContext</code>.</li>
-</ul>
+<p align="justify">
+Antes da refatoração, o <i>FormServidorController</i> acumulava múltiplas responsabilidades dentro de um mesmo método, 
+misturando a lógica de controle HTTP com a lógica de geração de protocolos. 
+Essa prática gerava duplicação de código e dificultava a manutenção, além de violar o Princípio da Responsabilidade Única (SRP). 
+Era necessário extrair essa lógica para uma classe auxiliar dedicada, promovendo maior modularidade e reutilização.
+</p>
 
-<p><b>Controllers/UserController.cs (antes)</b></p>
+<p><b>Antes da Refatoração – <code>Controllers/FormServidorController.cs</code></b></p>
 
-<pre>
-[HttpPost("login")]
-public async Task&lt;IActionResult&gt; Login([FromBody] LoginDto loginDto) {
-    var user = _context.Users.FirstOrDefault(u => 
-        u.Email == loginDto.Email && u.Password == loginDto.Password);
+<img width="1362" height="715" alt="Antes - Código original no controller" src="https://github.com/user-attachments/assets/36c6ddf7-aa45-4dd8-87ba-a6f225197725" />
 
-    if (user != null)
-    {
-        var claims = new List&lt;Claim&gt; {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.Name)
-        };
+<img width="1359" height="715" alt="Antes - Código com duplicação de lógica" src="https://github.com/user-attachments/assets/e976abf0-52ef-4147-a618-4c6cf26191a2" />
 
-        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        var principal = new ClaimsPrincipal(identity);
+<p><b>Depois da Refatoração – Injeção e uso do <code>ProtocoloGenerator</code></b></p>
 
-        await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme, 
-            principal
-        );
+<img width="1361" height="718" alt="Depois - Injeção do ProtocoloGenerator" src="https://github.com/user-attachments/assets/d09410b2-96e6-4d49-bd8f-eab31056c9d4" />
 
-        return Ok(new { success = true });
-    }
+<img width="1361" height="718" alt="Depois - Uso do método GenerateUniqueProtocol()" src="https://github.com/user-attachments/assets/126c5f50-66e0-481f-ba44-ba4be94cbe02" />
 
-    return Unauthorized(new { success = false, message = "Credenciais inválidas" });
-}
-</pre>
+<hr>
 
+<h3><b>Problema:</b> Método de Login com mais de uma funcionalidade</h3>
 
-<h3>Depois da Refatoração</h3>
+<p align="justify">
+O método <code>Login</code> do <i>UserController</i> concentrava múltiplas operações: autenticação do usuário, 
+montagem de claims e criação do <code>ClaimsPrincipal</code>. 
+Essa sobrecarga tornava o código extenso, de difícil leitura e propenso a erros em futuras manutenções. 
+A refatoração se fez necessária para isolar a criação das credenciais de autenticação em um helper específico, 
+garantindo clareza, coesão e facilidade de reutilização em diferentes contextos da aplicação.
+</p>
 
-<ul>
-<li>Foi criada a classe <i>ClaimsHelper</i> contendo o método <code>CreateClaimsPrincipal(User user)</code>, responsável por montar toda a estrutura de autenticação do usuário.</li>
-<li>O método <code>Login</code> no <i>UserController</i> ficou mais limpo, objetivo e fácil de entender: ele autentica, delega a criação do principal e finaliza o login.</li>
-<li>O código ficou mais reutilizável: qualquer outro ponto do sistema que precise autenticar um usuário agora pode chamar o <i>ClaimsHelper</i> diretamente.</li>
-<li>Houve redução de acoplamento entre camada de controle e detalhes de autenticação/autorização.</li>
-</ul>
+<p><b>Antes da Refatoração – <code>Controllers/UserController.cs</code></b></p>
 
-<p><b>Services/Helpers/ClaimsHelper.cs (depois)</b></p>
+<img width="1358" height="717" alt="Antes - Lógica de autenticação inline" src="https://github.com/user-attachments/assets/2f8c24ac-7e63-4550-aa74-4eaae3126e51" />
 
-<pre>
-public static class ClaimsHelper
-{
-    public static ClaimsPrincipal CreateClaimsPrincipal(User user)
-    {
-        var claims = new List&lt;Claim&gt; {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.Name)
-        };
+<p><b>Depois da Refatoração – <code>Controllers/UserController.cs</code></b></p>
 
-        var identity = new ClaimsIdentity(
-            claims, 
-            CookieAuthenticationDefaults.AuthenticationScheme
-        );
+<img width="1358" height="717" alt="Depois - Login com uso do ClaimsHelper" src="https://github.com/user-attachments/assets/53110c23-310a-4b7a-a841-a96d1854a72d" />
 
-        return new ClaimsPrincipal(identity);
-    }
-}
-</pre>
-
-<p><b>Controllers/UserController.cs (depois)</b></p>
-
-<pre>
-[HttpPost("login")]
-public async Task&lt;IActionResult&gt; Login([FromBody] LoginDto loginDto) {
-    var user = _context.Users.FirstOrDefault(u =>
-        u.Email == loginDto.Email && u.Password == loginDto.Password);
-
-    if (user != null)
-    {
-        var principal = ClaimsHelper.CreateClaimsPrincipal(user);
-
-        await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme,
-            principal
-        );
-
-        return Ok(new { success = true });
-    }
-
-    return Unauthorized(new { success = false, message = "Credenciais inválidas" });
-}
-</pre>
+<hr>
 
 <h2>Classificação da Refatoração</h2>
 
 <ul>
-<li><b>Tipo:</b> Refatoração em Nível de Código – Extract Method.</li>
-<li><b>Camada afetada:</b> Backend (Controller + Helper).</li>
-<li><b>Escopo:</b> Autenticação e montagem de credenciais do usuário.</li>
-<li><b>Smell abordado:</b> Método longo (<i>Long Method</i>) e lógica de autenticação duplicável.</li>
-<li><b>Princípios aplicados:</b> Single Responsibility Principle (SRP), Clean Code e baixo acoplamento.</li>
+<li><b>Tipo:</b> Refatoração em Nível de Código – Extract Method (Aplicação dos Métodos Refatorados).</li>
+<li><b>Camada afetada:</b> Backend (Controllers + Helpers).</li>
+<li><b>Escopo:</b> Reutilização dos métodos <code>ClaimsHelper.CreateClaimsPrincipal()</code> e <code>ProtocoloGenerator.GenerateUniqueProtocol()</code>.</li>
+<li><b>Smell abordado:</b> <i>Duplicated Code</i> e <i>Low Cohesion</i> (baixa coesão entre camadas).</li>
+<li><b>Princípios aplicados:</b> Single Responsibility Principle (SRP), Reutilização de Código, Clean Architecture e Baixo Acoplamento.</li>
 </ul>
 
 <h2>Smell Identificado</h2>
 
 <p align="justify">
-O smell que motivou essa refatoração foi a presença de uma lógica detalhada e repetível dentro do método <code>Login</code>, no controller. Esse padrão indica um <b>Long Method</b>, em que uma única função concentra múltiplas responsabilidades: autenticar credenciais, montar <i>claims</i>, criar a identidade de segurança e registrar a sessão. Esse tipo de código tende a crescer com o tempo e dificulta a compreensão por parte de novos desenvolvedores.
+Antes da aplicação dessa refatoração, o projeto apresentava <b>duplicação de código</b> e <b>baixa reutilização</b> nos controladores principais. 
+Trechos responsáveis por autenticação e geração de protocolos estavam sendo implementados de forma redundante, 
+violando o princípio da responsabilidade única e dificultando a manutenção do sistema.
 </p>
 
 <p align="justify">
-Também havia risco de <b>duplicação de lógica</b>: se outro endpoint precisasse autenticar o usuário (por exemplo, um login de administrador ou renovação de sessão), a tendência seria copiar o mesmo bloco de criação de <code>ClaimsPrincipal</code> para outro controller, o que prejudica a consistência e aumenta custo de manutenção.
-</p>
-
-<p align="justify">
-Ao extrair essa lógica para o método <code>CreateClaimsPrincipal</code> dentro de <i>ClaimsHelper</i>, o sistema passa a ter um ponto único e confiável para gerar credenciais de autenticação. Isso reduz a chance de divergência entre fluxos de login e torna explícita a intenção do código.
+Com a refatoração, essas lógicas passaram a ser utilizadas a partir das classes auxiliares <i>ClaimsHelper</i> e <i>ProtocoloGenerator</i>. 
+Dessa forma, o sistema ganhou modularidade, clareza e reutilização efetiva de código, 
+além de permitir futuras evoluções sem comprometer outras partes da aplicação.
 </p>
 
 <h2>Impacto Esperado</h2>
 
 <ul>
-<li> Redução da complexidade do método <code>Login</code>, que agora é curto e direto.</li>
-<li> Aumento da legibilidade e da clareza sem alterar o comportamento funcional.</li>
-<li> Reutilização da lógica de montagem de <i>claims</i> em outros fluxos (admin, gerente, etc.).</li>
-<li> Melhoria da manutenção da parte de segurança/autenticação, que agora está centralizada.</li>
-<li> Aumento da testabilidade: é possível testar o <i>ClaimsHelper</i> isoladamente, simulando diferentes perfis de usuário e verificando se as <i>claims</i> geradas estão corretas.</li>
+<li> Redução da duplicação de código entre controladores.</li>
+<li> Aumento da clareza e da coesão entre as camadas de backend.</li>
+<li> Facilitação da manutenção e expansão futura do sistema.</li>
+<li> Centralização da lógica de autenticação e geração de protocolos em componentes reutilizáveis.</li>
+<li> Melhoria da testabilidade dos componentes auxiliares (<i>Helpers</i>).</li>
 </ul>
 
 <h2>Conclusão acerca da Refatoração</h2>
 
 <p align="justify">
-A Refatoração em Nível de Código – Extract Method, representou um passo importante para evoluir a arquitetura do backend em direção a um código mais limpo, sustentável e escalável. Ao extrair a lógica de criação de <i>ClaimsPrincipal</i> do <i>UserController</i> e encapsulá-la em uma classe auxiliar especializada (<i>ClaimsHelper</i>), reduzimos a responsabilidade do controller, melhoramos a coesão e criamos um ponto único de autenticação passível de evolução.
+A Refatoração em Nível de Código – Extract Method (Aplicação dos Métodos Refatorados) representou um passo essencial para consolidar as melhorias introduzidas nas etapas anteriores. 
+Ao aplicar e integrar as classes <i>ClaimsHelper</i> e <i>ProtocoloGenerator</i> aos controladores, 
+o código tornou-se mais limpo, reutilizável e aderente aos princípios de arquitetura limpa e modularização.
 </p>
 
 <p align="justify">
-Essa melhoria elimina o code smell associado a métodos extensos e com múltiplas responsabilidades, além de preparar a base de autenticação para futuras extensões (por exemplo, inclusão de roles, permissões e políticas de acesso diferenciadas). A refatoração não alterou o resultado final do endpoint de login, mantendo o comportamento externo do sistema inalterado — exatamente o objetivo de uma refatoração bem-sucedida.
+Essa refatoração não alterou o comportamento funcional do sistema, mantendo o mesmo resultado externo — mas aprimorou significativamente a estrutura interna, 
+eliminando duplicações, fortalecendo a manutenção e preparando o projeto para futuras extensões com menor esforço de desenvolvimento.
 </p>
 
 <p align="justify">
-Para mais detalhes técnicos mais minuciosos, acesse o registro desta refatoração em:
+Para mais detalhes técnicos, acesse o registro desta refatoração em:
 <a href="https://github.com/arsouza81/MIS_OS/issues/34" target="_blank">
 Refatoração em Nível de Código – Extract Method #34
 </a>.
