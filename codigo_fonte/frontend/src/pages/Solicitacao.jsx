@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Api } from "../services/Api";
 
 export default function Solicitacao() {
   const { protocolo } = useParams();
@@ -11,24 +12,20 @@ export default function Solicitacao() {
   const [erro, setErro] = useState("");
 
   const buscarSolicitacao = async () => {
+    setErro("");
+    setSolicitacao(null);
+
     try {
-      const res = await fetch(
-        `http://localhost:5053/FormServidor/buscar_protocolo?protocolo=${protocolo}`
-      );
-
-      if (!res.ok) throw new Error("Protocolo não encontrado");
-
-      const data = await res.json();
+      const data = await Api.buscarSolicitacao(protocolo);
       setSolicitacao(data);
-      setErro("");
-    } catch (err) {
-      console.error(err);
-      setErro(err.message);
+    }catch(error) {
+      console.error(error);
+      setErro(error.message);
     }
   };
 
   useEffect(() => {
-    if (protocolo) buscarSolicitacao();
+    if(protocolo) buscarSolicitacao();
   }, [protocolo]);
 
   return (

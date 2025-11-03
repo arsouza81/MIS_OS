@@ -4,7 +4,7 @@
 <p align=justify>No projeto do software Ordem de Serviço, o Diagrama de Classes serviu como um mapa que orientou o desenvolvimento, ajudando a equipe a entender a estrutura e a lógica interna do sistema. Ele definiu os atributos, métodos e associações das classes, facilitando a identificação de responsabilidades e promovendo um design mais coeso e modular. Além disso, o Diagrama de Classe foi fundamental para a comunicação entre desenvolvedores, arquitetos de software e demais stakeholders, garantindo que todos tenham um entendimento comum da arquitetura do sistema.</p>
 <p align=justify>Ao antecipar possíveis problemas e inconsistências no design, o Diagrama de Classes contribuiu para a construção do software Ordem de Serviço, tornando-o mais robusto e manutenível, reduzindo riscos e facilitando futuras expansões ou alterações no sistema. Assim, ele desempenhou um papel crucial não apenas na fase de planejamento, mas ao longo de todo o ciclo de vida do desenvolvimento do software.</p>
 
-<img src="../images/Diagrama de classe.jpg" alt="Diagrama de Classe">
+<img src="../images/Diagrama de Classe Atualizado.png" alt="Diagrama de Classe">
 
 <br>
 <br>

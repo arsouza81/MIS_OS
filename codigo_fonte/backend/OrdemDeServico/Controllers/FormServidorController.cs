@@ -5,21 +5,24 @@ using OrdemDeServico.Data;
 using OrdemDeServico.Dtos;
 using OrdemDeServico.Models;
 using OrdemDeServico.Services;
+using OrdemDeServico.Services.Helpers;
 
 namespace OrdemDeServico.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class FormServidorController : Controller {
 
     private OrdemContext _context;
     private IMapper _mapper;
     private readonly IEmailSender _emailSender;
+    private readonly ProtocoloGenerator _protocoloGenerator;    
 
     public FormServidorController(OrdemContext context, IMapper mapper, IEmailSender emailSender) {
         _context = context;
         _mapper = mapper;
         _emailSender = emailSender;
+        _protocoloGenerator = new ProtocoloGenerator(context);
     }
 
     [HttpPost]
@@ -51,21 +54,19 @@ public class FormServidorController : Controller {
         return NoContent();
     }
 
-    [HttpGet("buscar_protocolo")]
-    public IActionResult BuscarProtocolo(string? protocolo)
-    {
-        if (string.IsNullOrEmpty(protocolo))
+    [HttpGet("buscar-protocolo")]
+    public IActionResult BuscarProtocolo(string? protocolo) {
+        if(string.IsNullOrEmpty(protocolo))
             return BadRequest(new { error = "O protocolo não pode estar vazio" });
 
         var formulario = _context.FormsServidores
             .FirstOrDefault(f => f.Protocolo == protocolo);
 
-        if (formulario == null)
+        if(formulario == null)
             return NotFound(new { error = "Protocolo não encontrado" });
 
         
-        var formularioSemSiape = new
-        {
+        var formularioSemSiape = new {
             formulario.Protocolo,
             formulario.Nome,
             formulario.Email,
@@ -94,7 +95,7 @@ public class FormServidorController : Controller {
             DescricaoProblema = formDto.DescricaoProblema,
             Data_Solicitacao = formDto.Data_Solicitacao,
             Status = "em_andamento",
-            Protocolo = GenerateUniqueProtocolo()
+            Protocolo = _protocoloGenerator.GenerateUniqueProtocolo()
         };
 
         _context.FormsServidores.Add(formulario);
@@ -119,18 +120,5 @@ public class FormServidorController : Controller {
             message = "Formulário enviado com sucesso!",
             protocolo = formulario.Protocolo
         });
-    }
-
-    private string GenerateUniqueProtocolo() {
-        var random = new Random();
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        string protocolo;
-
-        do {
-            protocolo = new string(Enumerable.Repeat(chars, 8)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        } while (_context.FormsServidores.Any(f => f.Protocolo == protocolo));
-
-        return protocolo;
     }
 }

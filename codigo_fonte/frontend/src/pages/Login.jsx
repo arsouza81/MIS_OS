@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Toast from "../components/Toast";
+import { Api } from "../services/Api";
 
 function Login() {
   const navigate = useNavigate(); // React Router para navegação SPA
@@ -15,27 +16,16 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErro("");
 
     try {
-      const res = await fetch("http://localhost:5053/user/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-        credentials: "include",
-      });
+      const { email, password } = formData;
+      const data = await Api.login(email,password);
 
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        // Salva token ou flag de autenticação
-        localStorage.setItem("token", data.token || "true"); 
-        // Navega para a rota protegida sem reload
-        navigate("/gerente");
-      } else {
-        setErro(data.message || "Credenciais inválidas.");
-      }
-    } catch {
-      setErro("Erro de conexão com o servidor.");
+      localStorage.setItem("token", data.token || true);
+      navigate("/gerente");
+    } catch (error){
+      setErro(error.message || "Erro de conexão com o servidor.");
     }
   };
 
