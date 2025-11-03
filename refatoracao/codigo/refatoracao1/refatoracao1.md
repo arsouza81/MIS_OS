@@ -65,4 +65,8 @@ Services/Helpers/ProtocoloGenerator.cs
 A Refatoração em Nível de Código – Extract Class #31 representa uma etapa essencial no processo de melhoria contínua da base de código. A mudança eliminou code smells relacionados à concentração excessiva de responsabilidades e trouxe ganhos expressivos em organização, testabilidade, coesão e clareza arquitetural. Essa iniciativa reforça o compromisso com a aplicação de boas práticas de desenvolvimento, tornando o sistema mais robusto e preparado para escalabilidade.
 </p>
 <p align="justify">
-Para detalhes técnicos mais minuciosos, acesse o registro da refatoração em: <a href="https://github.com/arsouza81/MIS_OS/issues/31" target="_blank">Refatoração em Nível de Código – Extract Class #31</a>
+Para detalhes técnicos mais minuciosos, acesse o registro da refatoração em: <a href="https://github.com/arsouza81/MIS_OS/issues/31" target="_blank">Refatoração em Nível de Código – Extract Class #31</a>.
+</p>
+<p align="justify">
+Para mais detalhes dos code smells encontrados para essa refatoração, verifique a descrição dos code smells de forma mais detalhada e alinhada com a descrição do livro: <a href="https://github.com/arsouza81/MIS_OS/blob/manutencao_de_refatoracao/refatoracao/smells/code_smell1.md" target="_blank">Code_Small1</a>.
+</p>
