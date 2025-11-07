@@ -14,7 +14,7 @@ function App() {
         {/* Páginas públicas */}
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/solicitacao/:protocolo" element={<Solicitacao />} />
+        <Route path="/solicitacao" element={<Solicitacao />} />
 
         {/* Páginas protegidas */}
         <Route

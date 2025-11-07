@@ -1,231 +1,60 @@
-html, body, #root {
-  height: 100%;       /* garante altura cheia */
-  margin: 0;
-  padding: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8.5%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8.5%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8.5%;
+  --primary: 195 68% 27%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 195 68% 27%;
+  --radius: 0.5rem;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  font-family: "Times New Roman", serif;
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  color: #222222;
 }
 
-main {
-  flex: 1; /* garante que o conteúdo ocupe espaço e empurre o footer */
+.btn-primary {
+  background-color: #176073;
+  color: #FFFFFF;
+  transition: background-color 0.3s ease;
 }
 
-/*
-section menu start
-*/
-.menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1; /* Para ocupar o espaço restante */
-  margin-top: 350px;
-}
-
-.form-servidor {
-  text-align: center;
-  max-width: 600px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.form-login {
-  text-align: center;
-  max-width: 300px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-button {
-  width: 50%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  align-items: right;
-  justify-content: right;
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.menu h1 {
-  color: black;
-  font-size: 5rem;
-}
-
-.menu h2 {
-  color: black;
-  font-size: 3rem;
-}
-
-.menu form #descricao-problema {
-  resize: none;
-  height: 350px;
-  text-align: left;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
-
-.form-end {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.form-end a {
-  text-decoration: none;
-  color: black;
-}
-
-.div-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.form-end a:hover {
-  color: #0056b3;
-}
-
-.form-solicitacao {
-  width: 505px;
-  display: flex;
-  margin: 10px;
-  margin-left: 20px;
-}
-
-.form-solicitacao a {
-  text-decoration: none;
-  color: black;
-}
-
-.form-solicitacao a:hover {
-  color: #0056b3;
-}
-
-.status-em_andamento {
-  background-color: rgba(255, 255, 0, 0.5); /* Amarelo transparente */
-  padding: 2px;
-}
-
-.status-concluída {
-  background-color: rgba(0, 255, 0, 0.5); /* Verde transparente */
-  padding: 2px;
+.btn-primary:hover {
+  background-color: #114a5a;
 }
 
 .status-pendente {
-  background-color: rgba(20, 117, 228, 0.5); /* Laranja transparente */
-  padding: 2px;
+  background-color: #f59e0b; /* Amarelo/Laranja */
+}
+
+.status-andamento {
+  background-color: #3b82f6; /* Azul */
+}
+
+.status-concluida {
+  background-color: #22c55e; /* Verde */
 }
 
 .status-descartada {
-  background-color: rgba(255, 0, 0, 0.5); /* Vermelho transparente */
-  padding: 2px;
+  background-color: #ef4444; /* Vermelho */
 }
-
-
-
-
-
-/* data formulario */
-#dateForm {
-  width: 100%;
-  text-align: center;
-}
-
-#dateForm label,
-#dateForm input {
-  display: block;
-}
-
-#datepicker {
-  width: 250px;
-  margin: 25px auto; 
-}
-
-#button-selecionar-data {
-  width: 130px;
-  height: 35px;  
-  font-size: 14px;
-  padding: 5px 10px;
-}
-
-
-/*box para guardar as informações de solicitação*/
-.info-box {
-  margin-top: 20px;
-  max-height: 400px; 
-  max-width: 500px;
-  height: 400px;
-  width: 500px;
-  overflow-y: auto; 
-  border: 1px solid #ccc; 
-  padding: 10px; 
-}
-
-/*botao para voltar*/
-#voltar-index-gerente {
-  display: inline-block; /* Permite adicionar margem à direita */
-  margin-top: 10px; 
-  margin-right: 300px;
-  padding: 5px 10px; 
-  background-color: #007bff; 
-  color: #fff; 
-  text-decoration: none; 
-  border-radius: 5px; 
-}
-
-#voltar-index-gerente:hover {
-  background-color: #0056b3;
-}
-
-/*customização da lista de nomes*/
-.custom-list {
-  list-style-type: none; 
-  padding: 0; 
-}
-
-.custom-list li {
-  border-bottom: none; 
-}
-
-.custom-list li a {
-  text-decoration: none; 
-  color: #000; 
-}
-
-.custom-list li a:hover {
-  text-decoration: underline; 
-}
-
-.info-box ul {
-  list-style-type: none;
-}
-
-
-/*
-section menu end
-*/
