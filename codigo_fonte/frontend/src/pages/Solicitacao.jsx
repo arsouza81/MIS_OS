@@ -4,23 +4,28 @@ import { Search } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Api } from "../services/Api";
+import { useToast } from "../components/ui/use-toast";
+import { Toaster } from "../components/ui/toaster";
 
 export default function Solicitacao() {
   const [protocolo, setProtocolo] = useState("");
   const [solicitacao, setSolicitacao] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
-  const [erro, setErro] = useState("");
+  const { toast } = useToast();
 
   const handleSearch = async (e) => {
     e.preventDefault();
 
     if (!protocolo.trim()) {
-      setErro("Por favor, digite um protocolo para buscar.");
+      toast({
+        title: "Campo obrigatório",
+        description: "Por favor, digite um protocolo para buscar.",
+        variant: "destructive",
+      });
       setSolicitacao(null);
       return;
     }
 
-    setErro("");
     setSolicitacao(null);
     setIsSearching(true);
 
@@ -29,7 +34,12 @@ export default function Solicitacao() {
       setSolicitacao(data);
     } catch (error) {
       console.error(error);
-      setErro(error.message || "Nenhuma solicitação encontrada.");
+      toast({
+        variant: "destructive",
+        title: "Erro na busca",
+        description: "Nenhuma ordem de serviço encontrada.",
+        className: "bg-red-600/90 text-white border-none",
+      });
     } finally {
       setIsSearching(false);
     }
@@ -96,11 +106,6 @@ export default function Solicitacao() {
             </button>
           </form>
 
-          {erro && (
-            <div className="mt-6 bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded-md text-center">
-              {erro}
-            </div>
-          )}
         </motion.section>
 
         {solicitacao && (
@@ -110,6 +115,7 @@ export default function Solicitacao() {
             transition={{ duration: 0.8 }}
             className="mt-8 bg-white rounded-2xl p-8 border border-[#D9D9D9] shadow-sm w-full max-w-2xl"
           >
+            {/* ... (conteúdo dos detalhes da solicitação) ... */}
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-[#222222]">
                 Detalhes da Solicitação
@@ -152,6 +158,7 @@ export default function Solicitacao() {
       </main>
 
       <Footer />
+      <Toaster />
     </div>
   );
 }
