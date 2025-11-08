@@ -60,6 +60,21 @@ export default function Solicitacao() {
     }
   };
 
+    const formatStatus = (status) => {
+    switch (status) {
+      case "pendente":
+        return "Pendente";
+      case "em_andamento":
+        return "Em Andamento";
+      case "concluída":
+        return "Concluída";
+      case "descartada":
+        return "Descartada";
+      default:
+        return status;
+    }
+  };
+
   return (
     <div className="bg-[#F4F4F4] min-h-screen flex flex-col">
       <Header />
@@ -93,14 +108,14 @@ export default function Solicitacao() {
                 value={protocolo}
                 onChange={(e) => setProtocolo(e.target.value)}
                 placeholder="Digite o protocolo..."
-                className="w-full pl-10 pr-4 py-3 border border-[#D9D9D9] rounded-xl text-[#222222] focus:ring-2 focus:ring-[#176073] focus:border-transparent outline-none transition-all duration-200"
+                className="w-full pl-10 pr-4 py-2 border border-[#D9D9D9] rounded-xl text-[#222222] focus:ring-2 focus:ring-[#176073] focus:border-transparent outline-none transition-all duration-200"
               />
             </div>
 
             <button
               type="submit"
               disabled={isSearching}
-              className="w-full bg-[#176073] text-white py-3 rounded-xl font-semibold hover:bg-[#1b7086] transition-all disabled:opacity-50"
+              className="w-full bg-[#176073] text-white py-2 rounded-xl font-semibold hover:bg-[#1b7086] transition-all disabled:opacity-50"
             >
               {isSearching ? "Buscando..." : "Buscar"}
             </button>
@@ -115,7 +130,6 @@ export default function Solicitacao() {
             transition={{ duration: 0.8 }}
             className="mt-8 bg-white rounded-2xl p-8 border border-[#D9D9D9] shadow-sm w-full max-w-2xl"
           >
-            {/* ... (conteúdo dos detalhes da solicitação) ... */}
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-[#222222]">
                 Detalhes da Solicitação
@@ -125,7 +139,7 @@ export default function Solicitacao() {
                   solicitacao.status
                 )}`}
               >
-                {solicitacao.status}
+                {formatStatus(solicitacao.status)}
               </span>
             </div>
 
