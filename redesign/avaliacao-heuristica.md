@@ -162,15 +162,58 @@ Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MI
 
 ---
 
-### 3.10 Issue – Ajuda e Documentação
-*(estrutura reservada – aguardando preenchimento)*
+### 3.10 Issue – Ajuda e Documentação #49
+
+**Descrição:**  
+<p align=justify>Durante a avaliação heurística do Sistema Ordem de Serviços, foi identificado que o sistema <b>não possuía um ponto de acesso direto à documentação ou guia de uso</b>, o que dificultava a consulta rápida por parte dos usuários. Essa ausência de suporte visível impactava diretamente a heurística de <b>Ajuda e Documentação</b>, reduzindo a autonomia e a compreensão das funcionalidades do sistema.</p>
+
+<p align=justify>Para corrigir essa limitação, foi proposto um <b>redesign</b> que adiciona um <b>link visível no sistema</b>, direcionando o usuário para uma <b>página de documentação</b> contendo instruções sobre como criar, buscar e gerenciar Ordens de Serviço. Essa página também explica o significado dos status e descreve as funções disponíveis para cada tipo de usuário (Servidor e Gerência).</p>
+
+**Objetivo:**  
+<p align=justify>- Fornecer um ponto de acesso rápido à documentação do sistema;<br>
+- Ajudar novos usuários a compreender o funcionamento das principais funcionalidades;<br>
+- Reduzir dúvidas e erros por falta de entendimento;<br>
+- Disponibilizar explicações claras sobre status, formulários, botões e fluxos do sistema.</p>
+
+**Classificação:**  
+<p align=justify><b>Tipo:</b> Redesign<br>
+<b>Heurística de Nielsen:</b> <i>Ajuda e Documentação</i><br>
+<b>Descrição da ação:</b> Inclusão de um <b>link direto para a página de instruções e descrição de uso do sistema</b>, promovendo autossuficiência e acesso facilitado ao conteúdo de suporte.</p>
+
+**Evidências:**  
+<p align=justify><b>Antes de aplicar a heurística de Ajuda e Documentação</b><br>
+  
+O sistema não possuía um ponto de acesso à documentação ou tutoriais, exigindo que o usuário buscasse auxílio externo ou suporte técnico para compreender o uso correto das funcionalidades.</p>
+
+<p align=justify><b>Depois de aplicar a heurística de Ajuda e Documentação</b><br>
+  
+Foi adicionado um <b>link visível no menu do sistema</b>, direcionando o usuário para uma <b>página de suporte e documentação</b>. Essa página reúne informações sobre o funcionamento das Ordens de Serviço, orientações de uso e explicações dos status e fluxos.</p>
+
+#### **Link da página:** [Página de Suporte – Documentação do Sistema](http://127.0.0.1:5500/index.html#intro)
+
+<p align="center">
+<img width="1810" height="1018" alt="Redesign - Ajuda e Documentação" src="https://github.com/user-attachments/assets/0b3bdfd2-1663-41b2-b1c0-0d18de61c70d" />
+</p>
+
+**Impacto Esperado:**  
+<p align=justify> - <b>Facilita</b> o aprendizado e uso do sistema por novos usuários;<br>
+- <b>Melhora</b> a autossuficiência dos usuários em tarefas comuns;<br>
+- <b>Cria</b> um canal de referência centralizado para tirar dúvidas;<br>
+- <b>Reduz</b> a necessidade de suporte técnico e retrabalho.</p>
+
+**Prioridade:**  
+**Média**
+
+<p align=justify>Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MIS_OS/issues/49">Redesign - Ajuda e Documentação #49</a>.</p>
 
 ---
 
 ## 4. Conclusão
-<p align=justify>A aplicação das heurísticas de Nielsen possibilitou identificar **pontos críticos de inconsistência, memória e clareza** na interface do Sistema Ordem de Serviços.</p>
-<p align=justify>As melhorias implementadas resultam em **maior previsibilidade, menor carga cognitiva e maior eficiência** no uso do sistema pelos diferentes perfis de usuários.</p>
-<p align=justify>As evidências apresentadas — compostas pelos *prints* de **antes e depois** — e os registros de *commits* associados a cada *issue* garantem **rastreabilidade completa** do processo de redesign, reforçando a aplicação prática e documentada dos princípios de usabilidade.</p>
+
+<p align=justify>A aplicação das heurísticas de Nielsen possibilitou identificar <i>pontos críticos de inconsistência, memória e clareza</i> na interface do Sistema Ordem de Serviços.</p>
+
+<p align=justify>As melhorias implementadas resultam em <i>maior previsibilidade, menor carga cognitiva e maior eficiência</i> no uso do sistema pelos diferentes perfis de usuários.</p>
+
+<p align=justify>As evidências apresentadas - compostas pelos <i>prints</i> de <i>antes e depois</i> - e os registros de <i>commits</i> associados a cada <i>issue</i> garantem <i>rastreabilidade completa</i> do processo de redesign, reforçando a aplicação prática e documentada dos princípios de usabilidade.</p>
 
 ---
-
