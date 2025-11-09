@@ -68,6 +68,8 @@ Cada *issue* apresenta:
 **Prioridade:**  
 **Média**
 
+Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MIS_OS/issues/45">Redesign - Consistência e Padrões #45</a>.
+
 ---
 
 ### 3.2 Issue – Consistência e Padrões #43
@@ -120,6 +122,8 @@ Perfil Gerente de TI (Nível de acesso para administrador)
 
 **Prioridade:**  
 **Média**
+
+Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MIS_OS/issues/43">Redesign - Consistência e Padrões #43</a>.
 
 ---
 
