@@ -1,28 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X, Plus, Search, Settings } from "lucide-react";
+import { Menu, X, LayoutDashboard, LogOut } from "lucide-react";
 import logo from "../assets/logo-ufam-icet.png";
+import { Api } from "../services/Api";
 
-export default function Header() {
+export default function HeaderGerente() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   const navigation = [
-    { name: "Nova Ordem de Serviço", href: "/", icon: Plus },
-    { name: "Consultar Solicitação", href: "/solicitacao", icon: Search },
-    { name: "Acesso Restrito", href: "/login", icon: Settings },
+    { name: "Solicitações", href: "/gerente", icon: LayoutDashboard },
   ];
 
   const isActive = (path) => location.pathname === path;
+
+  const handleLogout = async () => {
+    try {
+      const data = await Api.logout();
+      if (data.success) {
+        localStorage.removeItem("token");
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("Erro ao deslogar:", err);
+    } finally {
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#D9D9D9] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/gerente" className="flex items-center space-x-3">
             <img src={logo} alt="Logo UFAM ICET" className="h-[80px] w-auto" />
           </Link>
 
@@ -45,6 +58,14 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-2 text-[#222222] hover:text-[#176073] hover:bg-[#F4F4F4] px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+            >
+              <LogOut className="h-4 w-4" />
+              <span>Sair</span>
+            </button>
           </nav>
 
           {/* Botão mobile */}
@@ -82,6 +103,14 @@ export default function Header() {
               </Link>
             );
           })}
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center space-x-3 px-3 py-3 rounded-lg text-[#222222] hover:text-[#176073] hover:bg-[#F4F4F4] transition-all duration-200 w-full text-left"
+          >
+            <LogOut className="h-5 w-5" />
+            <span>Sair</span>
+          </button>
         </div>
       </motion.div>
     </header>

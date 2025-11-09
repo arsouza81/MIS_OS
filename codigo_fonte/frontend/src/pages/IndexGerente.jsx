@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import HeaderGerente from "../components/HeaderGerente";
 
 export default function IndexGerente({ erro }) {
   const [data, setData] = useState("");
@@ -25,7 +24,7 @@ export default function IndexGerente({ erro }) {
 
   return (
     <div className="bg-[#F4F4F4] min-h-screen flex flex-col">
-      <Header />
+      <HeaderGerente />
 
       {erro && (
         <div className="bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded-md mx-auto mt-6 w-11/12 md:w-2/3 text-center">
