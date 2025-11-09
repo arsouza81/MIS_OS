@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, User, Mail, Building, MapPin, FileText, Calendar, Clock } from "lucide-react";
+import {
+  ArrowLeft,
+  User,
+  Mail,
+  Building,
+  MapPin,
+  FileText,
+  Calendar,
+  Clock,
+} from "lucide-react";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 import { Api } from "../services/Api";
+import HeaderGerente from "../components/HeaderGerente";
 
 export default function DetalhesSolicitacao() {
   const { id } = useParams();
@@ -36,7 +45,6 @@ export default function DetalhesSolicitacao() {
     try {
       setErro("");
       setAtualizando(true);
-
       await Api.atualizarStatus(protocoloEncontrado.protocolo, status);
       setProtocoloEncontrado({ ...protocoloEncontrado, status });
       setNovoStatus(status);
@@ -61,7 +69,6 @@ export default function DetalhesSolicitacao() {
         return status;
     }
   };
-
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -107,10 +114,11 @@ export default function DetalhesSolicitacao() {
 
   return (
     <div className="bg-[#F4F4F4] min-h-screen flex flex-col">
-      <Header />
+      <HeaderGerente />
 
       <main className="flex-1 px-6 py-12">
         <div className="max-w-5xl mx-auto">
+          {/* Título */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -159,42 +167,55 @@ export default function DetalhesSolicitacao() {
 
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
+                    <User className="h-5 w-5 text-[#176073]" />
                     <div>
                       <p className="text-gray-600 text-sm">Nome Completo</p>
-                      <p className="text-[#222222] font-medium">{protocoloEncontrado.nome}</p>
+                      <p className="text-[#222222] font-medium">
+                        {protocoloEncontrado.nome}
+                      </p>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-3">
+                    <Mail className="h-5 w-5 text-[#176073]" />
                     <div>
                       <p className="text-gray-600 text-sm">E-mail</p>
-                      <p className="text-[#222222] font-medium">{protocoloEncontrado.email}</p>
+                      <p className="text-[#222222] font-medium">
+                        {protocoloEncontrado.email}
+                      </p>
                     </div>
                   </div>
 
                   {protocoloEncontrado.bloco && (
                     <div className="flex items-center space-x-3">
+                      <Building className="h-5 w-5 text-[#176073]" />
                       <div>
                         <p className="text-gray-600 text-sm">Bloco</p>
-                        <p className="text-[#222222] font-medium">{protocoloEncontrado.bloco}</p>
+                        <p className="text-[#222222] font-medium">
+                          {protocoloEncontrado.bloco}
+                        </p>
                       </div>
                     </div>
                   )}
 
                   {protocoloEncontrado.sala && (
                     <div className="flex items-center space-x-3">
+                      <MapPin className="h-5 w-5 text-[#176073]" />
                       <div>
                         <p className="text-gray-600 text-sm">Sala</p>
-                        <p className="text-[#222222] font-medium">{protocoloEncontrado.sala}</p>
+                        <p className="text-[#222222] font-medium">
+                          {protocoloEncontrado.sala}
+                        </p>
                       </div>
                     </div>
                   )}
 
                   {protocoloEncontrado.data_Solicitacao && (
                     <div className="flex items-center space-x-3">
+                      <Calendar className="h-5 w-5 text-[#176073]" />
                       <div>
                         <p className="text-gray-600 text-sm">Data/Hora</p>
-                        <p className="text-[#222222] font-medium flex items-center gap-2">
+                        <p className="text-[#222222] font-medium">
                           {formatDate(protocoloEncontrado.data_Solicitacao)}
                         </p>
                       </div>
@@ -209,6 +230,7 @@ export default function DetalhesSolicitacao() {
                   Descrição do Problema
                 </h2>
                 <div className="flex items-start space-x-3">
+                  <FileText className="h-5 w-5 text-[#176073] mt-1 flex-shrink-0" />
                   <p className="text-[#222222] leading-relaxed">
                     {protocoloEncontrado.descricaoProblema}
                   </p>
@@ -216,36 +238,36 @@ export default function DetalhesSolicitacao() {
               </div>
             </motion.div>
 
-            {/* Coluna 2 - Ações e Timeline */}
+            {/* Coluna 2 - Ações */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              {/* Atualizar status */}
               <div className="bg-white rounded-2xl p-6 border border-[#D9D9D9] shadow-sm">
                 <h2 className="text-xl font-bold text-[#222222] mb-6">
                   Atualizar Status
                 </h2>
-
                 <div className="space-y-3">
-                  {["pendente", "em_andamento", "concluída", "descartada"].map((status) => (
-                    <button
-                      key={status}
-                      onClick={() => atualizarStatus(status)}
-                      disabled={atualizando}
-                      className={`w-full text-left px-4 py-2 rounded-lg font-medium border transition-all ${
-                        novoStatus === status
-                          ? `${getStatusColor(status)} text-white`
-                          : "border-gray-300 hover:bg-gray-100"
-                      }`}
-                    >
-                      {formatStatus(status)}
-                    </button>
-                  ))}
+                  {["pendente", "em_andamento", "concluída", "descartada"].map(
+                    (status) => (
+                      <button
+                        key={status}
+                        onClick={() => atualizarStatus(status)}
+                        disabled={atualizando}
+                        className={`w-full text-left px-4 py-2 rounded-lg font-medium border transition-all ${
+                          novoStatus === status
+                            ? `${getStatusColor(status)} text-white`
+                            : "border-gray-300 hover:bg-gray-100"
+                        }`}
+                      >
+                        {formatStatus(status)}
+                      </button>
+                    )
+                  )}
                 </div>
-              </div>              
+              </div>
             </motion.div>
           </div>
         </div>

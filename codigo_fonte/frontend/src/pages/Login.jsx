@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { User, Lock, Eye, EyeOff } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Toast from "../components/Toast";
 import { Api } from "../services/Api";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [erro, setErro] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const { toast } = useToast();
+  const toastDismissRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (toastDismissRef.current) {
+        toastDismissRef.current();
+      }
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,22 +30,38 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro("");
-    setSuccessMessage("");
 
     if (!formData.email.trim() || !formData.password.trim()) {
-      setErro("Preencha todos os campos obrigatórios.");
+      toast({
+        title: "Campos obrigatórios",
+        description: "Preencha todos os campos antes de continuar.",
+        variant: "destructive",
+        className: "bg-red-600/90 text-white border-green-700",
+      });
       return;
     }
 
     try {
       setIsLoading(true);
       const data = await Api.login(formData.email, formData.password);
+
       localStorage.setItem("token", data.token || true);
-      setSuccessMessage("Login realizado com sucesso!");
+
+      const { dismiss } = toast({
+        title: "Login realizado!",
+        description: "Redirecionando para o painel do gerente...",
+        className: "bg-green-600/90 text-white border-green-700",
+      });
+      toastDismissRef.current = dismiss; 
+
       setTimeout(() => navigate("/gerente"), 1000);
     } catch (error) {
-      setErro(error.message || "Erro de conexão com o servidor.");
+      toast({
+        title: "Falha no login",
+        description: error.message || "Erro de conexão com o servidor.",
+        variant: "destructive",
+        className: "bg-red-600/90 text-white border-green-700",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -43,16 +70,6 @@ function Login() {
   return (
     <div className="bg-[#F4F4F4] min-h-screen flex flex-col">
       <Header showSearch={false} showRestricted={false} />
-
-      {erro && <Toast type="error" message={erro} context="login" onClose={() => setErro("")} />}
-      {successMessage && (
-        <Toast
-          type="success"
-          message={successMessage}
-          context="login"
-          onClose={() => setSuccessMessage("")}
-        />
-      )}
 
       <main className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-md">
@@ -77,7 +94,7 @@ function Login() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="bg-white rounded-2xl p-8 border border-[#D9D9D9] shadow-sm space-y-6"
           >
-            {/* E-mail */}
+            {/* Campo de E-mail */}
             <div>
               <label
                 htmlFor="email"
@@ -85,19 +102,22 @@ function Login() {
               >
                 E-mail <span className="text-red-500">*</span>
               </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Digite seu e-mail"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none placeholder-gray-400"
-                required
-              />
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Digite seu e-mail"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-[#176073] focus:outline-none transition-all"
+                  required
+                />
+              </div>
             </div>
 
-            {/* Senha */}
+            {/* Campo de Senha */}
             <div>
               <label
                 htmlFor="password"
@@ -105,16 +125,30 @@ function Login() {
               >
                 Senha <span className="text-red-500">*</span>
               </label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Digite sua senha"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none placeholder-gray-400"
-                required
-              />
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Digite sua senha"
+                  className="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-[#176073] focus:outline-none transition-all"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Botões */}
@@ -132,7 +166,14 @@ function Login() {
                 disabled={isLoading}
                 className="bg-[#176073] text-white px-6 py-2 rounded-xl font-semibold shadow-md hover:bg-[#1b7086] transition-colors disabled:opacity-70"
               >
-                {isLoading ? "Entrando..." : "Entrar"}
+                {isLoading ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Entrando...
+                  </div>
+                ) : (
+                  "Entrar"
+                )}
               </motion.button>
             </div>
           </motion.form>
@@ -140,6 +181,7 @@ function Login() {
       </main>
 
       <Footer />
+      <Toaster />
     </div>
   );
 }

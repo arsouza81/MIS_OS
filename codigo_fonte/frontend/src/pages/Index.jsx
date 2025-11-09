@@ -1,4 +1,14 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Send,
+  User,
+  Mail,
+  Hash,
+  Building,
+  MapPin,
+  FileText,
+} from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/style.css";
@@ -26,7 +36,6 @@ function Index() {
 
   const handlePreview = (e) => {
     e.preventDefault();
-
     let errors = [];
 
     if (!formData.nome.trim())
@@ -59,7 +68,7 @@ function Index() {
     try {
       setIsLoading(true);
       await Api.enviarFormulario(formData);
-      
+
       toast({
         title: "Sucesso!",
         description: "Formulário enviado com sucesso!",
@@ -86,13 +95,61 @@ function Index() {
       setIsLoading(false);
     }
   };
-  
+
+  const inputFields = [
+    {
+      name: "nome",
+      label: "Nome Completo",
+      type: "text",
+      icon: User,
+      required: true,
+      placeholder: "Digite seu nome completo",
+    },
+    {
+      name: "email",
+      label: "E-mail",
+      type: "email",
+      icon: Mail,
+      required: true,
+      placeholder: "Digite seu e-mail",
+    },
+    {
+      name: "siape",
+      label: "SIAPE",
+      type: "number",
+      icon: Hash,
+      required: true,
+      placeholder: "Digite seu SIAPE",
+    },
+    {
+      name: "bloco",
+      label: "Bloco",
+      type: "text",
+      icon: Building,
+      required: true,
+      placeholder: "Digite o bloco",
+    },
+    {
+      name: "sala",
+      label: "Sala",
+      type: "number",
+      icon: MapPin,
+      required: true,
+      placeholder: "Digite a sala",
+    },
+  ];
+
   return (
     <div className="bg-[#F4F4F4] min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-1 py-10 px-6 flex items-center justify-center">
-        <div className="w-full max-w-lg">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-lg"
+        >
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-[#222222] mb-2">
               Nova Ordem de Serviço
@@ -106,108 +163,73 @@ function Index() {
             onSubmit={handlePreview}
             className="bg-white rounded-2xl p-8 border border-[#D9D9D9] shadow-sm space-y-5"
           >
-            {/* Nome */}
-            <div> 
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Nome Completo <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                placeholder="Digite seu nome completo"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                E-mail <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Digite seu e-mail"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none"
-              />
-            </div>
-
-            {/* SIAPE */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                SIAPE <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="number"
-                name="siape"
-                value={formData.siape}
-                onChange={handleChange}
-                placeholder="Digite seu SIAPE"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none"
-              />
-            </div>
-
-            {/* Bloco */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Bloco <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="bloco"
-                value={formData.bloco}
-                onChange={handleChange}
-                placeholder="Digite o bloco"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none"
-              />
-            </div>
-
-            {/* Sala */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Sala <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="number"
-                name="sala"
-                value={formData.sala}
-                onChange={handleChange}
-                placeholder="Digite a sala"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none"
-              />
-            </div>
+            {inputFields.map((field, index) => {
+              const Icon = field.icon;
+              return (
+                <motion.div
+                  key={field.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                >
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    {field.label}{" "}
+                    {field.required && <span className="text-red-500">*</span>}
+                  </label>
+                  <div className="relative">
+                    <Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <input
+                      type={field.type}
+                      name={field.name}
+                      value={formData[field.name]}
+                      onChange={handleChange}
+                      placeholder={field.placeholder}
+                      className="w-full pl-12 pr-4 py-3 bg-white border border-[#D9D9D9] rounded-xl text-[#222222] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#176073] focus:border-transparent transition-all duration-200"
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
 
             {/* Descrição */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Descrição do Problema <span className="text-red-500">*</span>
               </label>
-              <textarea
-                name="descricaoProblema"
-                rows="4"
-                value={formData.descricaoProblema}
-                onChange={handleChange}
-                placeholder="Descreva o problema ou serviço solicitado"
-                className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-[#176073] outline-none resize-none"
-              ></textarea>
-            </div>
+              <div className="relative">
+                <FileText className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <textarea
+                  name="descricaoProblema"
+                  rows="4"
+                  value={formData.descricaoProblema}
+                  onChange={handleChange}
+                  placeholder="Descreva o problema ou serviço solicitado"
+                  className="w-full pl-12 pr-4 py-3 bg-white border border-[#D9D9D9] rounded-xl text-[#222222] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#176073] focus:border-transparent transition-all duration-200 resize-none"
+                />
+              </div>
+            </motion.div>
 
             {/* Botão */}
-            <div className="pt-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="pt-2"
+            >
               <button
                 type="submit"
-                className="bg-[#176073] text-white w-full py-2 rounded-xl font-semibold shadow-md hover:bg-[#1b7086] transition-colors"
+                className="bg-[#176073] text-white w-full py-3 rounded-xl font-semibold shadow-md hover:bg-[#1b7086] transition-colors flex items-center justify-center"
               >
-                {/* O botão agora sempre mostra "Enviar Solicitação" pois o loading está no modal */}
+                <Send className="mr-2 h-5 w-5" />
                 Enviar Solicitação
               </button>
-            </div>
+            </motion.div>
           </form>
-        </div>
+        </motion.div>
       </main>
 
       <Footer />
@@ -257,18 +279,26 @@ function Index() {
               <button
                 onClick={handleSubmit}
                 disabled={isLoading}
-                className={`px-4 py-2 rounded-xl font-medium transition ${
+                className={`px-4 py-2 rounded-xl font-medium transition flex items-center justify-center ${
                   isLoading
                     ? "bg-[#176073]/60 text-white cursor-not-allowed"
                     : "bg-[#176073] text-white hover:bg-[#1b7086]"
                 }`}
               >
-                {isLoading ? "Enviando..." : "Confirmar Envio"}
+                {isLoading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Enviando...
+                  </>
+                ) : (
+                  "Confirmar Envio"
+                )}
               </button>
             </div>
           </div>
         </div>
       )}
+
       <Toaster />
     </div>
   );

@@ -5,8 +5,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Api } from "../services/Api";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
+import HeaderGerente from "../components/HeaderGerente";
 
 const formatStatus = (status) => {
   if (!status) return "";
@@ -164,7 +164,7 @@ export default function Solicitacoes() {
 
   return (
     <>
-      <Header />
+      <HeaderGerente />
       <div className="py-10 px-6 min-h-[calc(100vh-150px)] bg-[#F4F4F4]">
         <div className="max-w-5xl mx-auto">
           <motion.div
