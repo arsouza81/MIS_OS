@@ -93,10 +93,13 @@ public class UserController : ControllerBase {
 
         var solicitacoes = _context.FormsServidores
             .Where(f => f.Data_Solicitacao.Date == data.Date)
-            .Select(f => new SolicitacaoDto {
-                Id = f.Id,
-                Nome = f.Nome,
-                DataSolicitacao = f.Data_Solicitacao.ToString("dd/MM/yyyy HH:mm:ss")
+            .Select(f => new {
+                id = f.Id,
+                nome = f.Nome,
+                email = f.Email,
+                protocolo = f.Protocolo,
+                status = f.Status,
+                dataSolicitacao = f.Data_Solicitacao
             })
             .ToList();
 
