@@ -326,7 +326,7 @@ Durante o envio da solicitação, o sistema agora exibe o texto **“Enviando...
 Essa solução mantém o usuário informado e evita cliques repetidos durante o processamento.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b676a586-6254-4e42-821a-c9197481c62a" alt="Indicador visual de envio" width="700"/>
+  <img src="https://github.com/user-attachments/assets/b676a586-6254-4e42-821a-c9197481c62a" alt="Indicador visual de envio" width="50%"/>
 </p>
 
 Assim que o envio é concluído, o botão retorna ao seu estado normal e o usuário recebe uma mensagem de confirmação de sucesso.
