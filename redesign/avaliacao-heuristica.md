@@ -267,32 +267,45 @@ Para verificar as informações com mais detalhes, acesse: [Issue-Redesign-Corre
 
 ### 3.6 Issue – Consistência e Padrões 
 
-**Descrição:**  
-<p align=justify>Durante a avaliação heurística do Sistema Ordem de Serviços, foi identificada uma inconsistência relacionada à heurística **“Consistência e Padrões”**.</p>
-<p align=justify>Atualmente, os **status das Ordens de Serviço** variam entre os perfis de **Servidor** e **Gerência**, apresentando diferenças de nomenclatura, sequência e formatação visual (ex.: “em_andamento” vs. “Em Andamento”), além de divergências nas cores utilizadas para indicar os estados.</p>  
+**Problema Identificado**  
+<p align=justify>Foram observadas inconsistências na exibição dos <b>status das Ordens de Serviço</b> entre os perfis de <b>Servidor</b> e <b>Gerência</b>.</p>
+<p align=justify>As variações incluíam diferenças de nomenclatura (ex.: “em_andamento” vs. “Em Andamento”), capitalização, ordem de exibição e cores utilizadas para representar o progresso das solicitações.</p>
+<p align=justify>Essas divergências comprometiam a coerência visual do sistema, dificultando a leitura e o reconhecimento imediato dos estados das solicitações.</p>
 
-<p align=justify>Para corrigir essa limitação, recomenda-se **padronizar integralmente** os status — nomes, cores, capitalização e sequência — assegurando a mesma apresentação em todas as telas e perfis. Adota-se o seguinte **padrão único e ordem temporal**:</p>
+**Impacto na Usabilidade**  
+- Reduzia a previsibilidade e coerência da interface.
+- Aumentava o esforço cognitivo do usuário para interpretar os status.
+- Dificultava a comunicação visual entre diferentes perfis de acesso.
 
-1. **Pendente** → cor **azul**  
-2. **Em Andamento** → cor **amarela**  
-3. **Concluída** → cor **verde**  
-4. **Descartada** → cor **cinza**
+**Prioridade:** Média  
+A correção aumenta a clareza e padroniza a percepção visual entre os perfis do sistema.
 
-<p align=justify>Essa padronização reforça a **previsibilidade e coerência** da interface, reduz ambiguidades e melhora a comunicação visual entre os diferentes perfis de usuários.</p>
+**Proposta de Melhoria**  
+<p align=justify>Foi realizada a <b>padronização integral dos status das Ordens de Serviço</b>, unificando nomenclatura, capitalização, cores e sequência de exibição, assegurando uma aparência uniforme em todas as telas e perfis.</p>
+O novo padrão adota a seguinte sequência e codificação de cores:
 
-**Objetivo:**  
-- **Unificar** a nomenclatura e o formato dos status da Ordem de Serviço;  
-- **Garantir consistência visual e textual** (cores, capitalização e sequência) em todas as telas e perfis;  
-- **Aplicar** o mesmo esquema de cores e ordenação (**Pendente → Em Andamento → Concluída → Descartada**);  
-- **Manter coerência** entre as interfaces do perfil de Servidor e de Gerência.
+| Status           | Cor Representativa |
+| ---------------- | ------------------ |
+| **Pendente**     | Azul               |
+| **Em Andamento** | Amarelo            |
+| **Concluída**    | Verde              |
+| **Descartada**   | Cinza              |
 
-**Classificação:**  
-**Tipo:** Redesign  
-**Heurística de Nielsen:** *Consistência e Padrões*  
-**Descrição da ação:** Padronização dos **status da Ordem de Serviço** (nomes, cores, capitalização e sequência) em todos os níveis de acesso do sistema.
 
-**Evidências:**  
+<p align=justify>Essa padronização garante consistência e previsibilidade na interface, reduzindo ambiguidades e melhorando a comunicação visual entre os usuários do sistema.</p>
+
+
+**Evidências (Antes x Depois)**
+
+| Antes (Sem Padrão)                                          | Depois (Padronização Aplicada)                              |
+| ----------------------------------------------------------- | ----------------------------------------------------------- |
+| Status exibidos com variação de nomes e cores entre perfis. | Status padronizados em nomenclatura, capitalização e cores. |
+| Dificuldade de reconhecimento e interpretação visual.       | Reconhecimento imediato e comunicação uniforme.             |
+| Interface com aparência inconsistente e pouco intuitiva.    | Interface coerente, previsível e visualmente harmônica.     |
+
+
 **Antes de aplicar a heurística de Consistência e Padrões**
+
 Perfil Servidor (Nível de acesso para usuário comum)
 <img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/914dcdf3-ddfa-425c-bf90-a96b9a7d2fa1" />
 
@@ -300,23 +313,15 @@ Perfil Gerente de TI (Nível de acesso para administrador)
 <img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/3940d0f5-7e6d-4671-94ee-be45fdf81e1e" />
 
 **Depois de aplicar a heurística de Consistência e Padrões**
+
 Perfil Servidor (Nível de acesso para usuário comum)
 <img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/f517df9a-84cf-404e-a62b-8854927e736b" />
 
 Perfil Gerente de TI (Nível de acesso para administrador)
 <img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/5a7661a9-3df1-4ba5-ae05-0daf45947890" /> 
 
-**Impacto Esperado:**  
-🧩 **Garante** coerência e previsibilidade na interface;  
-🎯 **Facilita** o reconhecimento e reduz confusão entre diferentes usuários;  
-💬 **Melhora** legibilidade e aparência visual dos status;  
-🔄 **Mantém** linguagem uniforme em todo o sistema;  
-📈 **Apoia** treinamento e adoção, reduzindo erros de interpretação.
-
-**Prioridade:**  
-**Média**
-
-Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MIS_OS/issues/43">Redesign - Consistência e Padrões #43</a>.
+**Links Úteis**
+Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/43">Issue – Redesign: Consistência e Padrões #43</a>.
 
 ---
 
