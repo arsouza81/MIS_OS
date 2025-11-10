@@ -358,7 +358,60 @@ Para verificar as informações com mais detalhes, acesse: [Issue-Redesign-Corre
 ---
 
 ### 3.5 Issue – Controle e Liberdade do Usuário
-*(estrutura reservada – aguardando preenchimento)*
+
+**Problema Identificado**  
+Durante a análise heurística, observou-se que o sistema não oferecia uma etapa de **confirmação antes do envio** das Ordens de Serviço.  
+O formulário era enviado imediatamente após o clique em “Enviar Solicitação”, **sem que o usuário pudesse revisar ou cancelar a ação**.  
+Essa limitação reduzia o controle do usuário sobre o processo e aumentava o risco de **envio de informações incorretas ou incompletas**.
+
+---
+
+**Impacto na Usabilidade**  
+- Reduzia a sensação de controle e segurança durante o envio;  
+- Aumentava a probabilidade de erros por falta de revisão;  
+- Impedia o cancelamento de ações não intencionais.  
+
+**Prioridade:** Alta  
+A melhoria é fundamental para assegurar que o usuário tenha liberdade e controle total sobre suas ações antes da confirmação final.
+
+---
+
+**Proposta de Melhoria**  
+Foi aplicada a heurística de **Controle e Liberdade do Usuário** por meio da implementação de uma **pré-visualização do formulário de Ordem de Serviço** antes do envio.  
+Agora, ao clicar em **“Enviar Solicitação”**, o sistema exibe um **modal de confirmação** apresentando todos os dados preenchidos pelo usuário.  
+Nesse modal, o usuário pode:  
+- **Revisar** as informações antes do envio;  
+- **Cancelar** o envio e retornar à edição do formulário;  
+- **Confirmar** o envio apenas após verificar que os dados estão corretos.  
+
+Essa solução garante **maior controle, previsibilidade e segurança** no processo, além de reduzir erros de preenchimento e retrabalho.
+
+---
+
+**Evidências (Antes x Depois)**  
+
+#### 🟥 Antes – Envio direto sem revisão  
+O formulário era enviado imediatamente após o clique em “Enviar Solicitação”, sem exibir uma etapa intermediária de confirmação.  
+Isso aumentava a ocorrência de erros e dificultava a correção de informações incorretas.
+
+---
+
+#### 🟩 Depois – Modal de pré-visualização com confirmação  
+Com a nova funcionalidade, ao clicar em “Enviar Solicitação”, o usuário visualiza um **modal de pré-visualização** contendo todos os dados preenchidos.  
+A partir dele, é possível **confirmar** ou **cancelar** o envio, garantindo maior controle sobre a ação e prevenindo erros.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4b22237d-1b89-4082-9c6d-6f59de7f4196" alt="Modal de pré-visualização - parte 1" width="700"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/48de47ad-5534-42f6-8901-9d85be450721" alt="Modal de pré-visualização - parte 2" width="700"/>
+</p>
+
+---
+
+**Links Úteis**  
+Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/42">Issue – Redesign: Controle e Liberdade do Usuário #42</a>.
 
 ---
 
