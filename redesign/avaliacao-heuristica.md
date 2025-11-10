@@ -449,10 +449,21 @@ Com essa melhoria, o sistema fornece um **feedback visual claro** e evita a cria
 
 **Evidências (Antes x Depois)**  
 
-| Estado | Captura de Tela | Descrição |
-|---------|----------------|------------|
-| **Antes – Botão ativo durante o envio** | <img src="https://github.com/user-attachments/assets/ef9674f5-70b4-4d70-a2d2-3f19f1b27d8c" alt="Antes" width="450"/> | O botão permanecia habilitado, permitindo múltiplos cliques e envios duplicados. |
-| **Depois – Botão desabilitado durante o envio** | <img src="https://github.com/user-attachments/assets/e19be166-47fe-449a-b196-757560593f90" alt="Depois" width="450"/> | O botão é temporariamente desativado durante o processamento, prevenindo duplicações e melhorando o feedback da interação. |
+#### 🟥 Antes – Botão ativo durante o envio  
+Antes da refatoração, o botão de envio permanecia habilitado enquanto o sistema processava a solicitação, permitindo que o usuário clicasse várias vezes e gerasse múltiplos envios simultâneos.  
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ef9674f5-70b4-4d70-a2d2-3f19f1b27d8c" alt="Antes" width="700"/>
+</p>
+
+---
+
+#### 🟩 Depois – Botão desabilitado durante o envio  
+Após a implementação da heurística, o botão passa a ser temporariamente desativado enquanto o envio é processado. Essa melhoria **impede duplicações**, **reforça a clareza das ações** e **indica visualmente o progresso da operação**.  
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e19be166-47fe-449a-b196-757560593f90" alt="Depois" width="700"/>
+</p>
 
 ---
 
