@@ -6,6 +6,12 @@ export default function Footer() {
           <p id="contact" className="font-semibold text-[#222222]">Instituto de Ciências Exatas e Tecnologia</p>
           <p>Universidade Federal do Amazonas</p>
           <p>Av. Nossa Senhora do Rosário, 3863 - Bairro Tiradentes, Itacoatiara</p>
+          <p className="pt-4">
+          <a
+              href="https://manual-os.rennan-alves.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 transition-colors">Ajuda e Documentação</a></p>
         </div>
       </div>
     </footer>
