@@ -1,18 +1,24 @@
-# Avaliação Heurística do Sistema de Ordens de Serviço
+# Avaliação Heurística – Sistema Ordem de Serviços
 
 ## 1. Introdução
+<p align=justify>Esta avaliação tem como objetivo identificar e corrigir problemas de usabilidade no <b>Sistema Ordem de Serviços</b> do Instituto de Ciências Exatas e Tecnologia (ICET/UFAM), aplicando de forma sistemática as <b>10 Heurísticas de Usabilidade de Jakob Nielsen</b> como base de avaliação e redesign.</p>
 
-Este documento apresenta a avaliação heurística realizada no Sistema de Ordens de Serviço, com base nas 10 heurísticas de usabilidade propostas por Jakob Nielsen (1994).  
-O objetivo dessa análise foi identificar barreiras de usabilidade, inconsistências visuais e problemas de interação que dificultam a execução das tarefas pelos usuários, tanto no perfil Servidor quanto no perfil Gerência.
+<p align=justify>O foco deste trabalho é <b>melhorar a experiência do usuário</b> e <b>modernizar a interface</b> com base em evidências observáveis e documentadas, demonstrando que cada mudança aplicada resulta em uma <b>usabilidade mais eficiente, intuitiva e consistente</b>.</p>
 
-A partir desse diagnóstico, será conduzido o processo de redesign do sistema, buscando:
-- Melhorar clareza e legibilidade dos componentes;
-- Fortalecer a consistência visual e funcional;
-- Promover fluxos mais eficientes e menos cansativos;
-- Minimizar erros de uso e retrabalho;
-- Oferecer uma experiência mais confortável, fluida e orientada ao usuário.
+<p align=justify>A análise foi conduzida sobre os perfis de <b>Servidor</b> e <b>Gerência</b>, resultando em <b>issues</b> específicas — uma para cada heurística — contendo o problema identificado, o objetivo da correção, as evidências visuais (antes e depois das telas), o impacto esperado e a prioridade de implementação.</p>
 
-Este documento apresenta primeiramente a avaliação heurística e, posteriormente, documentará como cada problema identificado foi corrigido conforme as heurísticas, além de apresentar os links para cada issue relacionada, com o objetivo de demonstrar com mais clareza e detalhes o processo de cada ponto identificado e resolvido no processo de Redesign. 
+---
+
+## 2. Estrutura do Documento
+Cada seção a seguir corresponde a uma **issue vinculada a uma heurística de Nielsen**.  
+Cada *issue* apresenta:
+
+- **Descrição:** problema identificado e contexto da falha de usabilidade;  
+- **Objetivo:** meta do redesign e resultado esperado;  
+- **Classificação:** heurística aplicada e tipo de ação (Redesign, Ajuste Visual, Melhoria de Navegação etc.);  
+- **Evidências:** comparativos visuais (*antes e depois* das telas);  
+- **Impacto Esperado:** benefícios diretos à usabilidade e à experiência do usuário;  
+- **Prioridade:** grau de importância da correção (Alta, Média ou Baixa).
 
 ---
 
