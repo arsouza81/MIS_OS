@@ -149,14 +149,111 @@ Nesta seção, serão documentadas as melhorias implementadas, organizadas da se
 - Evidências de antes e depois (prints, comparações, fluxos)
 
 ---
-
 ### 3.1 Issue – Design Estético e Minimalista
-*(estrutura reservada – aguardando preenchimento)*
+
+**Problema identificado**  
+A interface apresentava excesso de elementos alinhados de forma pouco organizada, cores pouco harmonizadas, falta de hierarquia visual, botões com baixo destaque e espaçamentos inconsistentes. Isso deixava a interface visualmente carregada e dificultava a navegação.
+
+**Impacto na usabilidade**  
+- Dificulta a leitura e identificação rápida de informações.
+- Aumenta a carga cognitiva na execução de tarefas.
+- Cria sensação de desorganização e sistema antiquado.
+- Pode gerar insegurança no uso por parte de usuários novos.
+
+**Prioridade:** Alta
+
+**Proposta de melhoria**  
+- Aplicação de uma nova paleta de cores mais harmônica e consistente.
+- Inclusão de bordas arredondadas e sombras leves para suavizar elementos.
+- Reorganização dos componentes em **cards** e estruturas mais equilibradas.
+- Criação de espaçamentos e hierarquia visual para conduzir a leitura.
+- Animações leves para melhorar fluidez na interação.
+
+**Evidências (antes x depois)**
+
+#### Tela 1 — Enviar Nova Ordem de Serviço
+**Antes:**  
+![Image](https://github.com/user-attachments/assets/1d97963c-d282-4d41-87ce-493149c32f08)
+
+**Depois:**  
+![Image](https://github.com/user-attachments/assets/c91d724d-158c-450d-bf07-77942a8c94d1)
+
+---
+
+#### Tela 2 — Consultar Solicitação
+**Antes:**  
+![Image](https://github.com/user-attachments/assets/21d25500-400c-4d33-bcab-be070b3b9f25)
+
+**Depois:**  
+![Image](https://github.com/user-attachments/assets/6a83edb9-dc35-41c0-9b2b-9bba83533eb1)
+
+Visualização após inserir protocolo:  
+![Image](https://github.com/user-attachments/assets/63c539b3-2675-4d2a-995c-5e18ee34018b)
+
+---
+
+#### Tela 3 — Acesso Restrito
+**Antes:**  
+![Image](https://github.com/user-attachments/assets/aa0a6a15-8cf8-4f47-ab21-0258b3270e71)
+
+**Depois:**  
+![Image](https://github.com/user-attachments/assets/d0b507ce-199c-402d-aaa9-264daa2c3378)
+
+---
+
+#### Tela 4 — Solicitações Registradas
+**Antes:**  
+![Image](https://github.com/user-attachments/assets/0ebd6ad0-ee16-4b94-a5b8-d71fb056175a)
+
+**Depois:**  
+![Image](https://github.com/user-attachments/assets/070f4178-31b4-44ee-b74f-ca011461f60e)
+
+---
+
+#### Tela 5 — Solicitações Registradas (Listagem)
+**Antes:**  
+![Image](https://github.com/user-attachments/assets/21097bdd-1de1-40b5-891e-68c8d34132da)
+
+**Depois:**  
+![Image](https://github.com/user-attachments/assets/13a470be-b46f-4423-80f5-aed6394fd0bd)
+
+Para verificar as informações com mais detalhes, acesse: [Issue-Redesign- Design Estético e Minimalista](https://github.com/arsouza81/MIS_OS/issues/47)
 
 ---
 
 ### 3.2 Issue – Ajudar Usuários a Reconhecer, Diagnosticar e Corrigir Erros
-*(estrutura reservada – aguardando preenchimento)*
+
+**Problema identificado**  
+Ao buscar um protocolo inexistente, o sistema não apresentava mensagem de retorno ao usuário. Isso fazia com que a ação parecesse não ter sido executada, deixando o usuário sem clareza sobre o que aconteceu e como prosseguir.
+
+**Impacto na usabilidade**  
+- Gera incerteza e frustração ao usuário.
+- Aumenta tentativas repetidas sem sucesso.
+- Dificulta a compreensão da causa do erro.
+- Prejudica a confiança no sistema e no processo de interação.
+
+**Prioridade:** Alta
+
+**Proposta de melhoria**  
+Implementação de mensagens informativas e visíveis quando o protocolo pesquisado não for encontrado.  
+A mensagem deve:
+- Ser clara e objetiva;
+- Estar localizada em área imediatamente perceptível;
+- Utilizar cor de destaque para garantir visibilidade.
+
+**Evidências (antes x depois)**
+
+| Antes                                                                 | Depois                                                                 |
+|----------------------------------------------------------------------|------------------------------------------------------------------------|
+| Nenhuma mensagem era apresentada, o usuário não recebia retorno.     | Uma mensagem clara é exibida indicando que o protocolo não foi encontrado. |
+
+**Antes:**  
+![Busca sem retorno](https://github.com/user-attachments/assets/ca81465d-964b-47b5-a325-f9eeb5e76454)
+
+**Depois:**  
+![Mensagem informativa](https://github.com/user-attachments/assets/f3789fdd-5aff-42ae-80a0-e84b046028a4)
+
+Para verificar as informações com mais detalhes, acesse: [Issue-Redesign-  Ajudar os Usuários a Reconhecer, Diagnosticar e Recuperar-se de Erros](https://github.com/arsouza81/MIS_OS/issues/48)
 
 ---
 
