@@ -665,47 +665,49 @@ Para verificar as informações com mais detalhes, acesse: [Issue- Redesign-Flex
 
 ### 3.10 Issue – Ajuda e Documentação 
 
-**Descrição:**  
-<p align=justify>Durante a avaliação heurística do Sistema Ordem de Serviços, foi identificado que o sistema <b>não possuía um ponto de acesso direto à documentação ou guia de uso</b>, o que dificultava a consulta rápida por parte dos usuários. Essa ausência de suporte visível impactava diretamente a heurística de <b>Ajuda e Documentação</b>, reduzindo a autonomia e a compreensão das funcionalidades do sistema.</p>
+**Problema Identificado**  
+O sistema **não possuía um ponto de acesso direto à documentação ou guia de uso**, o que dificultava a consulta rápida e independente por parte dos usuários.  
+A ausência dessa funcionalidade impactava diretamente a heurística de **Ajuda e Documentação**, reduzindo a autonomia, a clareza e a eficiência na utilização do sistema.
 
-<p align=justify>Para corrigir essa limitação, foi proposto um <b>redesign</b> que adiciona um <b>link visível no sistema</b>, direcionando o usuário para uma <b>página de documentação</b> contendo instruções sobre como criar, buscar e gerenciar Ordens de Serviço. Essa página também explica o significado dos status e descreve as funções disponíveis para cada tipo de usuário (Servidor e Gerência).</p>
+**Impacto na Usabilidade**
+- Aumentava a dependência do suporte técnico para dúvidas simples.  
+- Dificultava o aprendizado de novos usuários.  
+- Tornava o uso do sistema menos intuitivo, exigindo memorização de processos.  
+- Prejudicava a experiência de uso por falta de instruções visíveis.  
 
-**Objetivo:**  
-<p align=justify>- Fornecer um ponto de acesso rápido à documentação do sistema;<br>
-- Ajudar novos usuários a compreender o funcionamento das principais funcionalidades;<br>
-- Reduzir dúvidas e erros por falta de entendimento;<br>
-- Disponibilizar explicações claras sobre status, formulários, botões e fluxos do sistema.</p>
+**Prioridade:** Média  
+A ausência de documentação afeta diretamente a experiência de usuários novos e recorrentes, comprometendo a eficiência e a confiança na navegação.
 
-**Classificação:**  
-<p align=justify><b>Tipo:</b> Redesign<br>
-<b>Heurística de Nielsen:</b> <i>Ajuda e Documentação</i><br>
-<b>Descrição da ação:</b> Inclusão de um <b>link direto para a página de instruções e descrição de uso do sistema</b>, promovendo autossuficiência e acesso facilitado ao conteúdo de suporte.</p>
+**Proposta de Melhoria**  
+- Inclusão de um **link visível no menu principal** do sistema, direcionando o usuário para uma **página de documentação e suporte**.  
+- Criação de uma **página de ajuda estruturada**, contendo:  
+  - Instruções sobre como **criar, buscar e gerenciar Ordens de Serviço**;  
+  - Explicações sobre o **significado dos status** e das funções disponíveis para cada perfil (Servidor e Gerência);  
+  - Seção de **Boas Práticas** e **contatos de suporte técnico**;  
+  - Layout organizado por seções e títulos descritivos, garantindo leitura fluida e fácil localização de informações.  
 
-**Evidências:**  
-<p align=justify><b>Antes de aplicar a heurística de Ajuda e Documentação</b><br>
-  
-O sistema não possuía um ponto de acesso à documentação ou tutoriais, exigindo que o usuário buscasse auxílio externo ou suporte técnico para compreender o uso correto das funcionalidades.</p>
+**Evidências (Antes x Depois)**  
 
-<p align=justify><b>Depois de aplicar a heurística de Ajuda e Documentação</b><br>
-  
-Foi adicionado um <b>link visível no menu do sistema</b>, direcionando o usuário para uma <b>página de suporte e documentação</b>. Essa página reúne informações sobre o funcionamento das Ordens de Serviço, orientações de uso e explicações dos status e fluxos.</p>
+| Antes (Sem Guia de Uso) | Depois (Com Guia de Uso) |
+|--------------------------|--------------------------|
+| O sistema não possuía documentação acessível. | Adicionado um link de acesso direto para a página de ajuda e suporte. |
+| Usuários precisavam solicitar auxílio técnico para entender funcionalidades. | Usuários podem consultar instruções e explicações de forma autônoma. |
+| Ausência de explicações sobre status e papéis. | Página detalha status, fluxos e permissões de cada perfil. |
+| Falta de centralização das informações de contato. | Seção “Suporte Técnico” reúne contatos e horários de atendimento. |
 
-#### **Link da página:** [Página de Suporte – Documentação do Sistema](http://127.0.0.1:5500/index.html#intro)
+**Antes de aplicar a heurística de Ajuda e Documentação**
+
+O sistema não apresentava um ponto de acesso à documentação ou tutoriais, exigindo que o usuário buscasse ajuda externa.
+
+**Depois de aplicar a heurística de Ajuda e Documentação**
 
 <p align="center">
 <img width="1810" height="1018" alt="Redesign - Ajuda e Documentação" src="https://github.com/user-attachments/assets/0b3bdfd2-1663-41b2-b1c0-0d18de61c70d" />
 </p>
 
-**Impacto Esperado:**  
-<p align=justify> - <b>Facilita</b> o aprendizado e uso do sistema por novos usuários;<br>
-- <b>Melhora</b> a autossuficiência dos usuários em tarefas comuns;<br>
-- <b>Cria</b> um canal de referência centralizado para tirar dúvidas;<br>
-- <b>Reduz</b> a necessidade de suporte técnico e retrabalho.</p>
+**Links úteis**  
 
-**Prioridade:**  
-**Média**
-
-<p align=justify>Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MIS_OS/issues/49">Redesign - Ajuda e Documentação #49</a>.</p>
+Para verificar as informações com mais detalhes, acesse: [Issue – Redesign: Ajuda e Documentação #49](https://github.com/arsouza81/MIS_OS/issues/49)
 
 ---
 
