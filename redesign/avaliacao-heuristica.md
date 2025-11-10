@@ -423,7 +423,41 @@ Para verificar os detalhes da implementação e commits relacionados, acesse: <a
 ---
 
 ### 3.7 Issue – Prevenção de Erros
-*(estrutura reservada – aguardando preenchimento)*
+
+**Problema Identificado**  
+Durante a análise heurística, observou-se que o **botão de envio** do formulário de Ordem de Serviço permanecia **ativo enquanto a solicitação estava sendo processada**, permitindo que o usuário clicasse várias vezes e enviasse múltiplos pedidos simultaneamente.  
+Essa falha resultava em **duplicidade de registros**, **sobrecarga no backend** e confusão por parte do usuário, que não recebia um feedback visual claro sobre o andamento do envio.
+
+---
+
+**Impacto na Usabilidade**  
+- Possibilitava múltiplos envios acidentais da mesma solicitação;  
+- Comprometia a confiabilidade do sistema e a clareza das ações;  
+- Aumentava a carga de trabalho do servidor e a ocorrência de erros operacionais.  
+
+**Prioridade:** Alta  
+A correção é fundamental para evitar falhas funcionais e aumentar a segurança e estabilidade do sistema.
+
+---
+
+**Proposta de Melhoria**  
+Foi aplicada a heurística de **Prevenção de Erros** ao implementar o **bloqueio temporário do botão de envio** enquanto o sistema processa a solicitação.  
+Essa ação impede que o usuário execute cliques repetidos durante o carregamento, garantindo o envio único da Ordem de Serviço.  
+Com essa melhoria, o sistema fornece um **feedback visual claro** e evita a criação de registros duplicados ou inconsistentes.
+
+---
+
+**Evidências (Antes x Depois)**  
+
+| Estado | Captura de Tela | Descrição |
+|---------|----------------|------------|
+| **Antes – Botão ativo durante o envio** | <img src="https://github.com/user-attachments/assets/ef9674f5-70b4-4d70-a2d2-3f19f1b27d8c" alt="Antes" width="450"/> | O botão permanecia habilitado, permitindo múltiplos cliques e envios duplicados. |
+| **Depois – Botão desabilitado durante o envio** | <img src="https://github.com/user-attachments/assets/e19be166-47fe-449a-b196-757560593f90" alt="Depois" width="450"/> | O botão é temporariamente desativado durante o processamento, prevenindo duplicações e melhorando o feedback da interação. |
+
+---
+
+**Links Úteis**  
+Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/44">Issue – Redesign: Prevenção de Erros #44</a>. 
 
 ---
 
