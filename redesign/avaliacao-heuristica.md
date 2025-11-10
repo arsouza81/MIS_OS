@@ -332,50 +332,50 @@ Para verificar os detalhes da implementação e commits relacionados, acesse: <a
 
 ### 3.8 Issue – Reconhecimento em vez de Memorização 
 
-**Descrição:**  
-<p align=justify>Durante a avaliação heurística do Sistema Ordem de Serviços, foi identificada uma limitação relacionada à heurística **“Reconhecimento em vez de Memorização”**.</p>
-<p align=justify>Atualmente, quando o **Gerente de TI** seleciona uma data para visualizar as ordens de serviço, o sistema exibe corretamente a **data e o horário** em que cada solicitação foi criada. Entretanto, ao acessar a **página de detalhes** de uma ordem de serviço específica, essas informações **não são apresentadas**, obrigando o usuário a **retornar à tela anterior** para consultá-las novamente.</p>
+**Problema Identificado**  
+<p align=justify>Durante a avaliação heurística do Sistema Ordem de Serviços, foi observada uma limitação que obriga o usuário a <b>memorizar informações essenciais</b> ao navegar entre as telas.</p>
+<p align=justify>Atualmente, quando o <b>Gerente de TI</b> seleciona uma data para visualizar as ordens de serviço, o sistema exibe corretamente a <b>data e o horário</b> de criação de cada solicitação. No entanto, ao acessar a <b>página de detalhes</b> de uma ordem específica, essas informações <b>não são apresentadas</b>, exigindo que o usuário <b>retorne à tela anterior</b> para consultá-las novamente.</p>
+<p align=justify>Essa falta de continuidade informacional aumenta a <b>carga cognitiva</b>, reduz a fluidez da navegação e prejudica a compreensão do contexto de cada solicitação.</p>
 
-<p align=justify>Esse comportamento impõe ao usuário a necessidade de **memorizar informações relevantes** que poderiam estar visíveis, aumentando a carga cognitiva e dificultando a navegação.</p>
+**Impacto na Usabilidade**  
+- Obriga o usuário a lembrar dados exibidos em outras telas.
+- Dificulta a análise contextual das solicitações.
+- Aumenta o esforço cognitivo e reduz a eficiência da navegação.
 
-<p align=justify>Para corrigir essa limitação, recomenda-se **aplicar a heurística de Reconhecimento em vez de Memorização** por meio da **exibição de uma seção informativa consolidada** contendo os **dados do solicitante, a localização do problema, a descrição do problema, o status atual da solicitação e a data e hora em que ela foi registrada**.</p>
-<p align=justify>A presença dessas informações na tela de detalhes permitirá que a gerência **reconheça rapidamente o contexto completo** da solicitação, sem depender da memória ou de consultas adicionais.</p>
+**Prioridade:** Média  
+<p align=justify>A melhoria reduz a sobrecarga mental e torna o acesso às informações mais direto e transparente.</p>
 
-**Objetivo:**  
-<p align=justify>- Exibir, de forma organizada e acessível, os **dados essenciais da Ordem de Serviço** (dados do solicitante, localização, descrição, status atual e data/hora da solicitação);<br>  
-- Fornecer informações **completas e contextuais**, eliminando a necessidade de o usuário lembrar dados de telas anteriores;<br>
-- Permitir **compreensão imediata** do estado e do histórico da solicitação;<br>
-- **Aumentar a transparência, rastreabilidade e eficiência** na gestão das ordens de serviço pelo setor de TI.
-</p>
+**Proposta de Melhoria**  
+<p align=justify>Foi implementada uma <b>seção informativa consolidada</b> na página de detalhes da Ordem de Serviço, apresentando todos os dados relevantes ao contexto da solicitação, incluindo:</p>
 
-**Classificação:**  
-<p align=justify>**Tipo:** Redesign<br>  
-**Heurística de Nielsen:** *Reconhecimento em vez de Memorização*<br>  
-**Descrição da ação:** Implementação de uma **seção informativa na tela de detalhes da Ordem de Serviço** contendo dados do solicitante, localização e descrição do problema, status atual e data/hora de registro.
-</p>
+- Dados do solicitante
+- Localização do problema
+- Descrição do problema
+- Status atual da solicitação
+- Data e hora de registro
 
-**Evidências:**  
+<p align=justify>Essa solução permite que a gerência <b>reconheça imediatamente o contexto completo da solicitação</b>, sem depender da memória ou de retornos a telas anteriores.</p>
+<p align=justify>Com essa mudança, o sistema passa a atender plenamente à heurística Reconhecimento em vez de Memorização, promovendo uma experiência mais fluida e intuitiva.</p>
+
+
+**Evidências (Antes x Depois)**
+
+| Antes (Sem Informações de Contexto)                                      | Depois (Com Seção Informativa Consolidada)                          |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| A página de detalhes não exibia data nem hora da solicitação.            | A tela exibe data, hora, status e dados do solicitante.             |
+| O usuário precisava retornar à tela anterior para verificar informações. | Todas as informações essenciais estão acessíveis em um único local. |
+| Maior esforço de memorização e navegação interrompida.                   | Navegação fluida, clara e com reconhecimento imediato do contexto.  |
+
 **Antes de aplicar a heurística de Reconhecimento em vez de Memorização** 
 <img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/58e235c3-c479-4c51-a9f8-75cae90e5c2b" />
 
 **Depois de aplicar a heurística de Reconhecimento em vez de Memorização**
 <img width="1278" height="545" alt="Image" src="https://github.com/user-attachments/assets/76b8f30d-c18f-4bc9-b5f5-661dc698864c" />
 
-**Impacto Esperado:**  
-<p align=justify>🧠 **Reduz** a necessidade de o usuário memorizar informações entre telas;<br>
-⏱️ **Facilita** a compreensão imediata do estado e do contexto da solicitação;<br>  
-🔍 **Melhora** a clareza e a rastreabilidade das informações apresentadas;<br>  
-📊 **Aumenta** a precisão e a agilidade na análise e priorização das demandas;<br>  
-💼 **Proporciona** uma experiência mais intuitiva, transparente e eficiente para a gerência de TI.
-</p>
-
-**Prioridade:**  
-**Média**
-
-Para mais informações acesse a issue: <a href="https://github.com/arsouza81/MIS_OS/issues/45">Redesign - Consistência e Padrões #45</a>.
+**Links Úteis**
+Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/45">Issue – Redesign: Reconhecimento em vez de Memorização #45</a>.
 
 ---
-
 
 ### 3.9 Issue – Flexibilidade e Eficiência de Uso
 
