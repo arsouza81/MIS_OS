@@ -9,19 +9,6 @@
 
 ---
 
-## 2. Estrutura do Documento
-Cada seção a seguir corresponde a uma **issue vinculada a uma heurística de Nielsen**.  
-Cada *issue* apresenta:
-
-- **Descrição:** problema identificado e contexto da falha de usabilidade;  
-- **Objetivo:** meta do redesign e resultado esperado;  
-- **Classificação:** heurística aplicada e tipo de ação (Redesign, Ajuste Visual, Melhoria de Navegação etc.);  
-- **Evidências:** comparativos visuais (*antes e depois* das telas);  
-- **Impacto Esperado:** benefícios diretos à usabilidade e à experiência do usuário;  
-- **Prioridade:** grau de importância da correção (Alta, Média ou Baixa).
-
----
-
 ## 2. Avaliação Heurística
 
 A avaliação foi conduzida navegando pelas principais funcionalidades do sistema, analisando interface, fluxo de uso, comunicação visual e feedback ao usuário.  
@@ -37,7 +24,7 @@ As primeiras heurísticas observadas com maior impacto negativo no sistema foram
 
 Esses dois pontos foram **priorizados inicialmente**, pois impactavam diretamente a clareza, a navegabilidade e a confiança no sistema. Isso significa que o processo de Redesign se iniciou por eles, descritos com mais detalhes a seguir.
 
-### Heurística: Design Estético e Minimalista
+### 2.2 Heurística: Design Estético e Minimalista
 A interface apresentava excesso de elementos desalinhados, com falta de uma hierarquia visual e contraste entre seções. Isso resultava em uma interface pesada visualmente, dificultando a identificação do que é importante em cada tela. Os problemas identificados são listados a seguir: 
 
 - Excesso de elementos pouco organizados.
@@ -47,7 +34,7 @@ A interface apresentava excesso de elementos desalinhados, com falta de uma hier
 
 ---
 
-### Heurística: Ajudar os Usuários a Reconhecer, Diagnosticar e Recuperar-se de Erros
+### 2.3 Heurística: Ajudar os Usuários a Reconhecer, Diagnosticar e Recuperar-se de Erros
 Mensagens de erro eram pouco explicativas ou inexistentes, deixando o usuário sem saber o que ocorreu e como prosseguir. Isso poderia gerar ao usuário frustração, incerteza e repetição de tentativas incorretas. Os problemas identificados são listados a seguir: 
 
 - Erros não eram comunicados claramente.
@@ -57,7 +44,7 @@ Mensagens de erro eram pouco explicativas ou inexistentes, deixando o usuário s
 
 ---
 
-### Heurística: Visibilidade do Status do Sistema
+### 2.4 Heurística: Visibilidade do Status do Sistema
 O sistema não comunica claramente quando uma ação está sendo processada, como no envio ou atualização de uma solicitação. Isso poderia gerar incerteza, levando o usuário a clicar repetidas vezes ou acreditar que a operação falhou, quando na verdade ainda está em andamento. Os problemas identificados são listados a seguir: 
 
 - O sistema não exibe feedback imediato ao realizar ações (ex.: salvar, enviar, atualizar).
@@ -67,7 +54,7 @@ O sistema não comunica claramente quando uma ação está sendo processada, com
 
 ---
 
-### Heurística: Correspondência entre o Sistema e o Mundo Real
+### 2.5 Heurística: Correspondência entre o Sistema e o Mundo Real
 Elementos da interface apresentam termos técnicos ou pouco familiares ao usuário comum.  Além disso, diversas ações são exibidas apenas em texto, sem apoio visual como ícones, metáforas ou hierarquias, dificultando interpretação rápida. Os problemas identificados são listados a seguir: 
 
 - Termos utilizados no sistema nem sempre correspondem à linguagem do usuário.
@@ -77,7 +64,7 @@ Elementos da interface apresentam termos técnicos ou pouco familiares ao usuár
 
 ---
 
-### Heurística: Controle e Liberdade do Usuário
+### 2.6 Heurística: Controle e Liberdade do Usuário
 Alguns fluxos não permitem reversão de ações ou revisão antes da confirmação, especialmente no envio de solicitações. Isto aumenta o risco de erro e a necessidade de retrabalho manual. Os problemas identificados são listados a seguir: 
 
 - Algumas ações não possuem botão de desfazer ou retorno claro.
@@ -87,7 +74,7 @@ Alguns fluxos não permitem reversão de ações ou revisão antes da confirmaç
 
 ---
 
-### Heurística: Consistência e Padrões
+### 2.7 Heurística: Consistência e Padrões
 A nomenclatura, cores e formatação dos status variam entre telas e perfis.  
 Essa inconsistência dificulta a identificação do andamento da solicitação e obriga o usuário a reaprender interpretações dependendo do contexto exibido. Os problemas identificados são listados a seguir:
 
@@ -98,7 +85,7 @@ Essa inconsistência dificulta a identificação do andamento da solicitação e
 
 ---
 
-### Heurística: Prevenção de Erros
+### 2.8 Heurística: Prevenção de Erros
 Botões e ações não possuem mecanismos eficientes de bloqueio contra envios duplicados ou cliques repetidos. Isso pode gerar múltiplos registros acidentais e confusão nos fluxos internos do sistema. Os problemas identificados são listados a seguir:
 
 - Botões podem ser clicados múltiplas vezes gerando duplicidade.
@@ -108,7 +95,7 @@ Botões e ações não possuem mecanismos eficientes de bloqueio contra envios d
 
 ---
 
-### Heurística: Reconhecimento em vez de Memorização
+### 2.9 Heurística: Reconhecimento em vez de Memorização
 Algumas informações importantes não são exibidas no momento em que o usuário precisa delas, fazendo com que o usuário tenha que lembrar dados visualizados anteriormente em outras telas.  Isso aumentava a carga cognitiva e dificultava a tomada de decisão. Os problemas identificados são listados a seguir:
 
 - Informações importantes ficam escondidas ou em telas separadas.
@@ -118,7 +105,7 @@ Algumas informações importantes não são exibidas no momento em que o usuári
 
 ---
 
-### Heurística: Flexibilidade e Eficiência de Uso
+### 2.10 Heurística: Flexibilidade e Eficiência de Uso
 Muitas ações do sistema exigem passos desnecessários ou repetitivos, especialmente para usuários experientes.  A interação poderia ser simplificada com atalhos, menus mais diretos e reorganização de telas. Os problemas identificados são listados a seguir:
 
 - Fluxos simples exigem muitos cliques ou etapas desnecessárias.
@@ -128,7 +115,7 @@ Muitas ações do sistema exigem passos desnecessários ou repetitivos, especial
 
 ---
 
-### Heurística: Ajuda e Documentação
+### 2.11 Heurística: Ajuda e Documentação
 Não há instruções integradas ao sistema sobre fluxo de uso, nem orientações contextuais para auxiliar o usuário na execução correta das tarefas. Isso torna o aprendizado mais demorado e dependente de suporte externo. Os problemas  identificados são listados a seguir:
 
 - Sistema não oferece orientações de uso no próprio ambiente.
@@ -171,51 +158,82 @@ A interface apresentava excesso de elementos alinhados de forma pouco organizada
 
 **Evidências (antes x depois)**
 
-#### Tela 1 — Enviar Nova Ordem de Serviço
-**Antes:**  
-![Image](https://github.com/user-attachments/assets/1d97963c-d282-4d41-87ce-493149c32f08)
-
-**Depois:**  
-![Image](https://github.com/user-attachments/assets/c91d724d-158c-450d-bf07-77942a8c94d1)
-
----
-
-#### Tela 2 — Consultar Solicitação
-**Antes:**  
-![Image](https://github.com/user-attachments/assets/21d25500-400c-4d33-bcab-be070b3b9f25)
-
-**Depois:**  
-![Image](https://github.com/user-attachments/assets/6a83edb9-dc35-41c0-9b2b-9bba83533eb1)
-
-Visualização após inserir protocolo:  
-![Image](https://github.com/user-attachments/assets/63c539b3-2675-4d2a-995c-5e18ee34018b)
+#### **Tela 1 — Enviar Nova Ordem de Serviço**
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/1d97963c-d282-4d41-87ce-493149c32f08"></td>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/c91d724d-158c-450d-bf07-77942a8c94d1"></td>
+</tr>
+</table>
 
 ---
 
-#### Tela 3 — Acesso Restrito
-**Antes:**  
-![Image](https://github.com/user-attachments/assets/aa0a6a15-8cf8-4f47-ab21-0258b3270e71)
+#### **Tela 2 — Consultar Solicitação**
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/21d25500-400c-4d33-bcab-be070b3b9f25"></td>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/6a83edb9-dc35-41c0-9b2b-9bba83533eb1"></td>
+</tr>
+</table>
 
-**Depois:**  
-![Image](https://github.com/user-attachments/assets/d0b507ce-199c-402d-aaa9-264daa2c3378)
+**Após inserir protocolo:**
+<p align="center">
+<img src="https://github.com/user-attachments/assets/63c539b3-2675-4d2a-995c-5e18ee34018b">
+</p>
 
 ---
 
-#### Tela 4 — Solicitações Registradas
-**Antes:**  
-![Image](https://github.com/user-attachments/assets/0ebd6ad0-ee16-4b94-a5b8-d71fb056175a)
-
-**Depois:**  
-![Image](https://github.com/user-attachments/assets/070f4178-31b4-44ee-b74f-ca011461f60e)
+#### **Tela 3 — Acesso Restrito**
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/aa0a6a15-8cf8-4f47-ab21-0258b3270e71"></td>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/d0b507ce-199c-402d-aaa9-264daa2c3378"></td>
+</tr>
+</table>
 
 ---
 
-#### Tela 5 — Solicitações Registradas (Listagem)
-**Antes:**  
-![Image](https://github.com/user-attachments/assets/21097bdd-1de1-40b5-891e-68c8d34132da)
+#### **Tela 4 — Solicitações Registradas**
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/0ebd6ad0-ee16-4b94-a5b8-d71fb056175a"></td>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/070f4178-31b4-44ee-b74f-ca011461f60e"></td>
+</tr>
+</table>
 
-**Depois:**  
-![Image](https://github.com/user-attachments/assets/13a470be-b46f-4423-80f5-aed6394fd0bd)
+---
+
+#### **Tela 5 — Solicitações Registradas (Listagem)**
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/21097bdd-1de1-40b5-891e-68c8d34132da"></td>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/13a470be-b46f-4423-80f5-aed6394fd0bd"></td>
+</tr>
+</table>
+
+
+**Links Úteis** 
+
 
 Para verificar as informações com mais detalhes, acesse: [Issue-Redesign- Design Estético e Minimalista](https://github.com/arsouza81/MIS_OS/issues/47)
 
@@ -247,11 +265,21 @@ A mensagem deve:
 |----------------------------------------------------------------------|------------------------------------------------------------------------|
 | Nenhuma mensagem era apresentada, o usuário não recebia retorno.     | Uma mensagem clara é exibida indicando que o protocolo não foi encontrado. |
 
-**Antes:**  
-![Busca sem retorno](https://github.com/user-attachments/assets/ca81465d-964b-47b5-a325-f9eeb5e76454)
+#### **Feedback de Erro — Protocolo Não Encontrado**
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/ca81465d-964b-47b5-a325-f9eeb5e76454"></td>
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/f3789fdd-5aff-42ae-80a0-e84b046028a4"></td>
+</tr>
+</table>
 
-**Depois:**  
-![Mensagem informativa](https://github.com/user-attachments/assets/f3789fdd-5aff-42ae-80a0-e84b046028a4)
+
+**Links Úteis** 
+
 
 Para verificar as informações com mais detalhes, acesse: [Issue-Redesign-  Ajudar os Usuários a Reconhecer, Diagnosticar e Recuperar-se de Erros](https://github.com/arsouza81/MIS_OS/issues/48)
 
@@ -448,13 +476,23 @@ Isso aumentava a ocorrência de erros e dificultava a correção de informaçõe
 Com a nova funcionalidade, ao clicar em “Enviar Solicitação”, o usuário visualiza um **modal de pré-visualização** contendo todos os dados preenchidos.  
 A partir dele, é possível **confirmar** ou **cancelar** o envio, garantindo maior controle sobre a ação e prevenindo erros.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/4b22237d-1b89-4082-9c6d-6f59de7f4196" alt="Modal de pré-visualização - parte 1" width="700"/>
-</p>
+#### **Modal de Pré-visualização (Atualização Visual)**
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/48de47ad-5534-42f6-8901-9d85be450721" alt="Modal de pré-visualização - parte 2" width="700"/>
-</p>
+<table>
+<tr>
+<td><strong>Parte 1</strong></td>
+<td><strong>Parte 2</strong></td>
+</tr>
+<tr>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/4b22237d-1b89-4082-9c6d-6f59de7f4196">
+</td>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/48de47ad-5534-42f6-8901-9d85be450721">
+</td>
+</tr>
+</table>
+
 
 ---
 
@@ -502,21 +540,41 @@ O novo padrão adota a seguinte sequência e codificação de cores:
 | Interface com aparência inconsistente e pouco intuitiva.    | Interface coerente, previsível e visualmente harmônica.     |
 
 
-**Antes de aplicar a heurística de Consistência e Padrões**
 
-Perfil Servidor (Nível de acesso para usuário comum)
-<img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/914dcdf3-ddfa-425c-bf90-a96b9a7d2fa1" />
+**Antes de aplicar a heurística de Consistência e Padrões:** 
 
-Perfil Gerente de TI (Nível de acesso para administrador)
-<img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/3940d0f5-7e6d-4671-94ee-be45fdf81e1e" />
+<table>
+<tr>
+<td><strong>Perfil Servidor</strong><br>(Nível de acesso para usuário comum)</td>
+<td><strong>Perfil Gerente de TI</strong><br>(Nível de acesso para administrador)</td>
+</tr>
+<tr>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/914dcdf3-ddfa-425c-bf90-a96b9a7d2fa1">
+</td>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/3940d0f5-7e6d-4671-94ee-be45fdf81e1e">
+</td>
+</tr>
+</table>
 
-**Depois de aplicar a heurística de Consistência e Padrões**
+**Depois de aplicar a heurística de Consistência e Padrões** 
 
-Perfil Servidor (Nível de acesso para usuário comum)
-<img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/f517df9a-84cf-404e-a62b-8854927e736b" />
+<table>
+<tr>
+<td><strong>Perfil Servidor</strong><br>(Nível de acesso para usuário comum)</td>
+<td><strong>Perfil Gerente de TI</strong><br>(Nível de acesso para administrador)</td>
+</tr>
+<tr>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/f517df9a-84cf-404e-a62b-8854927e736b">
+</td>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/5a7661a9-3df1-4ba5-ae05-0daf45947890">
+</td>
+</tr>
+</table>
 
-Perfil Gerente de TI (Nível de acesso para administrador)
-<img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/5a7661a9-3df1-4ba5-ae05-0daf45947890" /> 
 
 **Links Úteis**
 Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/43">Issue – Redesign: Consistência e Padrões #43</a>.
@@ -569,6 +627,8 @@ Após a implementação da heurística, o botão passa a ser temporariamente des
 ---
 
 **Links Úteis**  
+
+
 Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/44">Issue – Redesign: Prevenção de Erros #44</a>. 
 
 ---
@@ -616,6 +676,8 @@ Para verificar os detalhes da implementação e commits relacionados, acesse: <a
 <img width="1278" height="545" alt="Image" src="https://github.com/user-attachments/assets/76b8f30d-c18f-4bc9-b5f5-661dc698864c" />
 
 **Links Úteis**
+
+
 Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/45">Issue – Redesign: Reconhecimento em vez de Memorização #45</a>.
 
 ---
