@@ -759,7 +759,7 @@ A ausência dessa funcionalidade impactava diretamente a heurística de **Ajuda 
 A ausência de documentação afeta diretamente a experiência de usuários novos e recorrentes, comprometendo a eficiência e a confiança na navegação.
 
 **Proposta de Melhoria**  
-- Inclusão de um **link visível no menu principal** do sistema, direcionando o usuário para uma **página de documentação e suporte**.  
+- Inclusão de um **link visível no rodapé** do sistema, direcionando o usuário para uma **página de documentação e suporte**.  
 - Criação de uma **página de ajuda estruturada**, contendo:  
   - Instruções sobre como **criar, buscar e gerenciar Ordens de Serviço**;  
   - Explicações sobre o **significado dos status** e das funções disponíveis para cada perfil (Servidor e Gerência);  
@@ -775,15 +775,34 @@ A ausência de documentação afeta diretamente a experiência de usuários novo
 | Ausência de explicações sobre status e papéis. | Página detalha status, fluxos e permissões de cada perfil. |
 | Falta de centralização das informações de contato. | Seção “Suporte Técnico” reúne contatos e horários de atendimento. |
 
-**Antes de aplicar a heurística de Ajuda e Documentação**
+<table>
+<tr>
+<td align="center"><strong>Antes</strong></td>
+<td align="center"><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/e15456d8-c092-4662-b150-adaf5f31c99f" alt="Antes - Sistema sem guia de uso" width="100%">
+<p align="center"><i>O sistema não apresentava um ponto de acesso à documentação ou tutoriais, exigindo que o usuário buscasse ajuda externa.</i></p>
+</td>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/8598d341-9221-49ef-bfe4-c6f0de5a6d00" alt="Depois - Página de suporte adicionada" width="100%">
+<p align="center"><i>Foi adicionado um link visível no rodapé do sistema, direcionando o usuário para uma página de suporte e documentação.</i></p>
+</td>
+</tr>
+</table>
 
-O sistema não apresentava um ponto de acesso à documentação ou tutoriais, exigindo que o usuário buscasse ajuda externa.
-
-**Depois de aplicar a heurística de Ajuda e Documentação**
-
-<p align="center">
-<img width="1810" height="1018" alt="Redesign - Ajuda e Documentação" src="https://github.com/user-attachments/assets/0b3bdfd2-1663-41b2-b1c0-0d18de61c70d" />
-</p>
+<table>
+<tr>
+<td align="center"><strong>Visão Geral do Manual de Ajuda e Documentação do Sistema</strong></td>
+</tr>
+<tr>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/480f2403-ca92-4afc-bf32-ae901b4a818c" alt="Redesign - Ajuda e Documentação Link" width="100%">
+<p align="center"><i>Tela do sistema após aplicação da heurística de Ajuda e Documentação - manual de uso.</i></p>
+</td>
+</tr>
+</table>
 
 **Links úteis**  
 
