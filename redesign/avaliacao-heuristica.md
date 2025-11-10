@@ -608,21 +608,22 @@ Com essa melhoria, o sistema fornece um **feedback visual claro** e evita a cria
 
 **Evidências (Antes x Depois)**  
 
-#### 🟥 Antes – Botão ativo durante o envio  
-Antes da refatoração, o botão de envio permanecia habilitado enquanto o sistema processava a solicitação, permitindo que o usuário clicasse várias vezes e gerasse múltiplos envios simultâneos.  
+<table>
+<tr>
+<td><strong>Antes – Botão ativo durante o envio</strong></td>
+<td><strong>Depois – Botão desabilitado durante o envio</strong></td>
+</tr>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/ef9674f5-70b4-4d70-a2d2-3f19f1b27d8c" alt="Antes" width="700"/>
-</p>
+<tr>
+<td style="width:50%; vertical-align:top;">
+<img src="https://github.com/user-attachments/assets/ef9674f5-70b4-4d70-a2d2-3f19f1b27d8c" width="100%">
+</td>
 
----
-
-#### 🟩 Depois – Botão desabilitado durante o envio  
-Após a implementação da heurística, o botão passa a ser temporariamente desativado enquanto o envio é processado. Essa melhoria **impede duplicações**, **reforça a clareza das ações** e **indica visualmente o progresso da operação**.  
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/e19be166-47fe-449a-b196-757560593f90" alt="Depois" width="700"/>
-</p>
+<td style="width:50%; vertical-align:top;">
+<img src="https://github.com/user-attachments/assets/e19be166-47fe-449a-b196-757560593f90" width="100%">
+</td>
+</tr>
+</table>
 
 ---
 
@@ -669,11 +670,21 @@ Para verificar os detalhes da implementação e commits relacionados, acesse: <a
 | O usuário precisava retornar à tela anterior para verificar informações. | Todas as informações essenciais estão acessíveis em um único local. |
 | Maior esforço de memorização e navegação interrompida.                   | Navegação fluida, clara e com reconhecimento imediato do contexto.  |
 
-**Antes de aplicar a heurística de Reconhecimento em vez de Memorização** 
-<img width="1271" height="548" alt="Image" src="https://github.com/user-attachments/assets/58e235c3-c479-4c51-a9f8-75cae90e5c2b" />
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/58e235c3-c479-4c51-a9f8-75cae90e5c2b">
+</td>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/76b8f30d-c18f-4bc9-b5f5-661dc698864c">
+</td>
+</tr>
+</table>
 
-**Depois de aplicar a heurística de Reconhecimento em vez de Memorização**
-<img width="1278" height="545" alt="Image" src="https://github.com/user-attachments/assets/76b8f30d-c18f-4bc9-b5f5-661dc698864c" />
 
 **Links Úteis**
 
@@ -710,13 +721,20 @@ Ação realizada com alta frequência; afeta produtividade diretamente.
 | Status sem padronização visual clara. | Status padronizados com cores consistentes e significativas. |
 | Fluxo lento e repetitivo. | Execução rápida e eficiente com menos cliques. |
 
-**Antes**
-
-![Antes do redesign](https://github.com/user-attachments/assets/b3f4a7b6-cc13-4bbd-8e99-f0c25b8eee06)
-
-**Depois**
-
-![Apos redesign](https://github.com/user-attachments/assets/31c192ed-390a-41aa-a750-d351a05dfbf0)
+<table>
+<tr>
+<td><strong>Antes</strong></td>
+<td><strong>Depois</strong></td>
+</tr>
+<tr>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/b3f4a7b6-cc13-4bbd-8e99-f0c25b8eee06">
+</td>
+<td style="width:50%;">
+<img src="https://github.com/user-attachments/assets/31c192ed-390a-41aa-a750-d351a05dfbf0">
+</td>
+</tr>
+</table>
 
 **Links úteis**
 
