@@ -258,7 +258,55 @@ Para verificar as informações com mais detalhes, acesse: [Issue-Redesign-  Aju
 ---
 
 ### 3.3 Issue – Visibilidade do Status do Sistema
-*(estrutura reservada – aguardando preenchimento)*
+
+**Problema Identificado**  
+Durante a análise heurística, identificou-se que o sistema **não apresentava feedback visual imediato** ao usuário durante o envio da **Ordem de Serviço**.  
+Após clicar em **“Enviar”**, não havia nenhum indicativo de que o sistema estava processando a solicitação, o que levava o usuário a **clicar repetidamente** no botão e gerar **múltiplos envios acidentais**.  
+Essa ausência de retorno visual causava incerteza e comprometia a percepção de confiabilidade da aplicação.
+
+---
+
+**Impacto na Usabilidade**  
+- Gerava dúvidas sobre o andamento do envio;  
+- Induzia o usuário a repetir a ação por falta de retorno;  
+- Comprometia a percepção de estabilidade e eficiência do sistema.  
+
+**Prioridade:** Alta  
+A presença de feedback imediato é fundamental para orientar o usuário e prevenir ações redundantes durante o processamento.
+
+---
+
+**Proposta de Melhoria**  
+Foi aplicada a heurística de **Visibilidade do Status do Sistema** ao implementar um **indicador visual (“Enviando...”)** no botão principal do formulário.  
+Agora, ao enviar uma solicitação, o botão muda de estado para indicar que o sistema está processando a operação, permanecendo **desabilitado até a conclusão do envio**.  
+Ao final, o sistema retorna o botão ao estado original e exibe uma **mensagem de sucesso**, mantendo o usuário sempre informado sobre o progresso da ação.  
+
+Essa abordagem reduz a incerteza e melhora significativamente a **percepção de resposta e controle** do sistema.
+
+---
+
+**Evidências (Antes x Depois)**  
+
+#### 🟥 Antes – Sem feedback visual durante o envio  
+O botão permanecia ativo e inalterado após o clique em “Enviar”, sem qualquer indicação de processamento.  
+Isso levava o usuário a clicar várias vezes, ocasionando múltiplos envios e gerando insegurança quanto ao funcionamento do sistema.
+
+---
+
+#### 🟩 Depois – Feedback visual com indicador “Enviando...”  
+Durante o envio da solicitação, o sistema agora exibe o texto **“Enviando...”** dentro do botão principal, acompanhado do **bloqueio temporário** da ação.  
+Essa solução mantém o usuário informado e evita cliques repetidos durante o processamento.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b676a586-6254-4e42-821a-c9197481c62a" alt="Indicador visual de envio" width="700"/>
+</p>
+
+Assim que o envio é concluído, o botão retorna ao seu estado normal e o usuário recebe uma mensagem de confirmação de sucesso.
+
+---
+
+**Links Úteis**  
+Para verificar os detalhes da implementação e commits relacionados, acesse: <a href="https://github.com/arsouza81/MIS_OS/issues/40">Issue – Redesign: Visibilidade do Status do Sistema #40</a>.
 
 ---
 
