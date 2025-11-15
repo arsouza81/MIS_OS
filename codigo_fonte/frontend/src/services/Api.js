@@ -67,7 +67,7 @@ export const Api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ protocolo, novoStatus }),
     });
-    return handleResponseNoContent(res);
+    return handleResponseWithJson(res);
   },
 
   async buscarSolicitacoesPorData(data_solicitacao) {

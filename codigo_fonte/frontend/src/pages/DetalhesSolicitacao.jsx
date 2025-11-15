@@ -41,19 +41,32 @@ export default function DetalhesSolicitacao() {
     carregarDetalhes();
   }, [id]);
 
-  const atualizarStatus = async (status) => {
-    try {
-      setErro("");
-      setAtualizando(true);
-      await Api.atualizarStatus(protocoloEncontrado.protocolo, status);
-      setProtocoloEncontrado({ ...protocoloEncontrado, status });
-      setNovoStatus(status);
-    } catch (error) {
-      setErro(error.message || "Erro ao atualizar o status.");
-    } finally {
-      setAtualizando(false);
-    }
-  };
+const atualizarStatus = async (status) => {
+  try {
+    setErro("");
+    setAtualizando(true);
+
+    // resposta agora contém o status e dataAtualizacao vindos do backend
+    const resposta = await Api.atualizarStatus(
+      protocoloEncontrado.protocolo,
+      status
+    );
+
+    setProtocoloEncontrado((prev) => ({
+      ...prev,
+      status: resposta.status,
+      dataAtualizacao: resposta.dataAtualizacao
+    }));
+
+    setNovoStatus(status);
+
+  } catch (error) {
+    setErro(error.message || "Erro ao atualizar o status.");
+  } finally {
+    setAtualizando(false);
+  }
+};
+
 
   const formatStatus = (status) => {
     switch (status) {
@@ -209,18 +222,6 @@ export default function DetalhesSolicitacao() {
                       </div>
                     </div>
                   )}
-
-                  {protocoloEncontrado.data_Solicitacao && (
-                    <div className="flex items-center space-x-3">
-                      <Calendar className="h-5 w-5 text-[#176073]" />
-                      <div>
-                        <p className="text-gray-600 text-sm">Data/Hora</p>
-                        <p className="text-[#222222] font-medium">
-                          {formatDate(protocoloEncontrado.data_Solicitacao)}
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
 
@@ -266,6 +267,31 @@ export default function DetalhesSolicitacao() {
                       </button>
                     )
                   )}
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 border border-[#D9D9D9] shadow-sm">
+                <h2 className="text-xl font-bold text-[#222222] mb-6">Timeline</h2>
+
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Calendar className="h-5 w-5 text-[#176073]" />
+                    <div>
+                      <p className="text-gray-600 text-sm">Criado em</p>
+                      <p className="text-[#222222] font-medium">
+                        {formatDate(protocoloEncontrado.data_Solicitacao)}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <Clock className="h-5 w-5 text-[#176073]" />
+                    <div>
+                      <p className="text-gray-600 text-sm">Última atualização</p>
+                      <p className="text-[#222222] font-medium">
+                        {formatDate(protocoloEncontrado.dataAtualizacao)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

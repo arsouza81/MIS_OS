@@ -166,6 +166,10 @@ export default function Solicitacao() {
                 <strong>Data da Solicitação:</strong>{" "}
                 {new Date(solicitacao.data_Solicitacao).toLocaleString("pt-BR")}
               </li>
+              <li>
+                <strong>Data da Última Atualização:</strong>{" "}
+                {new Date(solicitacao.dataAtualizacao).toLocaleString("pt-BR")}
+              </li>
             </ul>
           </motion.div>
         )}
