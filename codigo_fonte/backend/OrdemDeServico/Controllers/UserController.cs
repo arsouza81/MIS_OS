@@ -73,16 +73,20 @@ public class UserController : ControllerBase {
 
     [HttpPost("atualizar-status")]
     public IActionResult AtualizarStatus([FromBody] AtualizarStatusDto statusDto) {
-        // atualizar o status no banco de dados com base no protocolo e novoStatus fornecidos
         var solicitacao = _context.FormsServidores
             .FirstOrDefault(s => s.Protocolo == statusDto.Protocolo);
 
         if(solicitacao != null) {
             solicitacao.Status = statusDto.NovoStatus;
+            solicitacao.DataAtualizacao = DateTime.Now;
             _context.SaveChanges();
-            return Ok(); //retorna uma resposta de sucesso
+
+            return Ok(new {
+                status = solicitacao.Status,
+                dataAtualizacao = solicitacao.DataAtualizacao
+            });
         }
-        return NotFound(); //retorna um erro 404 se a solicitação não for encontrada
+        return NotFound();
     }
 
 
@@ -123,6 +127,8 @@ public class UserController : ControllerBase {
                 DescricaoProblema = s.DescricaoProblema,
                 Status = s.Status,
                 Protocolo = s.Protocolo,
+                Data_Solicitacao = s.Data_Solicitacao,
+                DataAtualizacao = s.DataAtualizacao,
             })
             .FirstOrDefault();
 

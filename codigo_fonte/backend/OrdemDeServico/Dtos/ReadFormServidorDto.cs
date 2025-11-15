@@ -11,6 +11,7 @@ public class ReadFormServidorDto {
     public int Sala { get; set; }
     public string DescricaoProblema { get; set; }
     public DateTime Data_Solicitacao { get; set; } = DateTime.Now;
+    public DateTime DataAtualizacao { get; set; }
     public string Status { get; set; }
     public string Protocolo { get; set; }
 }

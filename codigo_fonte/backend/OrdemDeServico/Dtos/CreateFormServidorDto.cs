@@ -27,4 +27,6 @@ public class CreateFormServidorDto {
 
     [Required(ErrorMessage = "A data de criação é obrigatória")]
     public DateTime Data_Solicitacao { get; set; } = DateTime.Now;
+    [Required(ErrorMessage = "A data de atualização é obrigatória")]
+    public DateTime DataAtualizacao { get; set; } = DateTime.Now;
 }
