@@ -76,4 +76,11 @@ export const Api = {
     );
     return handleResponseWithJson(res);
   },
+
+  async buscarSolicitacoes(page = 1, pageSize = 20) {
+    const res = await fetch(
+      `${API_BASE}/user/solicitacoes?page=${page}&pageSize=${pageSize}`
+    );
+    return handleResponseWithJson(res);
+  }
 };

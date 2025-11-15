@@ -112,6 +112,34 @@ public class UserController : ControllerBase {
             nomesEIds = solicitacoes
         });
     }
+
+    [HttpGet("solicitacoes")]
+    public IActionResult GetSolicitacoes(int page = 1, int pageSize = 20) {
+        var query = _context.FormsServidores
+            .OrderByDescending(f => f.Data_Solicitacao);
+
+        var total = query.Count();
+
+        var solicitacoes = query
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .Select(f => new {
+                id = f.Id,
+                nome = f.Nome,
+                email = f.Email,
+                protocolo = f.Protocolo,
+                status = f.Status,
+                dataSolicitacao = f.Data_Solicitacao
+            })
+            .ToList();
+
+        return Ok(new {
+            total,
+            page,
+            pageSize,
+            data = solicitacoes
+        });
+    }
     
     [HttpGet("solicitacao-detalhes/{id}")]
     public IActionResult GetSolicitacaoDetalhes(int id) {
