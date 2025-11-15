@@ -102,7 +102,7 @@ O histórico de versão e todas as alterações realizadas no MIS_OS podem ser c
 </p>
 
 <p>
-  📝 <a href="CHANGELOG.html">
+  📝 <a href="https://github.com/arsouza81/MIS_OS/blob/manutencao_evolutiva/manutencao_evolutiva_acessibilidade/CHANGELOG.md">
     Ver CHANGELOG – MIS_OS
   </a>
 </p>
@@ -143,12 +143,12 @@ ampliações, estudos e pesquisas futuras. Sugestões e melhorias podem ser regi
 
 <ul>
   <li>
-    📄 <a href="docs/planejamento-evolucao-acessibilidade.html">
+    📄 <a href="https://github.com/arsouza81/MIS_OS/blob/manutencao_evolutiva/manutencao_evolutiva_acessibilidade/Planejamento%20da%20Manuten%C3%A7%C3%A3o%20Evolutiva%20e%20Acessibilidade.md">
       Planejamento da Manutenção Evolutiva e Acessibilidade – MIS_OS
     </a>
   </li>
   <li>
-    📝 <a href="CHANGELOG.html">
+    📝 <a href="https://github.com/arsouza81/MIS_OS/blob/manutencao_evolutiva/manutencao_evolutiva_acessibilidade/CHANGELOG.md">
       CHANGELOG – MIS_OS
     </a>
   </li>
