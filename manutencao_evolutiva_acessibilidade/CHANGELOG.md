@@ -55,14 +55,4 @@ O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versi
   </li>
 </ul>
 
-<hr>
 
-<h2>[1.0.0] - 2025-10-01</h2>
-<h3>🎉 Versão inicial</h3>
-
-<ul>
-  <li>Estrutura básica do sistema.</li>
-  <li>Cadastro e consulta de Ordens de Serviço.</li>
-  <li>Visualizações para perfis de Servidor e Gerente.</li>
-  <li>Fluxo inicial de criação e atualização de OS.</li>
-</ul>
