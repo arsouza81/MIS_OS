@@ -56,6 +56,7 @@ O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versi
 </ul>
 
 <hr>
+<hr>
 
 ## [3.0.0] — 2025-10-01
 
