@@ -7,6 +7,8 @@ using OrdemDeServico.Dtos;
 using OrdemDeServico.Models;
 using System.Security.Claims;
 using OrdemDeServico.Services.Helpers;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace OrdemDeServico.Controllers;
 
@@ -114,15 +116,10 @@ public class UserController : ControllerBase {
     }
 
     [HttpGet("solicitacoes")]
-    public IActionResult GetSolicitacoes(int page = 1, int pageSize = 20) {
-        var query = _context.FormsServidores
-            .OrderByDescending(f => f.Data_Solicitacao);
-
-        var total = query.Count();
-
-        var solicitacoes = query
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
+    public async Task<IActionResult> GetSolicitacoes() {
+        var solicitacoes = await _context.FormsServidores
+            .AsNoTracking()
+            .OrderByDescending(f => f.Data_Solicitacao)
             .Select(f => new {
                 id = f.Id,
                 nome = f.Nome,
@@ -131,13 +128,28 @@ public class UserController : ControllerBase {
                 status = f.Status,
                 dataSolicitacao = f.Data_Solicitacao
             })
-            .ToList();
+            .ToListAsync();
+
+        return Ok(solicitacoes);
+    }
+
+    [HttpGet("solicitacoes/contagem")]
+    public async Task<IActionResult> GetContagemSolicitacoes() {
+        var query = _context.FormsServidores.AsNoTracking();
+
+        var total = await query.CountAsync();
+
+        var pendente = await query.CountAsync(f => f.Status.ToLower() == "pendente");
+        var andamento = await query.CountAsync(f => f.Status.ToLower() == "em_andamento");
+        var concluida = await query.CountAsync(f => f.Status.ToLower() == "concluída");
+        var descartada = await query.CountAsync(f => f.Status.ToLower() == "descartada");
 
         return Ok(new {
             total,
-            page,
-            pageSize,
-            data = solicitacoes
+            pendente,
+            emAndamento = andamento,
+            concluida,
+            descartada
         });
     }
     

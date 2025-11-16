@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Calendar, ArrowLeft, FileText, Eye, MoreHorizontal } from "lucide-react";
+import { Calendar, Eye, MoreHorizontal, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Api } from "../services/Api";
 import { Button } from "@/components/ui/button";
@@ -58,25 +58,23 @@ function MenuStatus({ item, handleUpdateStatus }) {
       </Button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg border border-[#D9D9D9] shadow-lg z-50">
-          <div className="p-2 space-y-1">
-            {["Pendente", "Em Andamento", "Concluída", "Descartada"].map((status) => (
-              <button
-                key={status}
-                onClick={() => {
-                  handleUpdateStatus(item.id, status);
-                  setOpen(false);
-                }}
-                className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-                  item.status === status
-                    ? "bg-[#F4F4F4] text-[#222222]"
-                    : "text-gray-600 hover:bg-[#F4F4F4] hover:text-[#222222]"
-                }`}
-              >
-                {status}
-              </button>
-            ))}
-          </div>
+        <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg border shadow-lg z-50 p-2 space-y-1">
+          {["Pendente", "Em Andamento", "Concluída", "Descartada"].map((status) => (
+            <button
+              key={status}
+              onClick={() => {
+                handleUpdateStatus(item.id, status);
+                setOpen(false);
+              }}
+              className={`w-full text-left px-3 py-2 rounded text-sm ${
+                formatStatus(item.status) === status
+                  ? "bg-[#F4F4F4] text-[#222222]"
+                  : "text-gray-600 hover:bg-[#F4F4F4] hover:text-[#222222]"
+              }`}
+            >
+              {status}
+            </button>
+          ))}
         </div>
       )}
     </div>
@@ -85,88 +83,101 @@ function MenuStatus({ item, handleUpdateStatus }) {
 
 export default function IndexGerente() {
   const [solicitacoes, setSolicitacoes] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const [erro, setErro] = useState("");
-  const loaderRef = useRef(null);
+  const [filteredData, setFilteredData] = useState([]);
+  const [contagem, setContagem] = useState({
+    total: 0,
+    pendente: 0,
+    emAndamento: 0,
+    concluida: 0,
+    descartada: 0,
+  });
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const loadMore = async () => {
+  const carregarContagem = async () => {
     try {
-      setIsLoading(true);
-      const res = await Api.buscarSolicitacoes(page, 20);
-
-      setSolicitacoes((prev) => {
-        const novosIds = new Set(prev.map((s) => s.id));
-        const filtrados = res.data.filter((s) => !novosIds.has(s.id));
-        return [...prev, ...filtrados];
-      });
-
-
-      if (res.data.length < 20) setHasMore(false);
-
-      setPage((prev) => prev + 1);
+      const res = await Api.contagemSolicitacoes();
+      setContagem(res);
     } catch (e) {
-      setErro("Erro ao carregar solicitações.");
+      console.error("Erro ao carregar contagem:", e);
+    }
+  };
+
+  const carregarSolicitacoes = async () => {
+    setIsLoading(true);
+    try {
+      const res = await Api.buscarSolicitacoes(1, 9999);
+      setSolicitacoes(res.data ?? res);
+    } catch (e) {
+      console.error("Erro ao carregar solicitações:", e);
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    loadMore();
+    carregarSolicitacoes();
+    carregarContagem();
   }, []);
 
   useEffect(() => {
-    if (!hasMore) return;
+    aplicarFiltros();
+  }, [solicitacoes, searchTerm, statusFilter]);
 
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !isLoading) {
-        loadMore();
-      }
-    });
+  const aplicarFiltros = () => {
+    let lista = [...solicitacoes];
 
-    if (loaderRef.current) observer.observe(loaderRef.current);
+    if (statusFilter !== "all") {
+      lista = lista.filter((item) => formatStatus(item.status) === statusFilter);
+    }
 
-    return () => observer.disconnect();
-  }, [hasMore, isLoading]);
+    if (searchTerm.trim() !== "") {
+      const search = searchTerm.toLowerCase();
+      lista = lista.filter(
+        (item) =>
+          item.protocolo.toLowerCase().includes(search) ||
+          item.nome.toLowerCase().includes(search) ||
+          item.email.toLowerCase().includes(search)
+      );
+    }
+
+    setFilteredData(lista);
+  };
 
   const handleUpdateStatus = async (solicitacaoId, novoStatus) => {
     try {
       const solicitacao = solicitacoes.find((s) => s.id === solicitacaoId);
-      if (!solicitacao?.protocolo)
-        throw new Error("Protocolo não encontrado para esta solicitação.");
 
       await Api.atualizarStatus(
         solicitacao.protocolo,
         novoStatus.toLowerCase().replace(" ", "_")
       );
 
-      setSolicitacoes((prev) =>
-        prev.map((s) =>
-          s.id === solicitacaoId ? { ...s, status: novoStatus } : s
-        )
-      );
+      toast({ title: "Sucesso!", description: `Status atualizado para ${novoStatus}` });
 
-      toast({
-        title: "Sucesso!",
-        description: `Status atualizado para ${novoStatus}`,
-      });
+      await carregarSolicitacoes();
+      await carregarContagem();
     } catch (error) {
       toast({
         title: "Erro",
-        description: error.message || "Não foi possível atualizar o status.",
+        description: error.message,
         variant: "destructive",
       });
     }
   };
 
+  const { total, pendente, emAndamento, concluida, descartada } = contagem;
+
   return (
     <>
       <HeaderGerente />
+
       <div className="py-10 px-6 min-h-[calc(100vh-150px)] bg-[#F4F4F4]">
         <div className="max-w-5xl mx-auto">
+          {/** topo */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
@@ -182,112 +193,132 @@ export default function IndexGerente() {
             </p>
           </motion.div>
 
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6 text-center">
+            <div className="p-4 rounded-xl shadow bg-white">
+              <p className="text-3xl font-bold">{total}</p>
+              <p className="text-gray-500">Total</p>
+            </div>
+            <div className="p-4 rounded-xl shadow bg-white">
+              <p className="text-3xl font-bold text-blue-500">{pendente}</p>
+              <p className="text-gray-500">Pendente</p>
+            </div>
+            <div className="p-4 rounded-xl shadow bg-white">
+              <p className="text-3xl font-bold text-yellow-500">{emAndamento}</p>
+              <p className="text-gray-500">Em Andamento</p>
+            </div>
+            <div className="p-4 rounded-xl shadow bg-white">
+              <p className="text-3xl font-bold text-green-600">{concluida}</p>
+              <p className="text-gray-500">Concluída</p>
+            </div>
+            <div className="p-4 rounded-xl shadow bg-white">
+              <p className="text-3xl font-bold text-gray-600">{descartada}</p>
+              <p className="text-gray-500">Descartada</p>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="bg-white rounded-xl p-6 mb-8 border shadow-sm"
+          >
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-4 pr-4 py-3 bg-white border rounded-xl"
+                  placeholder="Buscar por protocolo, nome ou e-mail..."
+                />
+              </div>
+
+              <div className="md:w-48">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full pl-4 pr-4 py-3 bg-white border rounded-xl"
+                >
+                  <option value="all">Todos os Status</option>
+                  <option value="Pendente">Pendente</option>
+                  <option value="Em Andamento">Em Andamento</option>
+                  <option value="Concluída">Concluída</option>
+                  <option value="Descartada">Descartada</option>
+                </select>
+              </div>
+            </div>
+          </motion.div>
+
           {isLoading ? (
-            <div className="flex items-center justify-center h-[300px]">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#176073] mx-auto mb-4"></div>
-                <p className="text-gray-600">Carregando solicitações...</p>
-              </div>
-            </div>
-          ) : erro ? (
-            <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">
-              {erro}
-            </div>
-          ) : solicitacoes.length > 0 ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="bg-white rounded-xl border border-[#D9D9D9] shadow-sm overflow-visible"
-            >
-              <div className="p-6 border-b border-[#F4F4F4] flex justify-between items-center">
-                <p className="text-gray-700">
-                  Quantidade de solicitações:{" "}
-                  <span className="font-semibold text-[#176073]">
-                    {solicitacoes.length}
-                  </span>
-                </p>
-              </div>
-
-              <div className="overflow-visible">
-                <table className="w-full relative">
-                  <thead className="bg-[#F4F4F4] border-b border-[#D9D9D9]">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-gray-600 font-medium text-sm">Protocolo</th>
-                      <th className="px-6 py-4 text-left text-gray-600 font-medium text-sm">Solicitante</th>
-                      <th className="px-6 py-4 text-left text-gray-600 font-medium text-sm">Status</th>
-                      <th className="px-6 py-4 text-left text-gray-600 font-medium text-sm">Data</th>
-                      <th className="px-6 py-4 text-left text-gray-600 font-medium text-sm">Ações</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {solicitacoes.map((item, index) => (
-                      <motion.tr
-                        key={item.id}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.05 * index }}
-                        className="border-b border-[#F4F4F4] hover:bg-[#F4F4F4]/50 transition-colors"
-                      >
-                        <td className="px-6 py-4">
-                          <span className="text-[#222222] font-medium">
-                            {item.protocolo}
-                          </span>
-                        </td>
-
-                        <td className="px-6 py-4">
-                          <p className="text-[#222222] font-medium">{item.nome}</p>
-                          <p className="text-gray-500 text-sm">{item.email}</p>
-                        </td>
-
-                        <td className="px-6 py-4 text-left">
-                          <span
-                            className={`px-3 py-1 rounded-full text-white text-xs font-medium ${getStatusColor(
-                              formatStatus(item.status)
-                            )}`}
-                          >
-                            {formatStatus(item.status)}
-                          </span>
-                        </td>
-
-                        <td className="px-6 py-4">
-                          <span className="text-gray-600">
-                            {formatDate(item.dataSolicitacao)}
-                          </span>
-                        </td>
-
-                        <td className="px-6 py-4 overflow-visible">
-                          <div className="flex items-center space-x-2 relative">
-                            <Link to={`/user/detalhes_solicitacao/${item.id}`}>
-                              <Button size="sm" variant="outline">
-                                <Eye className="h-4 w-4 mr-1" /> Ver
-                              </Button>
-                            </Link>
-
-                            <MenuStatus item={item} handleUpdateStatus={handleUpdateStatus} />
-                          </div>
-                        </td>
-                      </motion.tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div ref={loaderRef} className="py-6 text-center text-gray-500">
-                  {isLoading
-                    ? "Carregando mais..."
-                    : hasMore
-                    ? ""
-                    : "Todas as solicitações carregadas."}
-                </div>
-              </div>
-            </motion.div>
-          ) : (
-            <div className="bg-white rounded-xl border border-[#D9D9D9] p-10 text-center shadow-sm">
+            <div className="text-center py-20 text-gray-600">Carregando...</div>
+          ) : filteredData.length === 0 ? (
+            <div className="bg-white p-10 rounded-xl text-center shadow">
               <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-600 text-lg">Nenhuma solicitação encontrada.</p>
             </div>
+          ) : (
+            <motion.div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+              <table className="w-full">
+                <thead className="bg-[#F4F4F4] border-b">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-gray-600">Protocolo</th>
+                    <th className="px-6 py-4 text-left text-gray-600">Solicitante</th>
+                    <th className="px-6 py-4 text-left text-gray-600">Status</th>
+                    <th className="px-6 py-4 text-left text-gray-600">Data</th>
+                    <th className="px-6 py-4 text-left text-gray-600">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.map((item, idx) => (
+                    <motion.tr
+                      key={item.id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, delay: idx * 0.03 }}
+                      className="border-b hover:bg-[#F4F4F4]/60 transition"
+                    >
+                      <td className="px-6 py-4 font-medium">{item.protocolo}</td>
+                      <td className="px-6 py-4">
+                        <p className="font-medium">{item.nome}</p>
+                        <p className="text-sm text-gray-500">{item.email}</p>
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <span
+                          className={`px-3 py-1 rounded-full text-white text-xs font-medium ${getStatusColor(
+                            formatStatus(item.status)
+                          )}`}
+                        >
+                          {formatStatus(item.status)}
+                        </span>
+                      </td>
+
+                      <td classname="px-6 py-4 text-gray-600">
+                        {formatDate(item.dataSolicitacao)}
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <div className="flex gap-2">
+                          <Link to={`/user/detalhes_solicitacao/${item.id}`}>
+                            <Button size="sm" variant="outline">
+                              <Eye className="w-4 h-4 mr-1" /> Ver
+                            </Button>
+                          </Link>
+                          <MenuStatus
+                            item={item}
+                            handleUpdateStatus={handleUpdateStatus}
+                          />
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
           )}
         </div>
       </div>
+
       <Footer />
     </>
   );
