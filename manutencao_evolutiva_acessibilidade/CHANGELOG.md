@@ -1,13 +1,13 @@
 <h1>📝 CHANGELOG</h1>
 
 <p style="text-align: justify;">
-Todas as mudanças relevantes deste projeto serão documentadas neste arquivo.
+Todas as mudanças relevantes da manutenção evolutiva e acessibilidade serão documentadas neste arquivo.
 O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versioning</em>.
 </p>
 
 <hr>
 
-<h2>[1.1.0] - 2025-11-15</h2>
+<h2>[3.1.0] - 2025-11-15</h2>
 <h3>🚀 Manutenção Evolutiva – Etapa 2</h3>
 
 <h4>✨ Adicionado</h4>
