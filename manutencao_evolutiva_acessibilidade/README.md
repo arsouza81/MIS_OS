@@ -154,11 +154,5 @@ ampliações, estudos e pesquisas futuras. Sugestões e melhorias podem ser regi
   </li>
 </ul>
 
-<hr>
 
-<h2>📌 Observações</h2>
 
-<p style="text-align: justify;">
-Os nomes dos arquivos, diretórios e links utilizados neste README devem ser ajustados conforme a organização final 
-do repositório no GitHub. Certifique-se de revisar e atualizar caminhos caso a estrutura seja modificada.
-</p>
