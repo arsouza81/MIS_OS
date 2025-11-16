@@ -77,10 +77,15 @@ export const Api = {
     return handleResponseWithJson(res);
   },
 
-  async buscarSolicitacoes(page = 1, pageSize = 20) {
+  async buscarSolicitacoes() {
+    const res = await fetch(`${API_BASE}/user/solicitacoes`);
+    return handleResponseWithJson(res);
+  },
+
+  async contagemSolicitacoes() {
     const res = await fetch(
-      `${API_BASE}/user/solicitacoes?page=${page}&pageSize=${pageSize}`
+      `${API_BASE}/user/solicitacoes/contagem`
     );
     return handleResponseWithJson(res);
-  }
+  },
 };
