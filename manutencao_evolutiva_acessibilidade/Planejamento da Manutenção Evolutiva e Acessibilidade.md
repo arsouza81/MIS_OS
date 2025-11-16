@@ -132,8 +132,8 @@ A exibição automática das OS reduz etapas desnecessárias, acelera o fluxo de
 
 <hr>
 
-<h3>🎛️ Funcionalidade 4 — Filtros e Busca na visão do Gerente<br>
-  <small>(Busca por protocolo e filtro por status)</small>
+<h3>🎛️ Funcionalidade 4 — Filtros e Busca na visão do Gerente (Busca por protocolo e filtro por status)<br>
+  <small>(Issue #60)</small>
 </h3>
 
 <h4>📘 Descrição</h4>
