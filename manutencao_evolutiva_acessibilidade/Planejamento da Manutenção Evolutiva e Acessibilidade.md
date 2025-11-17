@@ -27,7 +27,8 @@ Nesta seção são apresentadas as funcionalidades planejadas para a manutençã
 <hr>
 
 <h3>🔧 Funcionalidade 1 — Rastreabilidade de Atualizações na Ordem de Serviço<br>
-  <small>(Issue #57)</small>
+  
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/57" target="_blank">Issue #57</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -72,7 +73,7 @@ Método api/user/solicitacao-detalhes/{id}
 <hr>
 
 <h3>🎨 Funcionalidade 2 — Timeline de Criação e Atualização da Ordem de Serviço<br>
-  <small>(Issue #58)</small>
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/58" target="_blank">Issue #58</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -117,7 +118,7 @@ Tela Detalhes da Solicitação - Perfil da Gerência (Página DetalhesSolicitaca
 <hr>
 
 <h3>📄 Funcionalidade 3 — Listagem Geral de Ordens de Serviço (sem filtro obrigatório por data)<br>
-  <small>(Issue #59)</small>
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/59" target="_blank">Issue #59</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -160,7 +161,7 @@ Página de solicitações(indexGerente) antes da implementação da listagem ger
 <hr>
 
 <h3>🎛️ Funcionalidade 4 — Filtros e Busca na visão do Gerente (Busca por protocolo e filtro por status)<br>
-  <small>(Issue #60)</small>
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/60" target="_blank">Issue #60</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -215,6 +216,7 @@ seja traduzido para a Língua Brasileira de Sinais.
 </p>
 
 <h3>♿ Melhoria de Acessibilidade — Integração do VLibras</h3>
+<small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/64" target="_blank">Issue #64</a>)</em></small>
 
 <h4>📘 Problema Identificado</h4>
 <p style="text-align: justify;">
