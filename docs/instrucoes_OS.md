@@ -1,137 +1,154 @@
 <h1>Manual de Instalação e Configuração do Projeto Ordem de Serviço</h1>
 
-  <h2>1. Requisitos de Sistema</h2>
-  <p>Antes de iniciar, certifique-se de que seu sistema atenda aos seguintes requisitos:</p>
-  <ul>
-      <li>Windows 10 ou superior</li>
-      <li>Conexão com a internet para baixar as ferramentas necessárias</li>
-  </ul>
+<h2>1. Requisitos de Sistema</h2>
+<p>Antes de iniciar, certifique-se de que seu sistema atenda aos seguintes requisitos:</p>
+<ul>
+    <li>Windows 10 ou superior</li>
+    <li>Conexão com a internet para baixar as ferramentas necessárias</li>
+</ul>
 
-  <h2>2. Instalando o Visual Studio 2022</h2>
-  <ol>
-      <li>Visite o site oficial do Visual Studio clicando no link abaixo:</li>
-      <a href="https://visualstudio.microsoft.com/pt-br/downloads/">https://visualstudio.microsoft.com/pt-br/downloads/</a>
-      <li>Na página de downloads, escolha a versão <strong>Community</strong> (gratuita) e clique em <strong>Download</strong>.</li>
-      <li>Após o download, abra o instalador e siga as instruções na tela.</li>
-      <li>Durante a instalação, selecione a carga de trabalho <strong>Desenvolvimento ASP.NET e Web</strong>.</li>
-      <li>Aguarde até que a instalação seja concluída e o Visual Studio esteja pronto para uso.</li>
-  </ol>
-
-  <h2>3. Instalando o MySQL e MySQL Workbench</h2>
-  <ol>
-      <li>Visite o site oficial do MySQL clicando no link abaixo:</li>
-      <a href="https://dev.mysql.com/downloads/installer/">https://dev.mysql.com/downloads/installer/</a>
-      <li>Na página de downloads, escolha a opção <strong>MySQL Installer for Windows</strong> e clique em <strong>Download</strong>.</li>
-      <li>Após o download, abra o instalador do MySQL.</li>
-      <li>No instalador, selecione a opção <strong>Developer Default</strong>, que instalará o MySQL Server e o MySQL Workbench juntos.</li>
-      <li>Siga as instruções na tela para configurar o MySQL Server:</li>
-      <ul>
-          <li>Escolha o tipo de instalação como <strong>Standalone MySQL Server</strong>.</li>
-          <li>Defina a senha do usuário root (guarde essa senha, pois será necessária posteriormente).</li>
-          <li>Complete as demais configurações padrão.</li>
-      </ul>
-      <li>Conclua a instalação e inicie o MySQL Workbench.</li>
-  </ol>
-
-  <h2>4. Baixando o Projeto do GitHub</h2>
-  <p>Agora que você já tem o ambiente configurado, o próximo passo é baixar o projeto. Você pode fazer isso de duas formas:</p>
-  
-  <h3>4.1 Baixar com Git</h3>
-  <ol>
-      <li>Abra o terminal ou o Git Bash.</li>
-      <li>Navegue até a pasta de sua preferência onde deseja salvar o projeto.</li>
-      <li>Digite o seguinte comando para clonar o repositório:</li>
-      <pre><code>git clone https://github.com/arsouza81/MIS_OS.git</code></pre>
-      <li>Aguarde até que o processo de clonagem seja concluído.</li>
-  </ol>
-  
-  <h3>4.2 Baixar como arquivo zipado</h3>
-  <ol>
-      <li>Acesse o repositório através do link:</li>
-      <a href="https://github.com/arsouza81/MIS_OS">https://github.com/arsouza81/MIS_OS</a>
-      <li>Na página do repositório, clique no botão <strong>Code</strong>.</li>
-      <li>Selecione a opção <strong>Download ZIP</strong>.</li>
-      <li>Após o download, extraia o arquivo ZIP em uma pasta de sua preferência.</li>
-  </ol>
-
-  <h3>Imagem do site</h3>
-  <p>Abaixo está uma imagem de como o site do GitHub aparecerá para você ao seguir essas instruções:</p>
-  <img src="../images/images-for-readme/print.png" alt="Print da tela do repositório no GitHub">
-
-  <h2>5. Abrindo o Projeto no Visual Studio</h2>
-<p>Agora que o projeto já foi baixado, o próximo passo é abri-lo no Visual Studio. Siga as instruções abaixo:</p>
-
-<h3>5.1 Abrir o Projeto</h3>
+<h2>2. Instalando o .NET SDK (Backend em C#)</h2>
 <ol>
-    <li>Abra o Visual Studio 2022.</li>
-    <li>Na tela inicial, clique em <strong>Abrir um projeto ou solução</strong>.</li>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print2.png" alt="Abrir um projeto ou solução no Visual Studio">
+    <li>Acesse o site oficial do .NET:</li>
+    <a href="https://dotnet.microsoft.com/pt-br/download" target="_blank">https://dotnet.microsoft.com/pt-br/download</a>
+    <li>Baixe e instale o <strong>.NET SDK 8.x</strong> (não o Runtime).</li>
+    <li>Após a instalação, abra o Terminal ou PowerShell e execute:</li>
+    <pre><code>dotnet --version</code></pre>
+    <li>Se aparecer a versão, a instalação está concluída.</li>
 </ol>
 
-<h3>5.2 Selecionar o Projeto</h3>
+<h2>3. Instalando o Entity Framework Core CLI</h2>
+<p>O Entity Framework Core é utilizado para atualizar o banco de dados do projeto.</p>
 <ol>
-    <li>Navegue até a pasta onde você baixou o projeto.</li>
-    <li>Selecione o arquivo da solução <strong>.sln</strong> correspondente ao projeto e clique em <strong>Abrir</strong>.</li>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print3.png" alt="Selecionando o arquivo .sln do projeto">
+    <li>Abra o Terminal ou PowerShell.</li>
+    <li>Execute o seguinte comando para instalar o EF CLI:</li>
+    <pre><code>dotnet tool install --global dotnet-ef</code></pre>
+    <li>Verifique a instalação:</li>
+    <pre><code>dotnet ef --version</code></pre>
 </ol>
 
-<h2>6. Configurando o appsettings.json</h2>
-<p>Agora que o projeto está aberto no Visual Studio, o próximo passo é configurar o arquivo <strong>appsettings.json</strong> para ajustar as credenciais de conexão com o banco de dados.</p>
+<h2>4. Instalando o Node.js (Frontend em React)</h2>
 <ol>
-    <li>No Visual Studio, localize o arquivo <strong>appsettings.json</strong> na árvore de arquivos do projeto.</li>
-    <li>Abra o arquivo e encontre a seção <strong>ConnectionStrings</strong>.</li>
-    <li>Substitua <strong>Username</strong> e <strong>Password</strong> pelas suas credenciais do MySQL.</li>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print4.png" alt="Editando o appsettings.json para alterar usuário e senha">
+    <li>Acesse o site oficial do Node.js:</li>
+    <a href="https://nodejs.org" target="_blank">https://nodejs.org</a>
+    <li>Baixe a versão <strong>LTS</strong>.</li>
+    <li>Após a instalação, verifique com os comandos:</li>
+    <pre><code>node -v
+npm -v</code></pre>
 </ol>
 
-<h2>7. Abrindo o Gerenciador de Pacotes NuGet</h2>
-<p>Para realizar as migrações do banco de dados, precisamos usar o Gerenciador de Pacotes NuGet. Siga os passos abaixo para abrir o gerenciador:</p>
+<h2>5. Baixando o Projeto do GitHub</h2>
+<p>Você pode baixar o projeto de duas formas:</p>
+
+<h3>5.1 Clonar com Git</h3>
 <ol>
-    <li>No Visual Studio, vá até o menu <strong>Ferramentas</strong> (Tools) e selecione <strong>Gerenciador de Pacotes NuGet</strong>.</li>
-    <li>Clique em <strong>Console do Gerenciador de Pacotes</strong> (Package Manager Console).</li>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print5.png" alt="Abrindo o Console do Gerenciador de Pacotes">
+    <li>Abra o Terminal ou Git Bash.</li>
+    <li>Navegue até a pasta onde deseja salvar o projeto.</li>
+    <li>Execute o comando:</li>
+    <pre><code>git clone https://github.com/arsouza81/MIS_OS.git</code></pre>
 </ol>
 
-<h2>8. Atualizando o Banco de Dados</h2>
-<p>Com o Gerenciador de Pacotes NuGet aberto, você pode agora atualizar o banco de dados com as migrações. Siga os passos abaixo:</p>
-
-<h3>8.1 Criando uma Migração</h3>
+<h3>5.2 Baixar como arquivo ZIP</h3>
 <ol>
-    <li>Na <strong>Console do Gerenciador de Pacotes</strong>, digite o seguinte comando para criar uma migração:</li>
-    <pre><code>Add-Migration NomeDaMigracao</code></pre>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print6.png" alt="Comando Add-Migration no Gerenciador de Pacotes">
+    <li>Acesse o repositório:</li>
+    <a href="https://github.com/arsouza81/MIS_OS" target="_blank">https://github.com/arsouza81/MIS_OS</a>
+    <li>Clique em <strong>Code</strong> &gt; <strong>Download ZIP</strong>.</li>
+    <li>Extraia o arquivo ZIP em uma pasta de sua preferência.</li>
 </ol>
 
-<h3>8.2 Atualizando o Banco de Dados</h3>
+<h2>6. Estrutura do Projeto</h2>
+<p>Após baixar o projeto, confirme a seguinte estrutura:</p>
+<pre><code>/codigo_fonte/
+    ├── backend/
+    │     └── OrdemDeServico/
+    └── frontend/
+          └── src/
+</code></pre>
+
+<h2>7. Configurando o Backend (C#)</h2>
+
+<h3>7.1 Abrindo no VS Code</h3>
 <ol>
-    <li>Após criar a migração, digite o seguinte comando para atualizar o banco de dados:</li>
-    <pre><code>Update-Database</code></pre>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print7.png" alt="Comando Update-Database no Gerenciador de Pacotes">
+    <li>Abra o VS Code.</li>
+    <li>Clique em <strong>File &gt; Open Folder</strong>.</li>
+    <li>Selecione a pasta:</li>
+    <pre><code>/codigo_fonte/backend/OrdemDeServico/</code></pre>
 </ol>
 
-<h2>9. Iniciando o Projeto</h2>
-<p>Agora que todas as configurações foram feitas, o último passo é iniciar o projeto. Siga as instruções abaixo:</p>
-
-<h3>9.1 Executando o Projeto</h3>
+<h3>7.2 Configurando o appsettings.json</h3>
 <ol>
-    <li>Certifique-se de que o Visual Studio está configurado para rodar o projeto em <strong>https</strong>.</li>
-    <li>Para iniciar o projeto, clique no botão <strong>Play</strong> no Visual Studio. O projeto será iniciado automaticamente no navegador padrão.</li>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print8.png" alt="Botão Play no Visual Studio para iniciar o projeto">
+    <li>Abra o arquivo <strong>appsettings.json</strong>.</li>
+    <li>Localize a seção <strong>ConnectionStrings</strong>.</li>
+    <li>Atualize com suas credenciais:</li>
 </ol>
 
-<h3>9.2 Resolução de Problemas de Autorização</h3>
+<pre><code>"ConnectionStrings": {
+    "OrdemServicoConnection": "server=localhost;database=ordem_de_servico_api;user=root;password="
+  },
+  "Smtp": {
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "Username": "",
+    "Password": "",
+    "From": ""
+  }
+</code></pre>
+
+<h2>8. Atualizando o Banco de Dados (EF Core)</h2>
+<p>Todos os comandos devem ser executados no terminal dentro da pasta do backend:</p>
+
+<pre><code>/codigo_fonte/backend/OrdemDeServico/</code></pre>
+
+<h3>8.1 Criando uma migração (caso necessário)</h3>
+<pre><code>dotnet ef migrations add NomeDaMigracao</code></pre>
+
+<h3>8.2 Atualizando o banco de dados</h3>
+<pre><code>dotnet ef database update</code></pre>
+
+<p>Após isso, o banco estará atualizado e pronto para uso.</p>
+
+<h2>9. Iniciando o Backend</h2>
 <ol>
-    <li>Se encontrar erros relacionados à autorização ou execução no navegador padrão, você pode tentar executar o projeto em outro navegador.</li>
-    <li>Copie o link do navegador que abriu e cole em outro navegador, como o Chrome ou Firefox.</li>
-    <li>Veja a imagem abaixo para referência:</li>
-    <img src="../images/images-for-readme/print9.png" alt="Copiando o link para abrir em outro navegador">
+    <li>No terminal, execute:</li>
+    <pre><code>dotnet run</code></pre>
+    <li>O servidor será iniciado e aparecerá algo como:</li>
 </ol>
 
-<p>Com isso, o projeto estará rodando corretamente, e você poderá acessar as funcionalidades disponíveis.</p>
+<pre><code>Now listening on: https://localhost:5053</code></pre>
+
+<h2>10. Configurando o Frontend (React)</h2>
+
+<h3>10.1 Acessando a pasta do frontend</h3>
+<pre><code>/codigo_fonte/frontend/</code></pre>
+
+<h3>10.2 Instalando as dependências</h3>
+<pre><code>npm install</code></pre>
+
+<h3>10.3 Executando o projeto</h3>
+<pre><code>npm run dev</code></pre>
+
+<p>O terminal exibirá algo como:</p>
+
+<pre><code>http://localhost:5173/</code></pre>
+
+<h2>11. Acessando o Sistema</h2>
+<ul>
+    <li><strong>Backend:</strong> https://localhost:5053</li>
+    <li><strong>Frontend:</strong> http://localhost:5173</li>
+</ul>
+
+<h2>12. Problemas Comuns</h2>
+
+<h3>❌ dotnet-ef não encontrado</h3>
+<pre><code>dotnet tool install --global dotnet-ef</code></pre>
+
+<h3>❌ Erro de conexão com o banco</h3>
+<ul>
+    <li>Verifique a senha do MySQL no appsettings.json.</li>
+    <li>Certifique-se de que o MySQL está rodando.</li>
+</ul>
+
+<h3>❌ Erro no npm install</h3>
+<pre><code>npm cache clean --force</code></pre>
+
+<p>Com isso, todo o ambiente deve estar funcionando corretamente.</p>

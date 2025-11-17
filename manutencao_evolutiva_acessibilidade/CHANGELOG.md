@@ -21,7 +21,7 @@ O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versi
       <li>Inicialização de <code>DataAtualizacao</code> no POST com o valor de <code>Data_Solicitacao</code>.</li>
       <li>Atualização automática de <code>DataAtualizacao</code> no PUT/PATCH utilizando <code>DateTime.Now</code>.</li>
       <li>Migração criada e aplicada no banco de dados.</li>
-      <li><em>(Issue #57)</em></li>
+      <li><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/57" target="_blank">Issue #57</a>)</em></li>
     </ul>
   </li>
 
@@ -31,7 +31,7 @@ O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versi
       <li>Exibição visual dos marcos <code>Data_Solicitacao</code> e <code>DataAtualizacao</code>.</li>
       <li>Implementação nas telas <code>Solicitacao.jsx</code> e <code>DetalhesSolicitacao.jsx</code>.</li>
       <li>Formatação das datas no padrão brasileiro (<code>dd/mm/aaaa hh:mm</code>).</li>
-      <li><em>(Issue #58)</em></li>
+      <li><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/58" target="_blank">Issue #58</a>)</em></li>
     </ul>
   </li>
 
@@ -40,7 +40,7 @@ O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versi
     <ul>
       <li>A página <code>IndexGerente.jsx</code> passa a exibir todas as OS automaticamente ao carregar.</li>
       <li>Ordenação das OS da mais recente para a mais antiga.</li>
-      <li><em>(Issue #59)</em></li>
+      <li><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/59" target="_blank">Issue #59</a>)</em></li>
     </ul>
   </li>
 
@@ -50,10 +50,21 @@ O formato segue princípios do <em>Keep a Changelog</em> e do <em>Semantic Versi
       <li>Campo de busca pelo número de protocolo.</li>
       <li>Filtro por status: <em>Todos</em>, <em>Pendente</em>, <em>Em Andamento</em>, <em>Concluída</em>, <em>Descartada</em>.</li>
       <li>Listagem atualizada dinamicamente conforme filtros são aplicados.</li>
-      <li><em>(Issue #60)</em></li>
+      <li><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/60" target="_blank">Issue #60</a>)</em></li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Acessibilidade – Implementação do Plugin VLibras</strong><br>
+    <ul>
+      <li>Adição do recurso VLibras em todo o frontend, garantindo acessibilidade em Libras.</li>
+      <li>Inserção do script oficial do VLibras nas páginas públicas e autenticadas.</li>
+      <li>Ajustes de layout para evitar sobreposição do widget com elementos da UI.</li>
+      <li><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/64" target="_blank">Issue #64</a>)</em></li>
     </ul>
   </li>
 </ul>
+
 
 <hr>
 <hr>

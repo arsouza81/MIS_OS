@@ -27,7 +27,8 @@ Nesta seção são apresentadas as funcionalidades planejadas para a manutençã
 <hr>
 
 <h3>🔧 Funcionalidade 1 — Rastreabilidade de Atualizações na Ordem de Serviço<br>
-  <small>(Issue #57)</small>
+  
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/57" target="_blank">Issue #57</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -50,6 +51,16 @@ a atualidade das informações exibidas. A inclusão do campo <code>DataAtualiza
 mínima necessária para auditoria, aumenta a transparência e melhora o acompanhamento das solicitações.
 </p>
 
+<h4>📝 Componente a ser modificado </h4>
+
+Método api/formservidor/buscar-protocolo?protocolo=xxx
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/580d5a07-5d6d-4ee5-a084-1c333d7072a1"></td>
+
+
+Método api/user/solicitacao-detalhes/{id}
+<td style="width:50%;"><img src="https://github.com/user-attachments/assets/8844f97c-fde8-42ca-8d9f-61926ae024c2"></td>
+
+
 <h4>🔧 Escopo Técnico</h4>
 <ul>
   <li>Adicionar o campo <code>DateTime DataAtualizacao</code> ao modelo FormServidor.</li>
@@ -62,7 +73,7 @@ mínima necessária para auditoria, aumenta a transparência e melhora o acompan
 <hr>
 
 <h3>🎨 Funcionalidade 2 — Timeline de Criação e Atualização da Ordem de Serviço<br>
-  <small>(Issue #58)</small>
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/58" target="_blank">Issue #58</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -86,6 +97,16 @@ gerando incertezas sobre o andamento do atendimento. A timeline torna essas info
 experiência do usuário.
 </p>
 
+<h4>📝 Componente a ser modificado </h4>
+
+Tela Consultar Solicitação - Perfil do Servidor (Página Solicitacao.jsx)
+<img width="1276" height="551" alt="Image" src="https://github.com/user-attachments/assets/ea06638b-ea25-435f-b528-b1b9fb2e3ca3" />
+
+
+Tela Detalhes da Solicitação - Perfil da Gerência (Página DetalhesSolicitacao.jsx)
+<img width="1278" height="551" alt="Image" src="https://github.com/user-attachments/assets/aa66439f-52f0-4b9b-a3e0-476c7c253183" />
+
+
 <h4>🔧 Escopo Técnico</h4>
 <ul>
   <li>Adicionar componente visual de timeline às telas de visualização da OS.</li>
@@ -97,7 +118,7 @@ experiência do usuário.
 <hr>
 
 <h3>📄 Funcionalidade 3 — Listagem Geral de Ordens de Serviço (sem filtro obrigatório por data)<br>
-  <small>(Issue #59)</small>
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/59" target="_blank">Issue #59</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -123,6 +144,13 @@ A navegação por calendário é lenta e pouco prática, especialmente quando o 
 A exibição automática das OS reduz etapas desnecessárias, acelera o fluxo de trabalho e melhora a usabilidade.
 </p>
 
+<h4>📝 Componente a ser modificado </h4>
+
+Página de solicitações(indexGerente) antes da implementação da listagem geral de Ordens de Serviço
+
+![Image](https://github.com/user-attachments/assets/070f4178-31b4-44ee-b74f-ca011461f60e)
+
+
 <h4>🔧 Escopo Técnico</h4>
 <ul>
   <li>Modificar a lógica de carregamento para listar todas as OS ao entrar na página.</li>
@@ -133,7 +161,7 @@ A exibição automática das OS reduz etapas desnecessárias, acelera o fluxo de
 <hr>
 
 <h3>🎛️ Funcionalidade 4 — Filtros e Busca na visão do Gerente (Busca por protocolo e filtro por status)<br>
-  <small>(Issue #60)</small>
+  <small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/60" target="_blank">Issue #60</a>)</em></small>
 </h3>
 
 <h4>📘 Descrição</h4>
@@ -161,6 +189,13 @@ Com o aumento da quantidade de OS exibidas, navegar apenas por rolagem torna-se 
 Os filtros reativos oferecem uma experiência mais organizada, rápida e intuitiva.
 </p>
 
+<h4>📝 Componente a ser modificado </h4>
+
+Página de solicitações(indexGerente) antes da implementação do filtro de busca 
+
+<img width="1898" height="970" alt="Image" src="https://github.com/user-attachments/assets/6d160bab-53b7-4c72-94e1-68d1f81fb5f6" />
+
+
 <h4>🔧 Escopo Técnico</h4>
 <ul>
   <li>Implementar campo de busca por protocolo em <code>IndexGerente.jsx</code>.</li>
@@ -181,6 +216,7 @@ seja traduzido para a Língua Brasileira de Sinais.
 </p>
 
 <h3>♿ Melhoria de Acessibilidade — Integração do VLibras</h3>
+<small><em>(<a href="https://github.com/arsouza81/MIS_OS/issues/64" target="_blank">Issue #64</a>)</em></small>
 
 <h4>📘 Problema Identificado</h4>
 <p style="text-align: justify;">
@@ -204,6 +240,7 @@ com boas práticas de design universal.
   <li><em>Relevância:</em> a integração do VLibras amplia a inclusão digital, segue diretrizes governamentais 
   para acessibilidade e melhora a experiência de diversos perfis de usuários.</li>
 </ul>
+
 
 <h4>🔧 Solução Proposta</h4>
 <p style="text-align: justify;">
