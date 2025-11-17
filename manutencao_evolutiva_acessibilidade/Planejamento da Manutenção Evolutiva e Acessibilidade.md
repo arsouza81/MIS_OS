@@ -145,6 +145,9 @@ A exibição automática das OS reduz etapas desnecessárias, acelera o fluxo de
 
 <h4>📝 Componente a ser modificado </h4>
 
+Página de solicitações(indexGerente) antes da implementação da listagem geral de Ordens de Serviço
+
+![Image](https://github.com/user-attachments/assets/070f4178-31b4-44ee-b74f-ca011461f60e)
 
 
 <h4>🔧 Escopo Técnico</h4>
