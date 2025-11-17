@@ -30,6 +30,8 @@ public class FormServidor {
 
     [Required(ErrorMessage = "A data de criação é obrigatória")]
     public DateTime Data_Solicitacao { get; set; } = DateTime.Now;
+    [Required(ErrorMessage = "A data de atualização é obrigatória")]
+    public DateTime DataAtualizacao { get; set; } = DateTime.Now;
 
     [Required(ErrorMessage = "O formulário precisa de um status para o problema")]
     [StringLength(20, ErrorMessage = "O status não pode ultrapassar 20 caracteres")]

@@ -67,12 +67,24 @@ export const Api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ protocolo, novoStatus }),
     });
-    return handleResponseNoContent(res);
+    return handleResponseWithJson(res);
   },
 
   async buscarSolicitacoesPorData(data_solicitacao) {
     const res = await fetch(
       `${API_BASE}/user/solicitacoes-por-data?data_solicitacao=${data_solicitacao}`
+    );
+    return handleResponseWithJson(res);
+  },
+
+  async buscarSolicitacoes() {
+    const res = await fetch(`${API_BASE}/user/solicitacoes`);
+    return handleResponseWithJson(res);
+  },
+
+  async contagemSolicitacoes() {
+    const res = await fetch(
+      `${API_BASE}/user/solicitacoes/contagem`
     );
     return handleResponseWithJson(res);
   },

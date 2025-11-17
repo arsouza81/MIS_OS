@@ -7,6 +7,8 @@ using OrdemDeServico.Dtos;
 using OrdemDeServico.Models;
 using System.Security.Claims;
 using OrdemDeServico.Services.Helpers;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace OrdemDeServico.Controllers;
 
@@ -73,16 +75,20 @@ public class UserController : ControllerBase {
 
     [HttpPost("atualizar-status")]
     public IActionResult AtualizarStatus([FromBody] AtualizarStatusDto statusDto) {
-        // atualizar o status no banco de dados com base no protocolo e novoStatus fornecidos
         var solicitacao = _context.FormsServidores
             .FirstOrDefault(s => s.Protocolo == statusDto.Protocolo);
 
         if(solicitacao != null) {
             solicitacao.Status = statusDto.NovoStatus;
+            solicitacao.DataAtualizacao = DateTime.Now;
             _context.SaveChanges();
-            return Ok(); //retorna uma resposta de sucesso
+
+            return Ok(new {
+                status = solicitacao.Status,
+                dataAtualizacao = solicitacao.DataAtualizacao
+            });
         }
-        return NotFound(); //retorna um erro 404 se a solicitação não for encontrada
+        return NotFound();
     }
 
 
@@ -108,6 +114,44 @@ public class UserController : ControllerBase {
             nomesEIds = solicitacoes
         });
     }
+
+    [HttpGet("solicitacoes")]
+    public async Task<IActionResult> GetSolicitacoes() {
+        var solicitacoes = await _context.FormsServidores
+            .AsNoTracking()
+            .OrderByDescending(f => f.Data_Solicitacao)
+            .Select(f => new {
+                id = f.Id,
+                nome = f.Nome,
+                email = f.Email,
+                protocolo = f.Protocolo,
+                status = f.Status,
+                dataSolicitacao = f.Data_Solicitacao
+            })
+            .ToListAsync();
+
+        return Ok(solicitacoes);
+    }
+
+    [HttpGet("solicitacoes/contagem")]
+    public async Task<IActionResult> GetContagemSolicitacoes() {
+        var query = _context.FormsServidores.AsNoTracking();
+
+        var total = await query.CountAsync();
+
+        var pendente = await query.CountAsync(f => f.Status.ToLower() == "pendente");
+        var andamento = await query.CountAsync(f => f.Status.ToLower() == "em_andamento");
+        var concluida = await query.CountAsync(f => f.Status.ToLower() == "concluída");
+        var descartada = await query.CountAsync(f => f.Status.ToLower() == "descartada");
+
+        return Ok(new {
+            total,
+            pendente,
+            emAndamento = andamento,
+            concluida,
+            descartada
+        });
+    }
     
     [HttpGet("solicitacao-detalhes/{id}")]
     public IActionResult GetSolicitacaoDetalhes(int id) {
@@ -123,6 +167,8 @@ public class UserController : ControllerBase {
                 DescricaoProblema = s.DescricaoProblema,
                 Status = s.Status,
                 Protocolo = s.Protocolo,
+                Data_Solicitacao = s.Data_Solicitacao,
+                DataAtualizacao = s.DataAtualizacao,
             })
             .FirstOrDefault();
 

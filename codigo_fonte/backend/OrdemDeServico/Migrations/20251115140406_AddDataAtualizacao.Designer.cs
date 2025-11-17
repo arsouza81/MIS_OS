@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrdemDeServico.Data;
 
@@ -11,9 +12,11 @@ using OrdemDeServico.Data;
 namespace OrdemDeServico.Migrations
 {
     [DbContext(typeof(OrdemContext))]
-    partial class OrdemContextModelSnapshot : ModelSnapshot
+    [Migration("20251115140406_AddDataAtualizacao")]
+    partial class AddDataAtualizacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

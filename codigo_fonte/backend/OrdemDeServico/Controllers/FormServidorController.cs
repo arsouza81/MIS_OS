@@ -74,6 +74,7 @@ public class FormServidorController : Controller {
             formulario.Sala,
             formulario.DescricaoProblema,
             formulario.Data_Solicitacao,
+            formulario.DataAtualizacao,
             formulario.Status
         };
 
