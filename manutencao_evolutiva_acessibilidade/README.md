@@ -87,10 +87,12 @@ O planejamento detalhado desta etapa está disponível no documento abaixo:
 <h2>♿ Acessibilidade</h2>
 
 <p style="text-align: justify;">
-O MIS_OS está em processo de evolução para incorporar melhorias reais de acessibilidade, garantindo uso adequado 
-por pessoas com deficiência, conforme diretrizes de acessibilidade digital.  
-As melhorias planejadas incluem: contraste adequado, navegação por teclado, textos alternativos, rótulos claros, 
-uso correto de ARIA e outras boas práticas.
+O MIS_OS passou a incorporar melhorias reais de acessibilidade, garantindo uso adequado por pessoas com deficiência,
+em conformidade com as diretrizes de acessibilidade digital. Nesta etapa, foi integrada ao sistema a ferramenta 
+<strong>VLibras</strong>, que permite a tradução do conteúdo da interface para a Língua Brasileira de Sinais (Libras),
+proporcionando maior inclusão para usuários surdos.  
+Além dessa melhoria já implementada, seguem previstas futuras evoluções, como contraste adequado, navegação por 
+teclado, textos alternativos, rótulos claros, uso correto de ARIA e outras boas práticas essenciais de acessibilidade.
 </p>
 
 <hr>
