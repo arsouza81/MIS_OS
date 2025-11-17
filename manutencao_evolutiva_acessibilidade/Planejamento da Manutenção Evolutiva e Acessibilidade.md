@@ -171,31 +171,48 @@ Os filtros reativos oferecem uma experiência mais organizada, rápida e intuiti
 
 <hr>
 
-<h2>3. Melhorias de Acessibilidade (a implementar)</h2>
+<h2>3. Melhorias de Acessibilidade (implementada)</h2>
 
 <p style="text-align: justify;">
-Além das funcionalidades evolutivas, esta etapa inclui a implementação de pelo menos uma melhoria significativa 
-de acessibilidade, visando corrigir uma limitação real do sistema e promover maior inclusão no uso da interface. 
-O modelo abaixo será preenchido quando a melhoria for definida e implementada.
+Além das funcionalidades evolutivas, esta etapa contemplou a implementação de uma melhoria significativa de
+acessibilidade: a integração do VLibras ao sistema. A adição deste recurso corrige uma limitação real da interface
+e promove maior inclusão para pessoas surdas ou com deficiência auditiva, permitindo que todo o conteúdo textual
+seja traduzido para a Língua Brasileira de Sinais.
 </p>
 
-<h3>♿ Melhoria de Acessibilidade — [Título da melhoria]</h3>
+<h3>♿ Melhoria de Acessibilidade — Integração do VLibras</h3>
 
 <h4>📘 Problema Identificado</h4>
-<p style="text-align: justify;"><em>[Descrição da limitação de acessibilidade encontrada]</em></p>
+<p style="text-align: justify;">
+O sistema não oferecia suporte para usuários surdos, não permitindo a tradução do conteúdo da interface para
+Libras. Essa limitação dificultava a interpretação das informações e restringia a autonomia de navegação para
+pessoas com deficiência auditiva.
+</p>
 
 <h4>🎯 Objetivo</h4>
-<p style="text-align: justify;"><em>[O que a solução busca resolver]</em></p>
+<p style="text-align: justify;">
+Permitir que usuários surdos tenham acesso pleno às informações exibidas no sistema por meio da tradução automática
+dos textos para a Língua Brasileira de Sinais (Libras), garantindo maior acessibilidade, inclusão e conformidade
+com boas práticas de design universal.
+</p>
 
 <h4>📝 Justificativa</h4>
 <ul>
-  <li><em>Público afetado pela limitação.</em></li>
-  <li><em>Impactos causados pela barreira atual.</em></li>
-  <li><em>Importância da solução para acessibilidade e inclusão.</em></li>
+  <li><em>Público afetado:</em> usuários com deficiência auditiva ou surdez que dependem de interpretação em Libras.</li>
+  <li><em>Impacto atual:</em> dificuldade de compreender textos, descrições e mensagens exibidas no sistema, 
+  reduzindo acessibilidade e autonomia.</li>
+  <li><em>Relevância:</em> a integração do VLibras amplia a inclusão digital, segue diretrizes governamentais 
+  para acessibilidade e melhora a experiência de diversos perfis de usuários.</li>
 </ul>
 
 <h4>🔧 Solução Proposta</h4>
-<p style="text-align: justify;"><em>[Descrição técnica da solução]</em></p>
+<p style="text-align: justify;">
+A solução adotada consiste na integração do VLibras diretamente no frontend React, por meio da inserção do 
+<span style="font-weight: bold;">widget oficial</span> disponibilizado pelo Governo Federal. Foram adicionados ao 
+arquivo <code>index.html</code> os elementos necessários para carregar o plugin — incluindo o container padrão e 
+o script de inicialização. Dessa forma, o intérprete virtual fica disponível em todas as rotas da aplicação, 
+incluindo páginas públicas e áreas autenticadas, sem interferir no design existente. O componente é carregado de 
+forma automática e funciona mesmo após navegação por múltiplas rotas em SPA (Single Page Application).</p>
 
 <hr>
 
@@ -204,6 +221,7 @@ O modelo abaixo será preenchido quando a melhoria for definida e implementada.
 <p style="text-align: justify;">
 As funcionalidades de manutenção evolutiva apresentadas neste documento fortalecem a eficiência, transparência e 
 usabilidade do sistema, atendendo às necessidades do Gerente de TI e dos usuários que acompanham o ciclo de vida 
-das Ordens de Serviço. A implementação da melhoria de acessibilidade complementará este processo, aproximando o 
-sistema das boas práticas de inclusão e alinhando-o às exigências acadêmicas e reais de uso.
+das Ordens de Serviço. A implementação da melhoria de acessibilidade complementa esse processo, aproximando o 
+sistema das boas práticas de inclusão e garantindo conformidade com diretrizes modernas de acessibilidade digital.
+Assim, as evoluções realizadas fortalecem o sistema no presente e abrem caminho para melhorias contínuas e expansões futuras.
 </p>
